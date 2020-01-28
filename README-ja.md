@@ -15,7 +15,7 @@ Ansible PlaybookでHPE OneViewを管理するAnsible用Moduleです。
 本Ansible Moduleを通して、HPE Oneviewの様々な操作を行うことが可能です。また、HPE OneViewが保持する情報の収集のためのAnsible Moduleも用意しています。
 
 HPE OneView Ansible Module詳細に関しては以下を確認して下さい。  
-  - [HPE OneView Ansible Modules Documentation](oneview-ansible.md)
+  - [HPE OneView Ansible Modules Documentation](oneview-ansible-ja.md)
 
 ### Ansible OneView modulesを使ったPlaybookの一例
 
