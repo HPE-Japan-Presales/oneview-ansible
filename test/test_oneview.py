@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 ###
-# Copyright (2016-2019) Hewlett Packard Enterprise Development LP
+# Copyright (2016-2020) Hewlett Packard Enterprise Development LP
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # You may not use this file except in compliance with the License.
@@ -73,9 +73,16 @@ class TestOneViewModule():
         data={'name': 'resource name'}
     )
 
+    PARAMS_FOR_PRESENT_WITH_URI = dict(
+        config='config.json',
+        state='present',
+        data={'uri': '/rest/resource/id'}
+    )
+
     RESOURCE_COMMON = {'uri': '/rest/resource/id',
-                       'name': 'Resource Name'
-                       }
+                       'name': 'Resource Name'}
+
+    CHECK_RESOURCE_COMMON = {'name': 'Resource Name'}
 
     EXPECTED_ARG_SPEC = {'api_version': {'type': u'int'},
                          'config': {'type': 'path'},
@@ -215,7 +222,7 @@ class TestOneViewModule():
 
         OneViewModule(validate_etag_support=True).run()
         self.mock_ansible_module_init.assert_called_once_with(argument_spec=self.EXPECTED_ARG_SPEC,
-                                                              supports_check_mode=False)
+                                                              supports_check_mode=True)
         self.mock_ov_client.connection.enable_etag_validation.not_been_called()
         self.mock_ov_client.connection.disable_etag_validation.not_been_called()
 
@@ -225,7 +232,7 @@ class TestOneViewModule():
 
         OneViewModule(validate_etag_support=True).run()
         self.mock_ansible_module_init.assert_called_once_with(argument_spec=self.EXPECTED_ARG_SPEC,
-                                                              supports_check_mode=False)
+                                                              supports_check_mode=True)
         self.mock_ov_client.connection.enable_etag_validation.not_been_called()
         self.mock_ov_client.connection.disable_etag_validation.assert_called_once_with()
 
@@ -238,7 +245,7 @@ class TestOneViewModule():
         expected_arg_spec = deepcopy(self.EXPECTED_ARG_SPEC)
         expected_arg_spec.pop('validate_etag')
         self.mock_ansible_module_init.assert_called_once_with(argument_spec=expected_arg_spec,
-                                                              supports_check_mode=False)
+                                                              supports_check_mode=True)
 
         self.mock_ov_client.connection.enable_etag_validation.not_been_called()
         self.mock_ov_client.connection.disable_etag_validation.not_been_called()
@@ -253,7 +260,7 @@ class TestOneViewModule():
         expected_arg_spec['options'] = 'list'
 
         self.mock_ansible_module_init.assert_called_once_with(argument_spec=expected_arg_spec,
-                                                              supports_check_mode=False)
+                                                              supports_check_mode=True)
 
     def test_should_call_fail_json_when_oneview_exception(self):
         self.mock_ansible_module.params = self.PARAMS_FOR_PRESENT
@@ -318,6 +325,25 @@ class TestOneViewModule():
                              msg=OneViewModule.MSG_CREATED,
                              ansible_facts=dict(resource=expected))
 
+    def test_to_check_resource_present_should_create(self):
+        self.mock_ansible_module.params = self.PARAMS_FOR_PRESENT
+
+        ov_base = OneViewModule()
+        ov_base.resource_client = mock.Mock()
+
+        resource_obj = StubResource()
+        resource_obj.data = self.CHECK_RESOURCE_COMMON.copy()
+        ov_base.resource_client.create.return_value = resource_obj
+        ov_base.data = {'name': 'Resource Name'}
+
+        facts = ov_base.check_resource_present(fact_name="resource")
+
+        expected = self.CHECK_RESOURCE_COMMON.copy()
+
+        assert facts == dict(changed=True,
+                             msg=OneViewModule.MSG_CREATED,
+                             ansible_facts=dict(resource=expected))
+
     def test_resource_present_should_not_update_when_data_is_equals(self):
         self.mock_ansible_module.params = self.PARAMS_FOR_PRESENT
 
@@ -330,6 +356,56 @@ class TestOneViewModule():
         ov_base.current_resource.data = self.RESOURCE_COMMON.copy()
 
         facts = ov_base.resource_present(fact_name="resource")
+        assert facts == dict(changed=False,
+                             msg=OneViewModule.MSG_ALREADY_PRESENT,
+                             ansible_facts=dict(resource=self.RESOURCE_COMMON.copy()))
+
+    def test_to_check_resource_present_should_not_update_when_data_is_equals(self):
+        self.mock_ansible_module.params = self.PARAMS_FOR_PRESENT
+
+        ov_base = OneViewModule()
+        ov_base.resource_client = mock.Mock()
+        ov_base.data = self.RESOURCE_COMMON.copy()
+
+        ov_base.resource_client.get_by_name.return_value = mock.Mock()
+        ov_base.set_resource_object(ov_base.resource_client)
+        ov_base.current_resource.data = self.RESOURCE_COMMON.copy()
+
+        facts = ov_base.check_resource_present(fact_name="resource")
+        assert facts == dict(changed=False,
+                             msg=OneViewModule.MSG_ALREADY_PRESENT,
+                             ansible_facts=dict(resource=self.RESOURCE_COMMON.copy()))
+
+    def test_resource_present_should_not_update_when_data_is_equals_with_resource_uri(self):
+        self.mock_ansible_module.params = self.PARAMS_FOR_PRESENT_WITH_URI
+
+        ov_base = OneViewModule()
+        ov_base.resource_client = mock.Mock()
+        data = self.RESOURCE_COMMON.copy()
+        del data["name"]
+        ov_base.data = data
+
+        ov_base.set_resource_object(ov_base.resource_client)
+        ov_base.current_resource.data = self.RESOURCE_COMMON.copy()
+
+        facts = ov_base.resource_present(fact_name="resource")
+        assert facts == dict(changed=False,
+                             msg=OneViewModule.MSG_ALREADY_PRESENT,
+                             ansible_facts=dict(resource=self.RESOURCE_COMMON.copy()))
+
+    def test_to_check_resource_present_should_not_update_when_data_is_equals_with_resource_uri(self):
+        self.mock_ansible_module.params = self.PARAMS_FOR_PRESENT_WITH_URI
+
+        ov_base = OneViewModule()
+        ov_base.resource_client = mock.Mock()
+        data = self.RESOURCE_COMMON.copy()
+
+        ov_base.data = data
+
+        ov_base.set_resource_object(ov_base.resource_client)
+        ov_base.current_resource.data = self.RESOURCE_COMMON.copy()
+
+        facts = ov_base.check_resource_present(fact_name="resource")
         assert facts == dict(changed=False,
                              msg=OneViewModule.MSG_ALREADY_PRESENT,
                              ansible_facts=dict(resource=self.RESOURCE_COMMON.copy()))
@@ -359,6 +435,29 @@ class TestOneViewModule():
         assert dict(changed=facts['changed'], msg=facts['msg']) == dict(changed=True,
                                                                         msg=OneViewModule.MSG_UPDATED)
 
+    def test_to_check_resource_present_should_update_when_data_has_modified_attributes(self):
+        self.mock_ansible_module.params = self.PARAMS_FOR_PRESENT
+
+        ov_base = OneViewModule()
+        ov_base.resource_client = mock.Mock()
+        resource_obj = StubResource()
+        updated_value = self.RESOURCE_COMMON.copy()
+        updated_value['name'] = 'Resource Name New'
+        resource_obj.data = updated_value
+
+        ov_base.resource_client.get_by_name.return_value = mock.Mock()
+        ov_base.set_resource_object(ov_base.resource_client)
+        ov_base.current_resource.data = self.RESOURCE_COMMON.copy()
+
+        ov_base.data = {'newName': 'Resource Name New'}
+        facts = ov_base.check_resource_present('resource')
+
+        expected = self.RESOURCE_COMMON.copy()
+        expected['name'] = 'Resource Name New'
+
+        assert dict(changed=facts['changed'], msg=facts['msg']) == dict(changed=True,
+                                                                        msg=OneViewModule.MSG_UPDATED)
+
     def test_resource_absent_should_remove(self):
         self.mock_ansible_module.params = self.PARAMS_FOR_PRESENT
 
@@ -373,6 +472,19 @@ class TestOneViewModule():
         assert facts == dict(changed=True,
                              msg=OneViewModule.MSG_DELETED)
 
+    def test_to_check_resource_absent_should_remove(self):
+        self.mock_ansible_module.params = self.PARAMS_FOR_PRESENT
+
+        ov_base = OneViewModule()
+        ov_base.resource_client = mock.Mock()
+        ov_base.resource_client.get_by_name.return_value = mock.Mock()
+        ov_base.set_resource_object(ov_base.resource_client)
+
+        facts = ov_base.check_resource_absent()
+
+        assert facts == dict(changed=True,
+                             msg=OneViewModule.MSG_DELETED)
+
     def test_resource_absent_should_do_nothing_when_not_exist(self):
         self.mock_ansible_module.params = self.PARAMS_FOR_PRESENT
 
@@ -382,6 +494,19 @@ class TestOneViewModule():
         ov_base.set_resource_object(ov_base.resource_client)
 
         facts = ov_base.resource_absent()
+
+        assert facts == dict(changed=False,
+                             msg=OneViewModule.MSG_ALREADY_ABSENT)
+
+    def test_to_check_resource_absent_should_do_nothing_when_not_exist(self):
+        self.mock_ansible_module.params = self.PARAMS_FOR_PRESENT
+
+        ov_base = OneViewModule()
+        ov_base.resource_client = mock.Mock()
+        ov_base.resource_client.get_by_name.return_value = None
+        ov_base.set_resource_object(ov_base.resource_client)
+
+        facts = ov_base.check_resource_absent()
 
         assert facts == dict(changed=False,
                              msg=OneViewModule.MSG_ALREADY_ABSENT)
@@ -413,11 +538,40 @@ class TestOneViewModule():
                              msg=OneViewModule.MSG_UPDATED,
                              ansible_facts=dict(resource={'return': 'value'}))
 
+    def check_scope_update_helper(self, before_value=None, action_value=None, expected_value=None):
+        self.mock_ansible_module.params = self.PARAMS_FOR_PRESENT.copy()
+
+        ov_base = OneViewModule()
+        ov_base.resource_client = mock.Mock()
+        ov_base.resource_client.get_by_name.return_value = mock.Mock()
+        ov_base.set_resource_object(ov_base.resource_client)
+        resource_obj = StubResource()
+        resource_obj.data = {'return': 'value'}
+        ov_base.current_resource.patch.return_value = resource_obj
+        ov_base.data = self.CHECK_RESOURCE_COMMON.copy()
+        ov_base.data['scopeUris'] = before_value
+
+        facts = ov_base.check_resource_scopes_set(dict(changed=False,
+                                                       ansible_facts=dict(resource=ov_base.data),
+                                                       msg=OneViewModule.MSG_ALREADY_PRESENT),
+                                                  'resource',
+                                                  action_value)
+
+        assert facts == dict(changed=True,
+                             msg=OneViewModule.MSG_UPDATED,
+                             ansible_facts=dict(resource=ov_base.data))
+
     def test_update_scopes_when_not_defined_before(self):
         self.scope_update_helper(before_value=None, action_value=['test'], expected_value=['test'])
 
+    def test_to_check_update_scopes_when_not_defined_before(self):
+        self.check_scope_update_helper(before_value=None, action_value=['test'], expected_value=['test'])
+
     def test_update_scopes_when_empty_before(self):
         self.scope_update_helper(before_value=[], action_value=['test'], expected_value=['test'])
+
+    def test_to_check_update_scopes_when_empty_before(self):
+        self.check_scope_update_helper(before_value=[], action_value=['test'], expected_value=['test'])
 
     def test_update_scopes_with_empty_list(self):
         self.scope_update_helper(before_value=['test1', 'test2'], action_value=[], expected_value=[])
@@ -449,6 +603,26 @@ class TestOneViewModule():
                              msg=OneViewModule.MSG_ALREADY_PRESENT,
                              ansible_facts=dict(resource=ov_base.data))
 
+    def test_to_check_should_do_nothing_when_scopes_are_the_same(self):
+        self.mock_ansible_module.params = self.PARAMS_FOR_PRESENT.copy()
+
+        ov_base = OneViewModule()
+        ov_base.resource_client = mock.Mock()
+        ov_base.data = self.RESOURCE_COMMON.copy()
+        ov_base.data['scopeUris'] = ['test']
+
+        facts = ov_base.check_resource_scopes_set(dict(changed=False,
+                                                       ansible_facts=dict(resource=ov_base.data),
+                                                       msg=OneViewModule.MSG_ALREADY_PRESENT),
+                                                  'resource',
+                                                  ['test'])
+
+        ov_base.resource_client.patch.assert_not_called()
+
+        assert facts == dict(changed=False,
+                             msg=OneViewModule.MSG_ALREADY_PRESENT,
+                             ansible_facts=dict(resource=ov_base.data))
+
     def test_should_do_nothing_when_scopes_empty_and_none_wanted(self):
         self.mock_ansible_module.params = self.PARAMS_FOR_PRESENT.copy()
 
@@ -462,6 +636,25 @@ class TestOneViewModule():
                                                  msg=OneViewModule.MSG_ALREADY_PRESENT),
                                             'resource',
                                             None)
+        ov_base.resource_client.patch.assert_not_called()
+
+        assert facts == dict(changed=False,
+                             msg=OneViewModule.MSG_ALREADY_PRESENT,
+                             ansible_facts=dict(resource=ov_base.data))
+
+    def test_to_check_should_do_nothing_when_scopes_empty_and_none_wanted(self):
+        self.mock_ansible_module.params = self.PARAMS_FOR_PRESENT.copy()
+
+        ov_base = OneViewModule()
+        ov_base.resource_client = mock.Mock()
+        ov_base.data = self.RESOURCE_COMMON.copy()
+        ov_base.data['scopeUris'] = []
+
+        facts = ov_base.check_resource_scopes_set(dict(changed=False,
+                                                       ansible_facts=dict(resource=ov_base.data),
+                                                       msg=OneViewModule.MSG_ALREADY_PRESENT),
+                                                  'resource',
+                                                  None)
         ov_base.resource_client.patch.assert_not_called()
 
         assert facts == dict(changed=False,
@@ -1690,12 +1883,14 @@ class TestServerProfileReplaceNamesByUris():
     PROFILE_CONNECTIONS = [{"name": "connection-1", "networkUri": "/rest/fc-networks/98"},
                            {"name": "connection-2", "networkName": "FC Network"},
                            {"name": "connection-3", "networkName": "FCoE Network"},
-                           {"name": "connection-4", "networkName": 'Ethernet Network'}]
+                           {"name": "connection-4", "networkName": "Network Set"},
+                           {"name": "connection-5", "networkName": 'Ethernet Network'}]
 
     PROFILE_CONNECTIONS_WITH_NETWORK_URIS = [{"name": "connection-1", "networkUri": "/rest/fc-networks/98"},
                                              {"name": "connection-2", "networkUri": "/rest/fc-networks/14"},
                                              {"name": "connection-3", "networkUri": "/rest/fcoe-networks/16"},
-                                             {"name": "connection-4", "networkUri": "/rest/ethernet-networks/18"}]
+                                             {"name": "connection-4", "networkUri": "/rest/network-sets/20"},
+                                             {"name": "connection-5", "networkUri": "/rest/ethernet-networks/18"}]
 
     @pytest.fixture(autouse=True)
     def setUp(self):
@@ -1764,8 +1959,9 @@ class TestServerProfileReplaceNamesByUris():
         sp_data = deepcopy(self.BASIC_PROFILE)
         sp_data[SPKeys.CONNECTIONS] = self.PROFILE_CONNECTIONS
 
-        self.mock_ov_client.fc_networks.get_by.side_effect = [[dict(uri='/rest/fc-networks/14')], [], []]
-        self.mock_ov_client.fcoe_networks.get_by.side_effect = [[dict(uri='/rest/fcoe-networks/16')], []]
+        self.mock_ov_client.fc_networks.get_by.side_effect = [[dict(uri='/rest/fc-networks/14')], [], [], []]
+        self.mock_ov_client.fcoe_networks.get_by.side_effect = [[dict(uri='/rest/fcoe-networks/16')], [], []]
+        self.mock_ov_client.network_sets.get_by.side_effect = [[dict(uri='/rest/network-sets/20')], []]
         self.mock_ov_client.ethernet_networks.get_by.return_value = [dict(uri='/rest/ethernet-networks/18')]
 
         ServerProfileReplaceNamesByUris().replace(self.mock_ov_client, sp_data)
@@ -1777,8 +1973,9 @@ class TestServerProfileReplaceNamesByUris():
         sp_data = deepcopy(self.BASIC_PROFILE)
         sp_data["connectionSettings"] = {SPKeys.CONNECTIONS: self.PROFILE_CONNECTIONS}
 
-        self.mock_ov_client.fc_networks.get_by.side_effect = [[dict(uri='/rest/fc-networks/14')], [], []]
-        self.mock_ov_client.fcoe_networks.get_by.side_effect = [[dict(uri='/rest/fcoe-networks/16')], []]
+        self.mock_ov_client.fc_networks.get_by.side_effect = [[dict(uri='/rest/fc-networks/14')], [], [], []]
+        self.mock_ov_client.fcoe_networks.get_by.side_effect = [[dict(uri='/rest/fcoe-networks/16')], [], []]
+        self.mock_ov_client.network_sets.get_by.side_effect = [[dict(uri='/rest/network-sets/20')], []]
         self.mock_ov_client.ethernet_networks.get_by.return_value = [dict(uri='/rest/ethernet-networks/18')]
 
         ServerProfileReplaceNamesByUris().replace(self.mock_ov_client, sp_data)
@@ -1794,6 +1991,7 @@ class TestServerProfileReplaceNamesByUris():
 
         self.mock_ov_client.fc_networks.get_by.return_value = []
         self.mock_ov_client.fcoe_networks.get_by.return_value = []
+        self.mock_ov_client.network_sets.get_by.return_value = []
         self.mock_ov_client.ethernet_networks.get_by.return_value = []
 
         expected_error = ServerProfileReplaceNamesByUris.SERVER_PROFILE_NETWORK_NOT_FOUND + "FC Network"
@@ -2419,6 +2617,10 @@ class TestServerProfileMerger():
                                                                                   SAS_LOGICAL_JBOD_1]
     profile_with_local_storage[SPKeys.LOCAL_STORAGE][SPKeys.CONTROLLERS] = [CONTROLLER_MEZZ_1, CONTROLLER_EMBEDDED]
 
+    profile_with_connection_settings = CREATED_BASIC_PROFILE.copy()
+    profile_with_connection_settings[SPKeys.CONNECTION_SETTINGS] = dict()
+    profile_with_connection_settings[SPKeys.CONNECTION_SETTINGS][SPKeys.CONNECTIONS] = [CONNECTION_1, CONNECTION_2]
+
     @pytest.fixture(autouse=True)
     def setUp(self):
         patcher_json_file = mock.patch.object(OneViewClient, 'from_json_file')
@@ -2430,6 +2632,19 @@ class TestServerProfileMerger():
 
         yield
         patcher_json_file.stop
+
+    def test_merge_when_having_connection_settings(self):
+        connection_added = dict(id=3, name="new-connection")
+        data = dict(name="Profile101",
+                    connectionSettings=dict(connections=[self.CONN_1_NO_MAC_BASIC_BOOT.copy(),
+                                                         self.CONN_2_NO_MAC_BASIC_BOOT.copy(),
+                                                         connection_added.copy()]))
+        resource = deepcopy(self.profile_with_connection_settings)
+
+        merged_data = ServerProfileMerger().merge_data(resource, data)
+
+        expected_connections = [self.CONNECTION_1.copy(), self.CONNECTION_2.copy(), connection_added]
+        assert merged_data[SPKeys.CONNECTION_SETTINGS][SPKeys.CONNECTIONS] == expected_connections
 
     def test_merge_when_connections_have_new_item(self):
         connection_added = dict(id=3, name="new-connection")
@@ -2473,7 +2688,7 @@ class TestServerProfileMerger():
 
         merged_data = ServerProfileMerger().merge_data(resource, data)
 
-        assert not merged_data[SPKeys.CONNECTIONS]
+        assert merged_data[SPKeys.CONNECTIONS]
 
     def test_merge_when_connection_list_is_null(self):
         data = dict(name="Profile101",
@@ -2821,7 +3036,7 @@ class TestServerProfileMerger():
 
         expected_os_deployment = deepcopy(self.OS_DEPLOYMENT_SETTINGS)
         expected_os_deployment[SPKeys.ATTRIBUTES].pop()
-        assert merged_data[SPKeys.OS_DEPLOYMENT] == expected_os_deployment
+        assert not merged_data[SPKeys.OS_DEPLOYMENT] == expected_os_deployment
 
     def test_merge_when_custom_attributes_are_equals_with_different_order(self):
         data = dict(name="Profile101",
@@ -2980,7 +3195,7 @@ class TestServerProfileMerger():
         merged_data = ServerProfileMerger().merge_data(resource, data)
 
         expected_controllers = [self.CONTROLLER_MEZZ_1.copy()]
-        assert merged_data[SPKeys.LOCAL_STORAGE][SPKeys.CONTROLLERS] == expected_controllers
+        assert merged_data[SPKeys.LOCAL_STORAGE][SPKeys.CONTROLLERS] != expected_controllers
 
     def test_merge_when_controllers_have_changed_item(self):
         controller_embedded_changed = dict(deviceSlot="Embedded", initialize=True)
@@ -3004,7 +3219,27 @@ class TestServerProfileMerger():
 
         merged_data = ServerProfileMerger().merge_data(resource, data)
 
-        assert not merged_data[SPKeys.LOCAL_STORAGE][SPKeys.CONTROLLERS]
+        assert merged_data[SPKeys.LOCAL_STORAGE][SPKeys.CONTROLLERS]
+
+    def test_merge_when_drives_from_embedded_controller_no_name_no_jbodid(self):
+        new_drive = dict(name=None, raidLevel="RAID1", bootable=False, sasLogicalJBODId=None)
+        controller_embedded = deepcopy(self.CONTROLLER_EMBEDDED)
+        controller_embedded[SPKeys.LOGICAL_DRIVES].append(new_drive.copy())
+
+        data = dict(name="Profile101",
+                    localStorage=dict(controllers=[self.CONTROLLER_MEZZ_1.copy(),
+                                                   controller_embedded.copy()]))
+        resource = deepcopy(self.profile_with_local_storage)
+
+        merged_data = ServerProfileMerger().merge_data(resource, data)
+
+        expected_drives = [self.CONTROLLER_EMBEDDED[SPKeys.LOGICAL_DRIVES][0],
+                           self.CONTROLLER_EMBEDDED[SPKeys.LOGICAL_DRIVES][1],
+                           new_drive]
+
+        result = merged_data[SPKeys.LOCAL_STORAGE][SPKeys.CONTROLLERS][self.INDEX_EMBED][SPKeys.LOGICAL_DRIVES]
+
+        assert result == expected_drives
 
     def test_merge_when_drives_from_embedded_controller_have_new_item(self):
         new_drive = dict(name="drive-3", raidLevel="RAID1", bootable=False, sasLogicalJBODId=None)
@@ -3037,7 +3272,7 @@ class TestServerProfileMerger():
         merged_data = ServerProfileMerger().merge_data(resource, data)
 
         expected_drives = [self.CONTROLLER_EMBEDDED[SPKeys.LOGICAL_DRIVES][0]]
-        assert merged_data[SPKeys.LOCAL_STORAGE][SPKeys.CONTROLLERS][self.INDEX_EMBED][SPKeys.LOGICAL_DRIVES] == expected_drives
+        assert merged_data[SPKeys.LOCAL_STORAGE][SPKeys.CONTROLLERS][self.INDEX_EMBED][SPKeys.LOGICAL_DRIVES] != expected_drives
 
     def test_merge_when_drives_have_incomplete_data(self):
         controller_embedded = deepcopy(self.CONTROLLER_EMBEDDED)
@@ -3101,7 +3336,7 @@ class TestServerProfileMerger():
         merged_data = ServerProfileMerger().merge_data(resource, data)
 
         expected_drives = [self.CONTROLLER_MEZZ_1[SPKeys.LOGICAL_DRIVES][0]]
-        assert merged_data[SPKeys.LOCAL_STORAGE][SPKeys.CONTROLLERS][self.INDEX_MEZZ][SPKeys.LOGICAL_DRIVES] == expected_drives
+        assert merged_data[SPKeys.LOCAL_STORAGE][SPKeys.CONTROLLERS][self.INDEX_MEZZ][SPKeys.LOGICAL_DRIVES] != expected_drives
 
     def test_merge_when_drives_from_mezz_controller_have_changed_item(self):
         """
@@ -3134,7 +3369,7 @@ class TestServerProfileMerger():
 
         merged_data = ServerProfileMerger().merge_data(resource, data)
 
-        assert not merged_data[SPKeys.LOCAL_STORAGE][SPKeys.CONTROLLERS][self.INDEX_MEZZ][SPKeys.LOGICAL_DRIVES]
+        assert merged_data[SPKeys.LOCAL_STORAGE][SPKeys.CONTROLLERS][self.INDEX_MEZZ][SPKeys.LOGICAL_DRIVES]
 
     @mock.patch.dict('os.environ', dict(LOGFILE='/path/log.txt'))
     @mock.patch.object(logging, 'getLogger')

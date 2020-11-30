@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 ###
-# Copyright (2016-2019) Hewlett Packard Enterprise Development LP
+# Copyright (2016-2020) Hewlett Packard Enterprise Development LP
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # You may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ description:
 version_added: "2.3"
 requirements:
     - "python >= 2.7.9"
-    - "hpOneView >= 5.0.0"
+    - "hpeOneView >= 5.4.0"
 author: "Gustavo Hennig (@GustavoHennig)"
 options:
     state:
@@ -65,7 +65,7 @@ EXAMPLES = '''
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 1200
     state: present
     data:
          hostname : "172.18.6.15"
@@ -81,7 +81,7 @@ EXAMPLES = '''
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 1200
     state: present
     data:
          name : "172.18.6.15"
@@ -95,7 +95,7 @@ EXAMPLES = '''
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 1200
     state: multiple_servers_added
     data:
         mpHostsAndRanges :
@@ -113,7 +113,7 @@ EXAMPLES = '''
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 1200
     state: power_state_set
     data:
         name : "172.18.6.15"
@@ -127,7 +127,7 @@ EXAMPLES = '''
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 1200
     state: refresh_state_set
     data:
         name : "172.18.6.15"
@@ -140,7 +140,7 @@ EXAMPLES = '''
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 1200
     state: ilo_firmware_version_updated
     data:
         name : "172.18.6.15"
@@ -151,7 +151,7 @@ EXAMPLES = '''
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 1200
     state: environmental_configuration_set
     data:
         name : "172.18.6.15"
@@ -164,7 +164,7 @@ EXAMPLES = '''
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 1200
     state: absent
     data:
         name : "172.18.6.15"
@@ -175,7 +175,7 @@ EXAMPLES = '''
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 1200
     state: uid_state_off
     data:
         name : '0000A66102, bay 12'
@@ -341,7 +341,7 @@ class ServerHardwareModule(OneViewModule):
 
     def __add_multiple_rack_mount_servers(self):
         resource = self.resource_client.add_multiple_servers(self.data)
-        return True, self.MSG_MULTIPLE_RACK_MOUNT_SERVERS_ADDED, {"server_hardware": resource}
+        return True, self.MSG_MULTIPLE_RACK_MOUNT_SERVERS_ADDED, {"server_hardware": resource.data}
 
 
 def main():

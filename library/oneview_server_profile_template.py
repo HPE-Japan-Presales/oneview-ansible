@@ -29,7 +29,7 @@ description:
 version_added: "2.3"
 requirements:
     - "python >= 2.7.9"
-    - "hpOneView >= 5.0.0"
+    - "hpeOneView >= 5.4.0"
 author: "Bruno Souza (@bsouza)"
 options:
     state:
@@ -71,7 +71,7 @@ EXAMPLES = '''
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 1600
     state: present
     data:
       name: "ProfileTemplate101"
@@ -86,7 +86,7 @@ EXAMPLES = '''
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 1600
     state: present
     data:
       name: "ProfileTemplate102"
@@ -101,7 +101,7 @@ EXAMPLES = '''
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 1600
     state: absent
     data:
       name: "ProfileTemplate101"

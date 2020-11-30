@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 ###
-# Copyright (2016-2019) Hewlett Packard Enterprise Development LP
+# Copyright (2016-2020) Hewlett Packard Enterprise Development LP
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # You may not use this file except in compliance with the License.
@@ -33,7 +33,7 @@ description:
 version_added: "2.5"
 requirements:
     - python >= 2.7.9
-    - hpOneView >= 5.0.0
+    - hpeOneView >= 5.4.0
 author:
     - Felipe Bulsoni (@fgbulsoni)
     - Thiago Miotto (@tmiotto)
@@ -53,7 +53,7 @@ EXAMPLES = '''
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 1200
   no_log: true
   delegate_to: localhost
 
@@ -69,7 +69,7 @@ EXAMPLES = '''
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 1200
   no_log: true
   delegate_to: localhost
 
@@ -82,7 +82,7 @@ EXAMPLES = '''
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 1200
   no_log: true
   delegate_to: localhost
 
@@ -94,7 +94,7 @@ EXAMPLES = '''
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 1200
   no_log: true
   delegate_to: localhost
 

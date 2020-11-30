@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 ###
-# Copyright (2016-2019) Hewlett Packard Enterprise Development LP
+# Copyright (2016-2020) Hewlett Packard Enterprise Development LP
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # You may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ description:
 version_added: "2.3"
 requirements:
     - "python >= 2.7.9"
-    - "hpOneView >= 5.0.0"
+    - "hpeOneView >= 5.4.0"
 author: "Camila Balestrin (@balestrinc)"
 options:
     state:
@@ -53,7 +53,7 @@ EXAMPLES = '''
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 1200
     state: present
     data:
       name: 'Test Logical Interconnect Group'
@@ -76,7 +76,7 @@ EXAMPLES = '''
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 1200
     state: present
     data:
       name: 'Test Logical Interconnect Group'
@@ -89,7 +89,7 @@ EXAMPLES = '''
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 1200
     state: present
     data:
       name: 'Test Logical Interconnect Group'
@@ -97,6 +97,8 @@ EXAMPLES = '''
         - name: 'e23 uplink set'
           mode: 'Auto'
           networkType: 'Ethernet'
+          networkNames:
+            - 'TestNetwork_1'
           networkUris:
             - '/rest/ethernet-networks/b2be27ec-ae31-41cb-9f92-ff6da5905abc'
           logicalPortConfigInfos:
@@ -115,7 +117,7 @@ EXAMPLES = '''
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 1200
     state: present
     data:
       name: 'New Logical Interconnect Group'
@@ -126,7 +128,7 @@ EXAMPLES = '''
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 1200
     state: absent
     data:
       name: 'New Logical Interconnect Group'
@@ -149,6 +151,7 @@ class LogicalInterconnectGroupModule(OneViewModule):
     MSG_ALREADY_PRESENT = 'Logical Interconnect Group is already present.'
     MSG_ALREADY_ABSENT = 'Logical Interconnect Group is already absent.'
     MSG_INTERCONNECT_TYPE_NOT_FOUND = 'Interconnect Type was not found.'
+    MSG_ETHERNET_NETWORK_NOT_FOUND = 'Ethernet Network was not found.'
 
     RESOURCE_FACT_NAME = 'logical_interconnect_group'
 
@@ -172,6 +175,7 @@ class LogicalInterconnectGroupModule(OneViewModule):
         scope_uris = self.data.pop('scopeUris', None)
 
         self.__replace_name_by_uris()
+        self.__uplink_set_update()
         result = self.resource_present(self.RESOURCE_FACT_NAME)
 
         if scope_uris is not None:
@@ -190,6 +194,42 @@ class LogicalInterconnectGroupModule(OneViewModule):
                     if permitted_interconnect_type_name:
                         value['permittedInterconnectTypeUri'] = self.__get_interconnect_type_by_name(
                             permitted_interconnect_type_name).get('uri')
+
+    def __uplink_set_update(self):
+
+        if 'uplinkSets' in self.data:
+            for uplinkSet in self.data['uplinkSets']:
+                networkNames = uplinkSet.pop('networkNames', None)
+                if networkNames and not uplinkSet.get('networkUris'):
+                    uplinkSet['networkUris'] = []
+
+                if networkNames:
+                    networkUris = [self.__get_network_uri(x) for x in networkNames]
+                    uplinkSet['networkUris'].extend(networkUris)
+
+                allUplinkSets = self.__update_existing_uplink_set(uplinkSet)
+            self.data['uplinkSets'] = allUplinkSets
+
+    def __update_existing_uplink_set(self, newUplinkSet):
+        allUplinkSets = self.__get_all_uplink_sets()
+
+        for i, ups in enumerate(allUplinkSets):
+            if ups['name'] == newUplinkSet['name']:
+                newUris = set(newUplinkSet['networkUris']) - set(ups['networkUris'])
+                if newUris:
+                    ups['networkUris'].extend(newUris)
+                allUplinkSets[i] = ups
+
+        return allUplinkSets
+
+    def __get_all_uplink_sets(self):
+        lig_uri = self.oneview_client.logical_interconnect_groups.get_by('name', self.data['name'])
+        return lig_uri[0]['uplinkSets']
+
+    def __get_network_uri(self, name):
+
+        network_name = self.oneview_client.ethernet_networks.get_by('name', name)
+        return network_name[0]['uri']
 
     def __get_interconnect_type_by_name(self, name):
         i_type = self.oneview_client.interconnect_types.get_by('name', name)

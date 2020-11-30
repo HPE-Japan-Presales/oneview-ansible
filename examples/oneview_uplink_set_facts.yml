@@ -1,5 +1,5 @@
 ###
-# Copyright (2016-2017) Hewlett Packard Enterprise Development LP
+# Copyright (2016-2020) Hewlett Packard Enterprise Development LP
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # You may not use this file except in compliance with the License.
@@ -25,6 +25,13 @@
 
     - debug: msg="{{uplink_sets | map(attribute='name') | list }}"
 
+    - name: Gather facts about all Logical Interconnects
+      oneview_logical_interconnect_facts:
+        config: "{{ config }}"
+      delegate_to: localhost
+
+    - debug: var=logical_interconnects
+
     - name: Gather paginated, filtered and sorted facts about Uplink Sets
       oneview_uplink_set_facts:
         config: "{{ config }}"
@@ -32,14 +39,15 @@
           start: 0
           count: 2
           sort: 'name:descending'
-          filter: "logicalInterconnectUri='/rest/logical-interconnects/4a49ca0d-3782-4c11-b93e-79d8f90c5487'"
+          filter: "logicalInterconnectUri= '{{ logical_interconnects[0]['uri'] }}'"
+      when: (logical_interconnects is not none and logical_interconnects is not undefined)
 
     - debug: var=uplink_sets
 
     - name: Gather facts about a Uplink Set by name
       oneview_uplink_set_facts:
         config: "{{ config }}"
-        name: "DemoUplinkSet"
+        name: "ULS-2"
       delegate_to: localhost
 
     - debug: var=uplink_sets

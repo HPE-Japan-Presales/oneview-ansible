@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 ###
-# Copyright (2016-2019) Hewlett Packard Enterprise Development LP
+# Copyright (2016-2020) Hewlett Packard Enterprise Development LP
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # You may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ description:
     - Retrieve facts about one or more of the Enclosures from OneView.
 version_added: "2.5"
 requirements:
-    - hpOneView >= 5.0.0
+    - hpeOneView >= 5.4.0
 author:
     - Felipe Bulsoni (@fgbulsoni)
     - Thiago Miotto (@tmiotto)
@@ -57,7 +57,7 @@ EXAMPLES = '''
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 1600
   no_log: true
   delegate_to: localhost
 - debug: var=enclosures
@@ -72,7 +72,7 @@ EXAMPLES = '''
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 1600
   no_log: true
   delegate_to: localhost
 - debug: var=enclosures
@@ -83,7 +83,7 @@ EXAMPLES = '''
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 1600
   no_log: true
   delegate_to: localhost
 - debug: var=enclosures
@@ -98,7 +98,7 @@ EXAMPLES = '''
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 1600
   no_log: true
   delegate_to: localhost
 - debug: var=enclosures
@@ -121,7 +121,7 @@ EXAMPLES = '''
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 1600
   no_log: true
   delegate_to: localhost
 - debug: var=enclosures
@@ -164,11 +164,14 @@ class EnclosureFactsModule(OneViewModule):
 
         ansible_facts = {}
 
-        if self.options and self.current_resource:
-            enclosures = self.current_resource.data
-            ansible_facts = self._gather_optional_facts(self.options)
-        else:
+        if self.current_resource:
+            enclosures = [self.current_resource.data]
+            if self.options:
+                ansible_facts = self._gather_optional_facts(self.options)
+        elif not self.module.params.get("name") and not self.module.params.get('uri'):
             enclosures = self.resource_client.get_all(**self.facts_params)
+        else:
+            enclosures = []
 
         ansible_facts['enclosures'] = enclosures
 

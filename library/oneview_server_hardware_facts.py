@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 ###
-# Copyright (2016-2019) Hewlett Packard Enterprise Development LP
+# Copyright (2016-2020) Hewlett Packard Enterprise Development LP
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # You may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ description:
 version_added: "2.3"
 requirements:
     - "python >= 2.7.9"
-    - "hpOneView >= 5.0.0"
+    - "hpeOneView >= 5.4.0"
 author: "Gustavo Hennig (@GustavoHennig)"
 options:
     name:
@@ -56,7 +56,7 @@ EXAMPLES = '''
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 1200
   delegate_to: localhost
 
 - debug: var=server_hardwares
@@ -67,7 +67,7 @@ EXAMPLES = '''
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 1200
     params:
       start: 0
       count: 3
@@ -83,19 +83,29 @@ EXAMPLES = '''
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 1200
     name: "172.18.6.15"
   delegate_to: localhost
 
 - debug: var=server_hardwares
 
+- name: Gather facts about a Server Hardware by uri
+  oneview_server_hardware_facts:
+    hostname: 172.16.101.48
+    username: administrator
+    password: my_password
+    api_version: 1200
+    uri: "/rest/server-hardware/30373737-3237-4D32-3230-333031354752"
+  delegate_to: localhost
+
+- debug: var=server_hardwares
 
 - name: Gather BIOS facts about a Server Hardware
   oneview_server_hardware_facts:
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 1200
     name: "Encl1, bay 1"
     options:
       - bios
@@ -110,7 +120,7 @@ EXAMPLES = '''
    hostname: 172.16.101.48
    username: administrator
    password: my_password
-   api_version: 800
+   api_version: 1200
    name : "Encl1, bay 1"
    options:
        - bios                   # optional
@@ -141,7 +151,7 @@ EXAMPLES = '''
    hostname: 172.16.101.48
    username: administrator
    password: my_password
-   api_version: 800
+   api_version: 1200
    name : "0000A66102, bay 12"
    options:
        - firmware
@@ -209,6 +219,7 @@ class ServerHardwareFactsModule(OneViewModule):
     def __init__(self):
         argument_spec = dict(
             name=dict(required=False, type='str'),
+            uri=dict(required=False, type='str'),
             options=dict(required=False, type='list'),
             params=dict(required=False, type='dict')
         )
@@ -219,7 +230,7 @@ class ServerHardwareFactsModule(OneViewModule):
         ansible_facts = {}
         server_hardwares = []
 
-        if self.module.params.get('name'):
+        if self.module.params.get('name') or self.module.params.get('uri'):
             if self.current_resource:
                 server_hardwares = self.current_resource.data
                 if self.options:

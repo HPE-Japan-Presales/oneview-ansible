@@ -28,7 +28,7 @@ description:
 version_added: "2.3"
 requirements:
     - "python >= 2.7.9"
-    - "hpOneView >= 3.0.1"
+    - "hpeOneView >= 3.0.1"
 author:
     - "Mariana Kreisig (@marikrg)"
 options:
@@ -165,7 +165,7 @@ class OsVolumeFactsModule(OneViewModuleBase):
 
         if self.options.get("getArchivedLogs"):
             path = self.options["getArchivedLogs"]["file_path"]
-            self.i3s_client.os_volumes.download_archive(os_volume[0]["name"], path)
+            self.i3s_client.os_volumes.download_archive(os_volume[0]["oeVolumeId"], path)
             options_facts["log_file_path"] = path
 
         return options_facts

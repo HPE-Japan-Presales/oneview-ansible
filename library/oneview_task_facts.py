@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 ###
-# Copyright (2016-2017) Hewlett Packard Enterprise Development LP
+# Copyright (2016-2020) Hewlett Packard Enterprise Development LP
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # You may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@ description:
 version_added: "2.3"
 requirements:
     - "python >= 2.7.9"
-    - "hpOneView >= 2.0.1"
+    - "hpeOneView >= 2.0.1"
 author: "Bruno Souza (@bsouza)"
 options:
     params:
@@ -46,7 +46,7 @@ EXAMPLES = '''
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 1600
     params:
       count: 2
 
@@ -57,7 +57,7 @@ EXAMPLES = '''
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 1600
     params:
       count: 2
       filter: "associatedResource.resourceCategory='server-profile-templates'"
@@ -72,17 +72,17 @@ tasks:
     type: list
 '''
 
-from ansible.module_utils.oneview import OneViewModuleBase
+from ansible.module_utils.oneview import OneViewModule
 
 
-class TaskFactsModule(OneViewModuleBase):
+class TaskFactsModule(OneViewModule):
     def __init__(self):
         argument_spec = dict(
             params=dict(required=False, type='dict')
         )
         super(TaskFactsModule, self).__init__(additional_arg_spec=argument_spec)
 
-        self.resource_client = self.oneview_client.tasks
+        self.set_resource_object(self.oneview_client.tasks)
 
     def execute_module(self):
         facts = self.resource_client.get_all(**self.facts_params)

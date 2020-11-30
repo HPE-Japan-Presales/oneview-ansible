@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 ###
-# Copyright (2016-2019) Hewlett Packard Enterprise Development LP
+# Copyright (2016-2020) Hewlett Packard Enterprise Development LP
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # You may not use this file except in compliance with the License.
@@ -222,6 +222,10 @@ class TestLogicalInterconnectModule(OneViewBaseTest):
     }
 
     telemetry_config_uri = LOGICAL_INTERCONNECT['telemetryConfiguration']['uri']
+
+    @pytest.fixture(autouse=True)
+    def specific_set_up(self):
+        self.mock_ov_client.api_version = 500
 
     def test_should_fail_when_option_is_invalid(self):
         self.mock_ansible_module.params = dict(

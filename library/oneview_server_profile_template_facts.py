@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 ###
-# Copyright (2016-2019) Hewlett Packard Enterprise Development LP
+# Copyright (2016-2020) Hewlett Packard Enterprise Development LP
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # You may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ description:
 version_added: "2.3"
 requirements:
     - "python >= 2.7.9"
-    - "hpOneView >= 5.0.0"
+    - "hpeOneView >= 5.4.0"
 author: "Bruno Souza (@bsouza)"
 options:
     name:
@@ -62,7 +62,7 @@ EXAMPLES = '''
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 1600
     params:
       start: 0
       count: 3
@@ -78,7 +78,7 @@ EXAMPLES = '''
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 1600
     name: "ProfileTemplate101"
 
 - name: Gather facts about a Server Profile by uri
@@ -86,7 +86,7 @@ EXAMPLES = '''
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 1600
     uri: /rest/server-profile-templates/c0868397-eff6-49ed-8151-4338702792d3
   delegate_to: localhost
 
@@ -95,7 +95,7 @@ EXAMPLES = '''
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 1600
     name: "ProfileTemplate101"
     options:
       - new_profile
@@ -105,7 +105,7 @@ EXAMPLES = '''
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 1600
     options:
       - available_networks:
           serverHardwareTypeUri: "/rest/server-hardware-types/253F1D49-0FEE-4DCD-B14C-B26234E9D414"
@@ -163,8 +163,6 @@ class ServerProfileTemplateFactsModule(OneViewModule):
         return dict(changed=False, ansible_facts=facts)
 
     def __get_options(self, name, uri):
-        if not name and uri:
-            self.current_resource = self.resource_client.get_by_uri(uri)
         if not self.current_resource:
             return dict(server_profile_templates=[])
 

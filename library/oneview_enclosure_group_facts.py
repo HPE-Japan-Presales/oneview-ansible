@@ -29,7 +29,7 @@ description:
 version_added: "2.3"
 requirements:
     - "python >= 2.7.9"
-    - "hpOneView >= 5.0.0"
+    - "hpeOneView >= 5.4.0"
 author:
     - "Gustavo Hennig (@GustavoHennig)"
     - "Bruno Souza (@bsouza)"
@@ -56,7 +56,7 @@ EXAMPLES = '''
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 1600
   delegate_to: localhost
 
 - debug: var=enclosure_groups
@@ -66,7 +66,7 @@ EXAMPLES = '''
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 1600
     params:
       start: 0
       count: 3
@@ -81,7 +81,7 @@ EXAMPLES = '''
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 1600
     name: "Test Enclosure Group Facts"
     options:
       - configuration_script

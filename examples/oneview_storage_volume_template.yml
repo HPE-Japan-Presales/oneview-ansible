@@ -1,5 +1,5 @@
 ###
-# Copyright (2016-2017) Hewlett Packard Enterprise Development LP
+# Copyright (2016-2020) Hewlett Packard Enterprise Development LP
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # You may not use this file except in compliance with the License.
@@ -14,108 +14,142 @@
 # limitations under the License.
 ###
 ---
+# NOTE: This example contains structure specific to StoreServ Storage Volume Templates,
+# introduced in OneView 3.10 (API 500). It will not work with previous/different versions.
 - hosts: all
   vars:
     config: "{{ playbook_dir }}/oneview_config.json"
-    storage_system_uri: "/rest/storage-systems/TXQ1010307"
-    storage_pool_uri: "/rest/storage-pools/2D69A182-862E-4ECE-8BEE-73E0F5BEC855"
-    storage_vol_templ_name: "FusionTemplateExample"
-    root_template_uri: "/rest/storage-volume-templates/5dbaf127-053b-4988-82fe-a80800eef1f3"
+    contents: "{{lookup('file', config)}}"
   tasks:
+    - name: Retrieve the Root Storage Volume Template
+      oneview_storage_volume_template_facts:
+        config: "{{ config }}"
+        params:
+          start: 0
+          count: 1
+          sort: 'name:descending'
+          filter: isRoot='True'
+      delegate_to: localhost
+
+    - set_fact: svt_root_uri="{{ storage_volume_templates[0]['uri'] }}"
+
+    - name: Gather paginated, filtered and sorted facts about Storage Pools
+      oneview_storage_pool_facts:
+        config: "{{ config }}"
+        params:
+          start: 0
+          count: 3
+          sort: 'name:descending'
+          filter: status='OK'    
+
     - name: Create a Storage Volume Template
       oneview_storage_volume_template:
         config: "{{ config }}"
         state: present
         data:
-            name: '{{storage_vol_templ_name}}'
-            description: "Example Template"
-            rootTemplateUri: " {{root_template_uri}} " # Supported form API version >= 500
-            properties:                                # Supported from API version >= 500
-              name:
-                title: Volume name
-                description: A volume name between 1 and 100 characters
-                meta:
-                  locked: 'false'
-                type: string
-                required: 'true'
-                maxLength: 100
-                minLength: 1
-              size:
-                meta:
-                  locked: 'false'
-                  semanticType: capacity
-                type: integer
-                title: Capacity
-                default: 1073741824
-                maximum: 17592186044416
-                minimum: 268435456
-                required: 'true'
-                description: The capacity of the volume in bytes
-              description:
-                meta:
-                  locked: 'false'
-                type: string
-                title: Description
-                default: ''
-                maxLength: 2000
-                minLength: 0
-                description: A description for the volume
-              isShareable:
-                meta:
-                  locked: 'false'
-                type: boolean
-                title: Is Shareable
-                default: 'false'
-                description: The shareability of the volume
-              storagePool:
-                meta:
-                  locked: 'false'
-                  createOnly: 'true'
-                  semanticType: device-storage-pool
-                type: string
-                title: Storage Pool
-                format: x-uri-reference
-                required: 'true'
-                description: A common provisioning group URI reference
-                default: "/rest/storage-pools/0DB2A6C7-04D3-4830-9229-A80800EEF1F1"
-              snapshotPool:
-                meta:
-                  locked: 'true'
-                  semanticType: device-snapshot-storage-pool
-                type: string
-                title: Snapshot Pool
-                format: x-uri-reference
-                default: "/rest/storage-pools/0DB2A6C7-04D3-4830-9229-A80800EEF1F1"
-                description: A URI reference to the common provisioning group used to create snapshots
-              provisioningType:
-                enum:
-                - Thin
-                - Full
-                - Thin Deduplication
-                meta:
-                  locked: 'true'
-                  createOnly: 'true'
-                type: string
-                title: Provisioning Type
-                default: Thin
-                description: The provisioning type for the volume
-
+          name: "{{ contents.volume_template_name }}"
+          rootTemplateUri: "{{ svt_root_uri }}"
+          properties:
+            name:
+              meta:
+                locked: false
+              type: string
+              title: Volume name
+              required: true
+              maxLength: 100
+              minLength: 1
+              description: A volume name between 1 and 100 characters
+            size:
+              meta:
+                locked: false
+                semanticType: capacity
+              type: integer
+              title: Capacity
+              default: 1073741824
+              maximum: 17592186044416
+              minimum: 268435456
+              required: true
+              description: The capacity of the volume in bytes
+            description:
+              meta:
+                locked: false
+              type: string
+              title: Description
+              default: ''
+              maxLength: 2000
+              minLength: 0
+              description: A description for the volume
+            isShareable:
+              meta:
+                locked: false
+              type: boolean
+              title: Is Shareable
+              default: false
+              description: The shareability of the volume
+            storagePool:
+              meta:
+                locked: false
+                createOnly: true
+                semanticType: device-storage-pool
+              type: string
+              title: Storage Pool
+              format: x-uri-reference
+              required: true
+              description: A common provisioning group URI reference
+              default: "{{ storage_pools[0]['uri'] }}"
+            snapshotPool:
+              meta:
+                locked: true
+                semanticType: device-snapshot-storage-pool
+              type: string
+              title: Snapshot Pool
+              format: x-uri-reference
+              default: "{{ storage_pools[0]['uri'] }}"
+              description: A URI reference to the common provisioning group used to create snapshots
+            provisioningType:
+              enum:
+              - Thin
+              - Full
+              - Thin Deduplication
+              meta:
+                locked: true
+                createOnly: true
+              type: string
+              title: Provisioning Type
+              default: Full
+              description: The provisioning type for the volume
+          description: ''
       delegate_to: localhost
 
-    - name: Update the Storage Volume Template
+    - name: Update a Storage Volume Template provisioning type
       oneview_storage_volume_template:
         config: "{{ config }}"
         state: present
         data:
-            name: '{{storage_vol_templ_name}}'
-            state: "Configured"
-            description: "Example Template with a new description"
+          name: "{{ contents.volume_template_name }}"
+          rootTemplateUri: "{{ svt_root_uri }}"
+          properties:
+            provisioningType:
+              default: Thin
       delegate_to: localhost
 
-    - name: Delete the Storage Volume Template
+    - name: Does not update when Storage Volume Template already as expected
       oneview_storage_volume_template:
         config: "{{ config }}"
-        state: absent
+        state: present
         data:
-            name: '{{storage_vol_templ_name}}'
+          name: "{{ contents.volume_template_name }}"
+          rootTemplateUri: "{{ svt_root_uri }}"
+          properties:
+            provisioningType:
+              default: Thin
       delegate_to: localhost
+
+    # Commenting it to ensure continuity with automation script
+    # - name: Delete the Storage Volume Template
+    #   oneview_storage_volume_template:
+    #     config: "{{ config }}"
+    #     state: absent
+    #     data:
+    #         name: '{{contents.volume_template_name}}'
+    #   delegate_to: localhost

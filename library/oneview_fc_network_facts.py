@@ -28,7 +28,7 @@ description:
     - Retrieve the facts about one or more of the Fibre Channel Networks from OneView.
 version_added: "2.4"
 requirements:
-    - hpOneView >= 5.0.0
+    - hpeOneView >= 5.4.0
 author:
     - Felipe Bulsoni (@fgbulsoni)
     - Thiago Miotto (@tmiotto)
@@ -49,7 +49,7 @@ EXAMPLES = '''
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 1200
   delegate_to: localhost
 
 - debug: var=fc_networks
@@ -59,7 +59,7 @@ EXAMPLES = '''
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 1200
     params:
       start: 1
       count: 3

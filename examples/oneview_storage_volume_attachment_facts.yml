@@ -1,5 +1,5 @@
 ###
-# Copyright (2016-2017) Hewlett Packard Enterprise Development LP
+# Copyright (2016-2020) Hewlett Packard Enterprise Development LP
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # You may not use this file except in compliance with the License.
@@ -16,14 +16,30 @@
 ---
 - hosts: all
   vars:
-    - config: "{{ playbook_dir }}/oneview_config.json"
-    - server_profile_name: sp1
-    - storage_volume_name: v1
+    config: "{{ playbook_dir }}/oneview_config.json"
+    contents: "{{lookup('file', config)}}"
   tasks:
+    - name: Get currentVersion from URL
+      oneview_version_facts:
+        config: "{{ config }}" 
+      delegate_to: localhost
+      when: contents.api_version|length == 0
+      register: version
+   
+    - name: Print currentVersion if an apiVersion is not specified in config file
+      set_fact: 
+        currentVersion: "{{ version.ansible_facts.version.currentVersion|int }}"
+      when: contents.api_version|length == 0
+
+    - name: Print currentVersion if an apiVersion is specified in config file
+      set_fact: 
+        currentVersion: contents.api_version | string
+      when: contents.api_version|length != 0
+
     - name: Gather facts about the storage volume associated with the storage volume attachment
       oneview_volume_facts:
         config: "{{ config }}"
-        name: "{{ storage_volume_name }}"
+        name: "{{ contents.storage_volume_name }}"
       delegate_to: localhost
 
     - set_fact: volume="{{storage_volumes[0]}}"
@@ -49,7 +65,7 @@
     - name: Gather facts about a Storage Volume Attachment by Server Profile Name and Volume Uri
       oneview_storage_volume_attachment_facts:
         config: "{{ config }}"
-        serverProfileName: "{{ server_profile_name }}"
+        serverProfileName: "{{ contents.server_profile_name }}"
         storageVolumeUri: "{{ volume['uri'] }}"
       delegate_to: localhost
 
@@ -73,26 +89,13 @@
     - name: Gather facts about volume attachment paths
       oneview_storage_volume_attachment_facts:
         config: "{{ config }}"
-        serverProfileName: "{{ server_profile_name }}"
-        storageVolumeName: "{{ storage_volume_name }}"
+        serverProfileName: "{{ contents.server_profile_name }}"
+        storageVolumeName: "{{ contents.storage_volume_name }}"
         options:
           - paths
       delegate_to: localhost
+      when: currentVersion == '200' or currentVersion == '300'
 
     - debug: var=storage_volume_attachments
     - debug: var=storage_volume_attachment_paths
 
-
-    # NOTE: This is only compatible with API200 and API300
-    - name: Gather facts about volume attachment path by id
-      oneview_storage_volume_attachment_facts:
-        config: "{{ config }}"
-        serverProfileName: "{{ server_profile_name }}"
-        storageVolumeName: "{{ storage_volume_name }}"
-        options:
-          - paths:
-                pathId: '9DFC8953-15A4-4EA9-AB65-23AE663F48D4'
-      delegate_to: localhost
-
-    - debug: var=storage_volume_attachments
-    - debug: var=storage_volume_attachment_paths

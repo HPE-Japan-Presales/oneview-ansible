@@ -1,5 +1,5 @@
 ###
-# Copyright (2016-2017) Hewlett Packard Enterprise Development LP
+# Copyright (2016-2020) Hewlett Packard Enterprise Development LP
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # You may not use this file except in compliance with the License.
@@ -17,50 +17,52 @@
 - hosts: all
   vars:
     config: "{{ playbook_dir }}/oneview_config.json"
-    storage_system_uri: "/rest/storage-systems/TXQ1000307"
-    storage_pool_name: "cpg-growth-limit-1TiB"
-    scopes_uri: "/rest/scopes/resources/rest/storage-pools/5F9CA89B-C632-4F09-BC55-A8AA00DA5C4A"
+    contents: "{{lookup('file', config)}}"
   tasks:
-    - name: Create a Storage Pool
+    - name: Get currentVersion from URL
+      oneview_version_facts:
+        config: "{{ config }}" 
+      delegate_to: localhost
+      when: contents.api_version|length == 0
+      register: version
+   
+    - name: Print currentVersion if an apiVersion is not specified in config file
+      set_fact: 
+        currentVersion: "{{ version.ansible_facts.version.currentVersion|int }}"
+      when: contents.api_version|length == 0
+
+    - name: Print currentVersion if an apiVersion is specified in config file
+      set_fact: 
+        currentVersion: contents.api_version | string
+      when: contents.api_version|length != 0
+
+    - name: Gather facts about a Storage System by name
+      oneview_storage_system_facts:
+        config: "{{ config }}"
+        name: "{{ contents.storage_system_name }}"
+      delegate_to: localhost
+
+    - debug: var=storage_systems
+
+    # To manage/unmanage a storage pool, issue a PUT with the isManaged attribute set as true to manage or false to unmanage.
+    - name: Ensure the Storage Pool '{{ contents.storage_pool_name }}' is not managed
       oneview_storage_pool:
         config: "{{ config }}"
         state: present
         data:
-           storageSystemUri: '{{ storage_system_uri }}'
-           poolName: '{{ storage_pool_name }}'
+           storageSystemUri: "{{ storage_systems[0]['uri'] }}"
+           name: '{{ contents.storage_pool_name }}'
+           isManaged: False
       delegate_to: localhost
+      when: (storage_systems is not none or storage_systems is not undefined)
 
-    - name: Do nothing when the Storage Pool already exists
+    - name: Ensure the Storage Pool '{{ contents.storage_pool_name }}' is managed
       oneview_storage_pool:
         config: "{{ config }}"
         state: present
         data:
-           storageSystemUri: '{{ storage_system_uri }}'
-           poolName: '{{ storage_pool_name }}'
+           storageSystemUri: "{{ storage_systems[0]['uri'] }}"
+           name: '{{ contents.storage_pool_name }}'
+           isManaged: True
       delegate_to: localhost
-    
-    - name: Update storage pool
-      oneview_storage_pool:
-        config: "{{ config }}"
-        state: present
-        data:
-           storageSystemUri: '{{ storage_system_uri }}'
-           poolName: '{{ storage_pool_name }}'
-           scopesUri: '{{ scopes_uri }}'
-      delegate_to: localhost
-
-    - name: Delete the Storage Pool
-      oneview_storage_pool:
-        config: "{{ config }}"
-        state: absent
-        data:
-           poolName: '{{ storage_pool_name }}'
-      delegate_to: localhost
-
-    - name: Do nothing when Storage Pool is absent
-      oneview_storage_pool:
-        config: "{{ config }}"
-        state: absent
-        data:
-           poolName: '{{ storage_pool_name }}'
-      delegate_to: localhost
+      when: (storage_systems is not none and storage_systems is not undefined)
