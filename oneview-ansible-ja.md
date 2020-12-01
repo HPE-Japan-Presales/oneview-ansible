@@ -1,133 +1,136 @@
 [English](oneview-ansible.md)
 # Ansible HPE OneViewモジュール
 
-モジュール
+### モジュール
 
   * [hpe_icsp_os_deployment - HPE ICspを使用してサーバーにオペレーティングシステムを展開します。](#hpe_icsp_os_deployment)
   * [hpe_icsp_server - ICspでサーバーを追加、削除、構成します。](#hpe_icsp_server)
   * [image_streamer_artifact_bundle - アーティファクトバンドルリソースを管理します。](#image_streamer_artifact_bundle)
-  * [image_streamer_artifact_bundle_facts - アーティファクトバンドルに関する事実を取得します。](#image_streamer_artifact_bundle_facts)
+  * [image_streamer_artifact_bundle_facts - アーティファクトバンドルに関する情報を取得します。](#image_streamer_artifact_bundle_facts)
   * [image_streamer_build_plan - Image Stream OSビルド計画リソースを管理します。](#image_streamer_build_plan)
-  * [image_streamer_build_plan_facts - 1つまたはそれ以上のイメージストリーマービルド計画に関する事実を取得します。](#image_streamer_build_plan_facts)
-  * [image_streamer_deployment_group_facts - イメージストリーマー展開グループに関する事実を取します。](#image_streamer_deployment_group_facts)
-  * [image_streamer_deployment_plan - 
-イメージストリーマー展開計画リソースを管理します。](#image_streamer_deployment_plan)
-  * [image_streamer_deployment_plan_facts - イメージストリーマー展開計画に関する事実を取得します。](#image_streamer_deployment_plan_facts)
+  * [image_streamer_build_plan_facts - 1つまたはそれ以上のイメージストリーマービルド計画に関する情報を取得します。](#image_streamer_build_plan_facts)
+  * [image_streamer_deployment_group_facts - イメージストリーマー展開グループに関する情報を取します。](#image_streamer_deployment_group_facts)
+  * [image_streamer_deployment_plan - イメージストリーマー展開計画リソースを管理します。](#image_streamer_deployment_plan)
+  * [image_streamer_deployment_plan_facts - イメージストリーマー展開計画に関する情報を取得します。](#image_streamer_deployment_plan_facts)
   * [image_streamer_golden_image - イメージストリーマーゴールデンイメージリソースを管理します。](#image_streamer_golden_image)
-  * [image_streamer_golden_image_facts - イメージストリーマーゴールデンイメージの1つまたはそれ以上に関する事実を取得します。](#image_streamer_golden_image_facts)
-  * [image_streamer_os_volume_facts - イメージストリーマーOSボリュームに関する事実を取得します。](#image_streamer_os_volume_facts)
+  * [image_streamer_golden_image_facts - イメージストリーマーゴールデンイメージの1つまたはそれ以上に関する情報を取得します。](#image_streamer_golden_image_facts)
+  * [image_streamer_os_volume_facts - イメージストリーマーOSボリュームに関する情報を取得します。](#image_streamer_os_volume_facts)
   * [image_streamer_plan_script - イメージストリーマー計画スクリプトリソースを管理します。](#image_streamer_plan_script)
-  * [image_streamer_plan_script_facts - イメージストリーマー計画スクリプトに関する事実を取得します。](#image_streamer_plan_script_facts)
-  * [oneview_alert_facts - OneViewアラートに関する事実を取得します。](#oneview_alert_facts)
+  * [image_streamer_plan_script_facts - イメージストリーマー計画スクリプトに関する情報を取得します。](#image_streamer_plan_script_facts)
+  * [oneview_alert_facts - OneViewアラートに関する情報を取得します。](#oneview_alert_facts)
   * [oneview_appliance_device_read_community - アプライアンスデバイス読み取りコミュニティストリングを管理します。](#oneview_appliance_device_read_community)
   * [oneview_appliance_device_read_community_facts - アプライアンスデバイス読み取りコミュニティストリングを管理します。](#oneview_appliance_device_read_community_facts)
   * [oneview_appliance_device_snmp_v1_trap_destinations - アプライアンスデバイスのSNMPv1トラップ送信先を管理します。](#oneview_appliance_device_snmp_v1_trap_destinations)
-  * [oneview_appliance_device_snmp_v1_trap_destinations_facts - OneViewアプライアンスのSNMPv1トラップ転送先に関する事実を取得します。](#oneview_appliance_device_snmp_v1_trap_destinations_facts)
+  * [oneview_appliance_device_snmp_v1_trap_destinations_facts - OneViewアプライアンスのSNMPv1トラップ転送先に関する情報を取得します。](#oneview_appliance_device_snmp_v1_trap_destinations_facts)
   * [oneview_appliance_device_snmp_v3_trap_destinations - アプライアンスデバイスのSNMPv3トラップ送信先を管理します。](#oneview_appliance_device_snmp_v3_trap_destinations)
-  * [oneview_appliance_device_snmp_v3_trap_destinations_facts - OneViewアプライアンスのSNMPv3トラップ転送先に関する事実を取得します。](#oneview_appliance_device_snmp_v3_trap_destinations_facts)
+  * [oneview_appliance_device_snmp_v3_trap_destinations_facts - OneViewアプライアンスのSNMPv3トラップ転送先に関する情報を取得します。](#oneview_appliance_device_snmp_v3_trap_destinations_facts)
   * [oneview_appliance_device_snmp_v3_users - アプライアンスデバイスSNMPv3ユーザーを管理します。](#oneview_appliance_device_snmp_v3_users)
-  * [oneview_appliance_device_snmp_v3_users_facts - 
-OneViewアプライアンスのSNMPv3ユーザーに関する事実を取得します。](#oneview_appliance_device_snmp_v3_users_facts)
+  * [oneview_appliance_device_snmp_v3_users_facts - OneViewアプライアンスのSNMPv3ユーザーに関する情報を取得します。](#oneview_appliance_device_snmp_v3_users_facts)
   * [oneview_appliance_time_and_locale_configuration - OneViewアプライアンスの場所と時間構成を管理します。](#oneview_appliance_time_and_locale_configuration)
-  * [oneview_appliance_time_and_locale_configuration_facts - OneViewアプライアンスの時間とロケール構成に関する事実を取得します。](#oneview_appliance_time_and_locale_configuration_facts)
+  * [oneview_appliance_time_and_locale_configuration_facts - OneViewアプライアンスの時間とロケール構成に関する情報を取得します。](#oneview_appliance_time_and_locale_configuration_facts)
+  * [oneview_certificates_server - OneView証明書サーバーを管理します。](#oneview_certificates_server)
+  * [oneview_certificates_server_facts - OneView証明書サーバー情報を取得します。](#oneview_certificates_server_facts)
   * [oneview_connection_template - OneView接続テンプレートリソースを管理します。](#oneview_connection_template)
-  * [oneview_connection_template_facts - 
-OneView接続テンプレートに関する事実を取得します。](#oneview_connection_template_facts)
+  * [oneview_connection_template_facts - OneView接続テンプレートに関する情報を取得します。](#oneview_connection_template_facts)
   * [oneview_datacenter - OneViewデータセンターリソースを管理します。](#oneview_datacenter)
-  * [oneview_datacenter_facts - OneViewデータセンターに関する事実を取得します。](#oneview_datacenter_facts)
+  * [oneview_datacenter_facts - OneViewデータセンターに関する情報を取得します。](#oneview_datacenter_facts)
   * [oneview_drive_enclosure - OneViewドライブエンクロージャーリソースを管理します。](#oneview_drive_enclosure)
-  * [oneview_drive_enclosure_facts - 1つ以上のOneViewドライブエンクロージャーに関する事実を取得します。](#oneview_drive_enclosure_facts)
+  * [oneview_drive_enclosure_facts - 1つ以上のOneViewドライブエンクロージャーに関する情報を取得します。](#oneview_drive_enclosure_facts)
   * [oneview_enclosure - OneViewエンクロージャーリソースを管理します。](#oneview_enclosure)
-  * [oneview_enclosure_facts - 1つ以上のエンクロージャーに関する事実を取得します。](#oneview_enclosure_facts)
+  * [oneview_enclosure_facts - 1つ以上のエンクロージャーに関する情報を取得します。](#oneview_enclosure_facts)
   * [oneview_enclosure_group - OneViewエンクロージャーグループリソースを管理します。](#oneview_enclosure_group)
-  * [oneview_enclosure_group_facts - 1つ以上のOneViewエンクロージャーグループに関する事実を取得します。](#oneview_enclosure_group_facts)
+  * [oneview_enclosure_group_facts - 1つ以上のOneViewエンクロージャーグループに関する情報を取得します。](#oneview_enclosure_group_facts)
   * [oneview_ethernet_network - OneView Ethernet Networkリソースを管理します。](#oneview_ethernet_network)
-  * [oneview_ethernet_network_facts - 1つ以上のOneViewイーサネットネットワークに関する事実を取得します。](#oneview_ethernet_network_facts)
+  * [oneview_ethernet_network_facts - 1つ以上のOneViewイーサネットネットワークに関する情報を取得します。](#oneview_ethernet_network_facts)
   * [oneview_event - OneViewイベントを管理します。](#oneview_event)
-  * [oneview_event_facts - 1つ以上のOneViewイベントに関する事実を取得します。](#oneview_event_facts)
+  * [oneview_event_facts - 1つ以上のOneViewイベントに関する情報を取得します。](#oneview_event_facts)
   * [oneview_fabric - OneView Fabricリソースを管理します。](#oneview_fabric)
-  * [oneview_fabric_facts - 1つ以上のOneViewファブリックに関する事実を取得します。](#oneview_fabric_facts)
-  * [oneview_fc_network - 1つ以上のOneViewファブリックに関する事実を取得します。](#oneview_fc_network)
-  * [oneview_fc_network_facts - 1つ以上のOneViewファイバーチャネルネットワークに関する事実を取得します。](#oneview_fc_network_facts)
+  * [oneview_fabric_facts - 1つ以上のOneViewファブリックに関する情報を取得します。](#oneview_fabric_facts)
+  * [oneview_fc_network - 1つ以上のOneViewファブリックに関する情報を取得します。](#oneview_fc_network)
+  * [oneview_fc_network_facts - 1つ以上のOneViewファイバーチャネルネットワークに関する情報を取得します。](#oneview_fc_network_facts)
   * [oneview_fcoe_network - OneView FCoEネットワークリソースを管理します。](#oneview_fcoe_network)
-  * [oneview_fcoe_network_facts - 1つ以上のOneView FCoEネットワークに関する事実を取得します。](#oneview_fcoe_network_facts)
+  * [oneview_fcoe_network_facts - 1つ以上のOneView FCoEネットワークに関する情報を取得します。](#oneview_fcoe_network_facts)
   * [oneview_firmware_bundle - OneViewファームウェアバンドルリソースをアップロードします。](#oneview_firmware_bundle)
   * [oneview_firmware_driver - ファームウェアドライバーリソースを削除するためのインターフェイスを提供します。](#oneview_firmware_driver)
-  * [oneview_firmware_driver_facts - 1つ以上のOneViewファームウェアドライバーに関する事実を取得します。](#oneview_firmware_driver_facts)
+  * [oneview_firmware_driver_facts - 1つ以上のOneViewファームウェアドライバーに関する情報を取得します。](#oneview_firmware_driver_facts)
+  * [oneview_hypervisor_cluster_profile - OneViewハイパーバイザークラスタープロファイルを管理します。](#oneview_hypervisor_cluster_profile)
+  * [oneview_hypervisor_cluster_profile_facts - OneViewハイパーバイザークラスタープロファイル情報を取得します.](#oneview_hypervisor_cluster_profile_facts)
+  * [oneview_hypervisor_manager - OneViewハイパーバイザーマネージャーを管理します。](#oneview_hypervisor_manager)
+  * [oneview_hypervisor_manager_facts - OneViewハイパーバイザーマネージャー情報を取得します。](#oneview_hypervisor_manager_facts)
   * [oneview_id_pools_ipv4_range - OneView IDプールのIPV4範囲リソースを管理します。](#oneview_id_pools_ipv4_range)
-  * [oneview_id_pools_ipv4_range_facts - 1つ以上のOneView IDプールIPV4範囲に関する事実を取得します。](#oneview_id_pools_ipv4_range_facts)
+  * [oneview_id_pools_ipv4_range_facts - 1つ以上のOneView IDプールIPV4範囲に関する情報を取得します。](#oneview_id_pools_ipv4_range_facts)
   * [oneview_id_pools_ipv4_subnet - OneView IDプールのIPV4サブネットリソースを管理します。](#oneview_id_pools_ipv4_subnet)
-  * [oneview_id_pools_ipv4_subnet_facts - 1つ以上のOneView IDプールIPV4サブネットに関する事実を取得します。](#oneview_id_pools_ipv4_subnet_facts)
+  * [oneview_id_pools_ipv4_subnet_facts - 1つ以上のOneView IDプールIPV4サブネットに関する情報を取得します。](#oneview_id_pools_ipv4_subnet_facts)
   * [oneview_interconnect - OneView Interconnectリソースを管理します。](#oneview_interconnect)
-  * [oneview_interconnect_facts - 1つ以上のOneViewインターコネクトに関する事実を取得します。](#oneview_interconnect_facts)
-  * [oneview_interconnect_link_topology_facts - OneView Interconnect Linkトポロジに関する事実を取得します。](#oneview_interconnect_link_topology_facts)
-  * [oneview_interconnect_type_facts - 1つ以上のOneViewインターコネクトタイプに関する事実を取得します。](#oneview_interconnect_type_facts)
-  * [oneview_internal_link_set_facts - OneView内部リンクセットに関する事実を取得します。](#oneview_internal_link_set_facts)
-  * [oneview_logical_downlinks_facts - 1つ以上のOneView論理ダウンリンクに関する事実を取得します。](#oneview_logical_downlinks_facts)
+  * [oneview_interconnect_facts - 1つ以上のOneViewインターコネクトに関する情報を取得します。](#oneview_interconnect_facts)
+  * [oneview_interconnect_link_topology_facts - OneView Interconnect Linkトポロジに関する情報を取得します。](#oneview_interconnect_link_topology_facts)
+  * [oneview_interconnect_type_facts - 1つ以上のOneViewインターコネクトタイプに関する情報を取得します。](#oneview_interconnect_type_facts)
+  * [oneview_internal_link_set_facts - OneView内部リンクセットに関する情報を取得します。](#oneview_internal_link_set_facts)
+  * [oneview_logical_downlinks_facts - 1つ以上のOneView論理ダウンリンクに関する情報を取得します。](#oneview_logical_downlinks_facts)
   * [oneview_logical_enclosure - OneView論理エンクロージャリソースを管理します。](#oneview_logical_enclosure)
-  * [oneview_logical_enclosure_facts - 1つ以上のOneView論理エンクロージャーに関する事実を取得します。](#oneview_logical_enclosure_facts)
+  * [oneview_logical_enclosure_facts - 1つ以上のOneView論理エンクロージャーに関する情報を取得します。](#oneview_logical_enclosure_facts)
   * [oneview_logical_interconnect - OneView論理インターコネクトリソースを管理します。](#oneview_logical_interconnect)
-  * [oneview_logical_interconnect_facts - 1つ以上のOneView論理インターコネクトに関する事実を取得します。](#oneview_logical_interconnect_facts)
+  * [oneview_logical_interconnect_facts - 1つ以上のOneView論理インターコネクトに関する情報を取得します。](#oneview_logical_interconnect_facts)
   * [oneview_logical_interconnect_group - OneView論理インターコネクトグループリソースを管理します。](#oneview_logical_interconnect_group)
-  * [oneview_logical_interconnect_group_facts - 1つ以上のOneView論理インターコネクトグループに関する事実を取得します。](#oneview_logical_interconnect_group_facts)
+  * [oneview_logical_interconnect_group_facts - 1つ以上のOneView論理インターコネクトグループに関する情報を取得します。](#oneview_logical_interconnect_group_facts)
   * [oneview_logical_switch - OneView論理スイッチリソースを管理します。](#oneview_logical_switch)
-  * [oneview_logical_switch_facts - 1つ以上のOneView論理スイッチに関する事実を取得します。](#oneview_logical_switch_facts)
+  * [oneview_logical_switch_facts - 1つ以上のOneView論理スイッチに関する情報を取得します。](#oneview_logical_switch_facts)
   * [oneview_logical_switch_group - OneView論理スイッチグループリソースを管理します。](#oneview_logical_switch_group)
-  * [oneview_logical_switch_group_facts - OneView論理スイッチグループに関する事実を取得します。](#oneview_logical_switch_group_facts)
-  * [oneview_login_detail_facts - ログインの詳細に関する事実を取得します。](#oneview_login_detail_facts)
+  * [oneview_logical_switch_group_facts - OneView論理スイッチグループに関する情報を取得します。](#oneview_logical_switch_group_facts)
+  * [oneview_login_detail_facts - ログインの詳細に関する情報を取得します。](#oneview_login_detail_facts)
   * [oneview_managed_san - OneView Managed SANリソースを管理します。](#oneview_managed_san)
-  * [oneview_managed_san_facts - OneView Managed SANに関する事実を取得します。](#oneview_managed_san_facts)
+  * [oneview_managed_san_facts - OneView Managed SANに関する情報を取得します。](#oneview_managed_san_facts)
   * [oneview_network_set - OneView Network Setリソースを管理します。](#oneview_network_set)
-  * [oneview_network_set_facts - OneViewネットワークセットに関する事実を取得します。](#oneview_network_set_facts)
-  * [oneview_os_deployment_plan_facts - 1つ以上のOS展開計画に関する事実を取得します。](#oneview_os_deployment_plan_facts)
+  * [oneview_network_set_facts - OneViewネットワークセットに関する情報を取得します。](#oneview_network_set_facts)
+  * [oneview_os_deployment_plan_facts - 1つ以上のOS展開計画に関する情報を取得します。](#oneview_os_deployment_plan_facts)
   * [oneview_os_deployment_server - OneView 展開サーバーリソースを管理します。](#oneview_os_deployment_server)
-  * [oneview_os_deployment_server_facts - 1つ以上のOS展開サーバーに関する事実を取得します。](#oneview_os_deployment_server_facts)
+  * [oneview_os_deployment_server_facts - 1つ以上のOS展開サーバーに関する情報を取得します。](#oneview_os_deployment_server_facts)
   * [oneview_power_device - OneViewパワーデバイスリソースを管理します。](#oneview_power_device)
-  * [oneview_power_device_facts - OneViewパワーデバイスに関する事実を取得します。](#oneview_power_device_facts)
+  * [oneview_power_device_facts - OneViewパワーデバイスに関する情報を取得します。](#oneview_power_device_facts)
   * [oneview_rack - OneViewラックリソースを管理します。](#oneview_rack)
-  * [oneview_rack_facts - ラックリソースに関する事実を取得します。](#oneview_rack_facts)
+  * [oneview_rack_facts - ラックリソースに関する情報を取得します。](#oneview_rack_facts)
   * [oneview_san_manager - OneView SAN Managerリソースを管理します。](#oneview_san_manager)
-  * [oneview_san_manager_facts - 1つ以上のOneView SANマネージャーに関する事実を取得します。](#oneview_san_manager_facts)
+  * [oneview_san_manager_facts - 1つ以上のOneView SANマネージャーに関する情報を取得します。](#oneview_san_manager_facts)
   * [oneview_sas_interconnect - OneView SASインターコネクトリソースを管理します。](#oneview_sas_interconnect)
-  * [oneview_sas_interconnect_facts - OneView SASインターコネクトに関する事実を取得します。](#oneview_sas_interconnect_facts)
-  * [oneview_sas_interconnect_type_facts - OneView SASインターコネクトタイプに関する事実を取得します。](#oneview_sas_interconnect_type_facts)
+  * [oneview_sas_interconnect_facts - OneView SASインターコネクトに関する情報を取得します。](#oneview_sas_interconnect_facts)
+  * [oneview_sas_interconnect_type_facts - OneView SASインターコネクトタイプに関する情報を取得します。](#oneview_sas_interconnect_type_facts)
   * [oneview_sas_logical_interconnect - OneView SAS論理インターコネクトリソースを管理します。](#oneview_sas_logical_interconnect)
-  * [oneview_sas_logical_interconnect_facts - 1つ以上のOneView SAS論理インターコネクトに関する事実を取得します。](#oneview_sas_logical_interconnect_facts)
+  * [oneview_sas_logical_interconnect_facts - 1つ以上のOneView SAS論理インターコネクトに関する情報を取得します。](#oneview_sas_logical_interconnect_facts)
   * [oneview_sas_logical_interconnect_group - OneView SAS論理インターコネクトグループリソースを管理します。](#oneview_sas_logical_interconnect_group)
-  * [oneview_sas_logical_interconnect_group_facts - 1つ以上のOneView SAS論理インターコネクトグループに関する事実を取得します。](#oneview_sas_logical_interconnect_group_facts)
-  * [oneview_sas_logical_jbod_attachment_facts - 1つ以上のOneView SAS論理インターコネクトグループに関する事実を取得します。](#oneview_sas_logical_jbod_attachment_facts)
-  * [oneview_sas_logical_jbod_facts - 1つ以上のOneView SAS論理JBODに関する事実を取得します。](#oneview_sas_logical_jbod_facts)
+  * [oneview_sas_logical_interconnect_group_facts - 1つ以上のOneView SAS論理インターコネクトグループに関する情報を取得します。](#oneview_sas_logical_interconnect_group_facts)
+  * [oneview_sas_logical_jbod_attachment_facts - 1つ以上のOneView SAS論理インターコネクトグループに関する情報を取得します。](#oneview_sas_logical_jbod_attachment_facts)
+  * [oneview_sas_logical_jbod_facts - 1つ以上のOneView SAS論理JBODに関する情報を取得します。](#oneview_sas_logical_jbod_facts)
   * [oneview_scope - OneView Scopeリソースを管理します。](#oneview_scope)
-  * [oneview_scope_facts - 1つ以上のOneViewスコープに関する事実を取得します。](#oneview_scope_facts)
+  * [oneview_scope_facts - 1つ以上のOneViewスコープに関する情報を取得します。](#oneview_scope_facts)
   * [oneview_server_hardware - OneViewサーバーハードウェアリソースを管理します。](#oneview_server_hardware)
-  * [oneview_server_hardware_facts - OneViewサーバーハードウェアに関する事実を取得します。](#oneview_server_hardware_facts)
+  * [oneview_server_hardware_facts - OneViewサーバーハードウェアに関する情報を取得します。](#oneview_server_hardware_facts)
   * [oneview_server_hardware_type - OneViewサーバーのハRetrieve facts about Server Hardware Types of the OneView.ードウェアタイプリソースを管理します。](#oneview_server_hardware_type)
-  * [oneview_server_hardware_type_facts - OneViewのサーバーハードウェアタイプに関する事実を取得します。](#oneview_server_hardware_type_facts)
+  * [oneview_server_hardware_type_facts - OneViewのサーバーハードウェアタイプに関する情報を取得します。](#oneview_server_hardware_type_facts)
   * [oneview_server_profile - OneViewサーバープロファイルリソースを管理します。](#oneview_server_profile)
-  * [oneview_server_profile_facts - OneViewサーバープロファイルに関する事実を取得します。](#oneview_server_profile_facts)
+  * [oneview_server_profile_facts - OneViewサーバープロファイルに関する情報を取得します。](#oneview_server_profile_facts)
   * [oneview_server_profile_template - OneViewサーバープロファイルテンプレートリソースを管理します。](#oneview_server_profile_template)
-  * [oneview_server_profile_template_facts - OneViewからサーバープロファイルテンプレートに関する事実を取得します。](#oneview_server_profile_template_facts)
+  * [oneview_server_profile_template_facts - OneViewからサーバープロファイルテンプレートに関する情報を取得します。](#oneview_server_profile_template_facts)
   * [oneview_storage_pool - OneViewストレージプールリソースを管理します。](#oneview_storage_pool)
-  * [oneview_storage_pool_facts - 1つ以上のストレージプールに関する事実を取得します。](#oneview_storage_pool_facts)
+  * [oneview_storage_pool_facts - 1つ以上のストレージプールに関する情報を取得します。](#oneview_storage_pool_facts)
   * [oneview_storage_system - OneViewストレージシステムリソースを管理します。](#oneview_storage_system)
-  * [oneview_storage_system_facts - OneViewストレージシステムに関する事実を取得します。](#oneview_storage_system_facts)
+  * [oneview_storage_system_facts - OneViewストレージシステムに関する情報を取得します。](#oneview_storage_system_facts)
   * [oneview_storage_volume_attachment - 指定したサーバープロファイルから余分なプレゼンテーションを削除するためのインターフェイスを提供します。](#oneview_storage_volume_attachment)
-  * [oneview_storage_volume_attachment_facts - OneViewストレージボリュームのアタッチメントに関する事実を取得します。](#oneview_storage_volume_attachment_facts)
+  * [oneview_storage_volume_attachment_facts - OneViewストレージボリュームのアタッチメントに関する情報を取得します。](#oneview_storage_volume_attachment_facts)
   * [oneview_storage_volume_template - OneViewストレージボリュームテンプレートリソースを管理します。](#oneview_storage_volume_template)
-  * [oneview_storage_volume_template_facts - OneViewのストレージボリュームテンプレートに関する事実を取得します。](#oneview_storage_volume_template_facts)
+  * [oneview_storage_volume_template_facts - OneViewのストレージボリュームテンプレートに関する情報を取得します。](#oneview_storage_volume_template_facts)
   * [oneview_switch - ToRスイッチリソースを削除するためのインターフェイスを提供します。](#oneview_switch)
-  * [oneview_switch_facts - OneViewスイッチに関する事実を取得します。](#oneview_switch_facts)
-  * [oneview_switch_type_facts - OneViewスイッチタイプに関する事実を取得します。](#oneview_switch_type_facts)
-  * [oneview_task_facts - OneViewタスクに関する事実を取得します。](#oneview_task_facts)
+  * [oneview_switch_facts - OneViewスイッチに関する情報を取得します。](#oneview_switch_facts)
+  * [oneview_switch_type_facts - OneViewスイッチタイプに関する情報を取得します。](#oneview_switch_type_facts)
+  * [oneview_task_facts - OneViewタスクに関する情報を取得します。](#oneview_task_facts)
   * [oneview_unmanaged_device - OneView管理対象外デバイスリソースを管理します。](#oneview_unmanaged_device)
-  * [oneview_unmanaged_device_facts - 1つ以上のOneView管理対象外デバイスに関する事実を取得します。](#oneview_unmanaged_device_facts)
+  * [oneview_unmanaged_device_facts - 1つ以上のOneView管理対象外デバイスに関する情報を取得します。](#oneview_unmanaged_device_facts)
   * [oneview_uplink_set - OneViewアップリンクセットリソースを管理します。](#oneview_uplink_set)
-  * [oneview_uplink_set_facts - 1つ以上のOneViewアップリンクセットに関する事実を取得します。](#oneview_uplink_set_facts)
+  * [oneview_uplink_set_facts - 1つ以上のOneViewアップリンクセットに関する情報を取得します。](#oneview_uplink_set_facts)
   * [oneview_user - OneViewユーザーを管理します。](#oneview_user)
-  * [oneview_user_facts - 1人以上のOneViewユーザーに関する事実を取得します。](#oneview_user_facts)
+  * [oneview_user_facts - 1人以上のOneViewユーザーに関する情報を取得します。](#oneview_user_facts)
   * [oneview_version_facts - アプライアンスでサポートされている可能なAPIバージョンの範囲を返します。](#oneview_version_facts)
   * [oneview_volume - OneView Volumeリソースを管理します。](#oneview_volume)
-  * [oneview_volume_facts - OneViewボリュームに関する事実を取得します。](#oneview_volume_facts)
+  * [oneview_volume_facts - OneViewボリュームに関する情報を取得します。](#oneview_volume_facts)
 
 ---
 
@@ -181,7 +184,7 @@ HPE ICspを使用して、サーバーにオペレーティングシステムを
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| icsp_server   | ICspでプロビジョニングされたサーバーに関する事実を持っています。|  モジュールは正常に実行されますが、nullの場合があります。 |  dict |
+| icsp_server   | ICspでプロビジョニングされたサーバーに関する情報を持っています。|  モジュールは正常に実行されますが、nullの場合があります。 |  dict |
 
 
 
@@ -261,7 +264,7 @@ ICspでサーバーを追加、削除、構成します。
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| target_server   | ICspに追加されたサーバーに関する事実を持っています。|  状態が 'present' および 'network_configured' 。nullの場合があります。 |  dict |
+| target_server   | ICspに追加されたサーバーに関する情報を持っています。|  状態が 'present' および 'network_configured' 。nullの場合があります。 |  dict |
 
 
 
@@ -388,8 +391,8 @@ ICspでサーバーを追加、削除、構成します。
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| artifact_bundle   | アーティファクトバンドルに関するOneViewの事実がを持っています。|  状態が 'present' および 'extracted'。|  dict |
-| artifact_bundle_deployment_group   | 展開グループに関するOneViewの事実を持っています。|  状態が 'backup_extracted'、 'backup_uploaded'、および 'backup_created'。 |  dict |
+| artifact_bundle   | アーティファクトバンドルに関するOneViewの情報がを持っています。|  状態が 'present' および 'extracted'。|  dict |
+| artifact_bundle_deployment_group   | 展開グループに関するOneViewの情報を持っています。|  状態が 'backup_extracted'、 'backup_uploaded'、および 'backup_created'。 |  dict |
 
 
 #### 注記
@@ -405,10 +408,10 @@ ICspでサーバーを追加、削除、構成します。
 
 
 ## image_streamer_artifact_bundle_facts
-アーティファクトバンドルに関する事実を取得します。
+アーティファクトバンドルに関する情報を取得します。
 
 #### 概要
- アーティファクトバンドルに関する事実を取得します。
+ アーティファクトバンドルに関する情報を取得します。
 
 #### 要件 (モジュールを実行するホスト)
   * python >= 2.7.9
@@ -420,7 +423,7 @@ ICspでサーバーを追加、削除、構成します。
 | ------------- |-------------| ---------|----------- |--------- |
 | config  |   No  |  | |  OneViewクライアント構成を含む.json構成ファイルへのパス。構成ファイルはオプションです。ファイルパスが指定されていない場合、構成は環境変数からロードされます。  |
 | name  |   No  |  | |  アーティファクトバンドルの名前。  |
-| options  |   No  |  | |  アーティファクトバンドルに関する追加の事実を収集するオプションをリストします。可能なオプション: `allBackups`は、アーティファクトバンドルのバックアップのリストを取得します。`backupForAnArtifactBundle`は、アーティファクトバンドルのバックアップのリストを取得します。  |
+| options  |   No  |  | |  アーティファクトバンドルに関する追加の情報を収集するオプションをリストします。可能なオプション: `allBackups`は、アーティファクトバンドルのバックアップのリストを取得します。`backupForAnArtifactBundle`は、アーティファクトバンドルのバックアップのリストを取得します。  |
 | params  |   No  |  | |  リソースのリストを区切り、フィルター、ソートするパラメーターのリスト。  可能なパラメーター: `start`: 0から始まるインデックスを使用して返される最初のアイテム。 `count`: 返されるリソースの数。 `filter`: 返されるアイテムのリストを絞り込むための一般的なフィルター/クエリ文字列。 `sort`: 返されたデータセットのソート順。  |
 
 
@@ -453,7 +456,7 @@ ICspでサーバーを追加、削除、構成します。
   delegate_to: localhost
 - debug: var=artifact_bundles
 
-- name: アーティファクトバンドルのすべてのバックアップに関する事実を収集します
+- name: Gather facts about all Backups for Artifact Bundle
   image_streamer_artifact_bundle_facts:
     config: "{{ config }}"
     name: "Artifact Bundles Test"
@@ -462,17 +465,6 @@ ICspでサーバーを追加、削除、構成します。
   delegate_to: localhost
 - debug: var=artifact_bundles
 - debug: var=artifact_bundle_backups
-
-- name: アーティファクトバンドルのバックアップに関する事実を収集します
-  image_streamer_artifact_bundle_facts:
-    config: "{{ config }}"
-    name: "Artifact Bundles Test"
-    options:
-      - backupForAnArtifactBundle
-  delegate_to: localhost
-- debug: var=artifact_bundles
-- debug: var=backup_for_artifact_bundle
-
 ```
 
 
@@ -481,9 +473,8 @@ ICspでサーバーを追加、削除、構成します。
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| artifact_bundle_backups   | アーティファクトバンドルのバックアップのリスト。|  要求されたときに、nullの場合もあります。 |  list |
-| artifact_bundles   | アーティファクトバンドルのリスト。|  常時、しかしnullの場合もあります。|  list |
-| backup_for_artifact_bundle   | アーティファクトバンドルのバックアップ。|  要求されたときに、nullの場合もあります。|  list |
+| artifact_bundle_backups   | アーティファクトバンドルのバックアップ情報。 |  要求された場合に戻りますが、nullの場合もあります。 |  list |
+| artifact_bundles   | アーティファクトバンドル情報。 |  常に戻りますが、nullの場合もあります。 |  list |
 
 
 #### 注記
@@ -583,10 +574,10 @@ Image Stream OSビルド計画リソースを管理します。
 
 
 ## image_streamer_build_plan_facts
-1つ以上のイメージストリーマービルドプランに関する事実を取得します。
+1つ以上のイメージストリーマービルドプランに関する情報を取得します。
 
 #### 概要
- 1つ以上のイメージストリーマービルドプランに関する事実を取得します。
+ 1つ以上のイメージストリーマービルドプランに関する情報を取得します。
 
 #### 要件 (モジュールを実行するホスト)
   * python >= 2.7.9
@@ -822,7 +813,7 @@ Retrieve facts about the Image Streamer Deployment Groups.
 
 
 ## image_streamer_deployment_plan_facts
-イメージストリーマー展開計画に関する事実を取得します。
+イメージストリーマー展開計画に関する情報を取得します。
 
 #### 概要
  Retrieve facts about one or more of the Image Streamer Deployment Plans.
@@ -908,7 +899,7 @@ Retrieve facts about the Image Streamer Deployment Groups.
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| deployment_plans   | イメージストリーマー展開計画に関する事実を取得します。|  常時、ただしnullの場合があります。|  list |
+| deployment_plans   | イメージストリーマー展開計画に関する情報を取得します。|  常時、ただしnullの場合があります。|  list |
 
 
 #### 注記
@@ -1031,7 +1022,7 @@ Retrieve facts about the Image Streamer Deployment Groups.
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| golden_image   | ゴールデンイメージに関するOneViewの事実を持っています。|  状態が 'present'。|  dict |
+| golden_image   | ゴールデンイメージに関するOneViewの情報を持っています。|  状態が 'present'。|  dict |
 
 
 #### 注記
@@ -1047,10 +1038,10 @@ Retrieve facts about the Image Streamer Deployment Groups.
 
 
 ## image_streamer_golden_image_facts
-イメージストリーマーゴールデンイメージの1つ以上に関する事実を取得します。
+イメージストリーマーゴールデンイメージの1つ以上に関する情報を取得します。
 
 #### 概要
- イメージストリーマーゴールデンイメージの1つ以上に関する事実を取得します。
+ イメージストリーマーゴールデンイメージの1つ以上に関する情報を取得します。
 
 #### 要件 (モジュールを実行するホスト)
   * python >= 2.7.9
@@ -1142,7 +1133,7 @@ Retrieve facts about the Image Streamer Deployment Groups.
 | ------------- |-------------| ---------|----------- |--------- |
 | config  |   No  |  | |  OneViewクライアント構成を含む.json構成ファイルへのパス。構成ファイルはオプションです。ファイルパスが指定されていない場合、構成は環境変数からロードされます。  |
 | name  |   No  |  | |  OSボリュームの名前。  |
-| options  |   No  |  | |  OSボリュームに関する追加の事実を収集するオプションを表示します。可能なオプション: `getStorage`はOSボリュームのストレージの詳細を取得します` getArchivedLogs`はOSボリュームのアーカイブされたログを取得します  |
+| options  |   No  |  | |  OSボリュームに関する追加の情報を収集するオプションを表示します。可能なオプション: `getStorage`はOSボリュームのストレージの詳細を取得します` getArchivedLogs`はOSボリュームのアーカイブされたログを取得します  |
 | params  |   No  |  | |  リソースのリストを区切り、フィルター、ソートするパラメーターのリスト。  可能なパラメーター: `start`: 0から始まるインデックスを使用して返される最初のアイテム。`count`: 返されるリソースの数。`filter`: 返されるアイテムのリストを絞り込むための一般的なフィルター/クエリ文字列。`sort`: 返されたデータセットのソート順。  |
 
 
@@ -1329,8 +1320,8 @@ Retrieve facts about the Image Streamer Deployment Groups.
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| plan_script   | イメージストリーマー計画スクリプトに関する事実を持っています。|  状態は'present'ですが、nullの場合があります。|  dict |
-| plan_script_differences   | 選択した属性ごとに、プランスクリプトの変更内容に関する事実を持っています。|  状態が 'differences_retrieved'。|  dict |
+| plan_script   | イメージストリーマー計画スクリプトに関する情報を持っています。|  状態は'present'ですが、nullの場合があります。|  dict |
+| plan_script_differences   | 選択した属性ごとに、プランスクリプトの変更内容に関する情報を持っています。|  状態が 'differences_retrieved'。|  dict |
 
 
 #### 注記
@@ -1346,10 +1337,10 @@ Retrieve facts about the Image Streamer Deployment Groups.
 
 
 ## image_streamer_plan_script_facts
-イメージストリーマー計画スクリプトに関する事実を取得します。
+イメージストリーマー計画スクリプトに関する情報を取得します。
 
 #### 概要
- 1つ以上のイメージストリーマー計画スクリプトに関する事実を取得します。
+ 1つ以上のイメージストリーマー計画スクリプトに関する情報を取得します。
 
 #### 要件 (モジュールを実行するホスト)
   * python >= 2.7.9
@@ -1429,10 +1420,10 @@ Retrieve facts about the Image Streamer Deployment Groups.
 
 
 ## oneview_alert_facts
-OneViewアラートに関する事実を取得します。
+OneViewアラートに関する情報を取得します。
 
 #### 概要
- OneViewアラートに関する事実を取得します。
+ OneViewアラートに関する情報を取得します。
 
 #### 要件 (モジュールを実行するホスト)
   * python >= 2.7.9
@@ -1555,7 +1546,7 @@ OneViewアラートに関する事実を取得します。
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| appliance_device_read_community   | OneViewアプライアンスデバイス読み取りコミュニティに関するすべてのOneViewの事実を持っています。|  常時。|  dict |
+| appliance_device_read_community   | OneViewアプライアンスデバイス読み取りコミュニティに関するすべてのOneViewの情報を持っています。|  常時。|  dict |
 
 
 #### 注記
@@ -1571,10 +1562,10 @@ OneViewアラートに関する事実を取得します。
 
 
 ## oneview_appliance_device_read_community_facts
-OneViewアプライアンスデバイス読み取りコミュニティに関する事実を取得します。
+OneViewアプライアンスデバイス読み取りコミュニティに関する情報を取得します。
 
 #### 概要
- OneViewアプライアンスデバイス読み取りコミュニティに関する事実を取得します。
+ OneViewアプライアンスデバイス読み取りコミュニティに関する情報を取得します。
 
 #### 要件 (モジュールを実行するホスト)
   * python >= 2.7.9
@@ -1610,7 +1601,7 @@ OneViewアプライアンスデバイス読み取りコミュニティに関す�
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| appliance_device_read_community   | OneViewアプライアンスデバイス読み取りコミュニティに関するすべてのOneViewの事実を持っています。|  常時。|  dict |
+| appliance_device_read_community   | OneViewアプライアンスデバイス読み取りコミュニティに関するすべてのOneViewの情報を持っています。|  常時。|  dict |
 
 
 #### 注記
@@ -1626,7 +1617,7 @@ OneViewアプライアンスデバイス読み取りコミュニティに関す�
 
 
 ## oneview_appliance_device_snmp_v1_trap_destinations
-OneViewアプライアンスデバイス読み取りコミュニティに関するすべてのOneViewの事実を持っています。
+OneViewアプライアンスデバイス読み取りコミュニティに関するすべてのOneViewの情報を持っています。
 
 #### 概要
  アプライアンスデバイスのSNMPv1トラップ宛先を管理するためのインターフェイスを提供します。
@@ -1717,7 +1708,7 @@ OneViewアプライアンスデバイス読み取りコミュニティに関す�
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| appliance_device_snmp_v1_trap_destinations   | OneViewアプライアンスSNMPv1トラップ転送先に関するすべてのOneViewの事実を持っています。|  状態が 'present'。|  dict |
+| appliance_device_snmp_v1_trap_destinations   | OneViewアプライアンスSNMPv1トラップ転送先に関するすべてのOneViewの情報を持っています。|  状態が 'present'。|  dict |
 
 
 #### 注記
@@ -1733,7 +1724,7 @@ OneViewアプライアンスデバイス読み取りコミュニティに関す�
 
 
 ## oneview_appliance_device_snmp_v1_trap_destinations_facts
-OneViewアプライアンスのSNMPv1トラップ転送先に関する事実を取得します。
+OneViewアプライアンスのSNMPv1トラップ転送先に関する情報を取得します。
 
 #### 概要
  アプライアンスには、監視対象または管理対象のサーバーハードウェアから受信したイベントを、SNMPv1トラップとして指定された宛先に転送する機能があります。このモジュールは、アプライアンスのSNMPv1トラップ転送先に関するファクトを取得します。
@@ -1803,7 +1794,7 @@ OneViewアプライアンスのSNMPv1トラップ転送先に関する事実を�
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| appliance_device_snmp_v1_trap_destinations   | OneViewアプライアンスSNMPv1トラップ転送先に関するすべてのOneViewの事実を持っています。|  常時。|  dict |
+| appliance_device_snmp_v1_trap_destinations   | OneViewアプライアンスSNMPv1トラップ転送先に関するすべてのOneViewの情報を持っています。|  常時。|  dict |
 
 
 #### 注記
@@ -1893,7 +1884,7 @@ OneViewアプライアンスのSNMPv1トラップ転送先に関する事実を�
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| oneview_appliance_device_snmp_v3_trap_destinations   | OneViewアプライアンスSNMPv3トラップ宛先に関するすべてのOneViewの事実を持っています。|  状態が 'present'。nullの場合があります。|  dict |
+| oneview_appliance_device_snmp_v3_trap_destinations   | OneViewアプライアンスSNMPv3トラップ宛先に関するすべてのOneViewの情報を持っています。|  状態が 'present'。nullの場合があります。|  dict |
 
 
 #### 注記
@@ -1909,7 +1900,7 @@ OneViewアプライアンスのSNMPv1トラップ転送先に関する事実を�
 
 
 ## oneview_appliance_device_snmp_v3_trap_destinations_facts
-OneViewアプライアンスのSNMPv3トラップ転送先に関する事実を取得します。
+OneViewアプライアンスのSNMPv3トラップ転送先に関する情報を取得します。
 
 #### 概要
  アプライアンスには、監視対象または管理対象のサーバーハードウェアから受信したイベントを、SNMPv3トラップとして指定された宛先に転送する機能があります。このモジュールは、アプライアンスのSNMPv3トラップ転送先に関するファクトを取得します。
@@ -1977,7 +1968,7 @@ OneViewアプライアンスのSNMPv3トラップ転送先に関する事実を�
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| appliance_device_snmp_v3_trap_destinations   | OneViewアプライアンスSNMPv3トラップ転送先に関するすべてのOneViewの事実を持っています。|  常時。|  dict |
+| appliance_device_snmp_v3_trap_destinations   | OneViewアプライアンスSNMPv3トラップ転送先に関するすべてのOneViewの情報を持っています。|  常時。|  dict |
 
 
 #### 注記
@@ -2067,7 +2058,7 @@ OneViewアプライアンスのSNMPv3トラップ転送先に関する事実を�
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| appliance_device_snmp_v3_users   | OneViewアプライアンスSNMPv3ユーザーに関するすべてのOneViewの事実を持っています。|   'present' と 'set_password’の状態。|  dict |
+| appliance_device_snmp_v3_users   | OneViewアプライアンスSNMPv3ユーザーに関するすべてのOneViewの情報を持っています。|   'present' と 'set_password’の状態。|  dict |
 
 
 #### 注記
@@ -2083,10 +2074,10 @@ OneViewアプライアンスのSNMPv3トラップ転送先に関する事実を�
 
 
 ## oneview_appliance_device_snmp_v3_users_facts
-OneViewアプライアンスSNMPv3ユーザーに関する事実を取得します。
+OneViewアプライアンスSNMPv3ユーザーに関する情報を取得します。
 
 #### 概要
- SNMPv3ユーザーは、関連する宛先にSNMPv3トラップを送信するために使用されます。1人のユーザーを複数の宛先に割り当てることができます。このモジュールは、アプライアンスのSNMPv3ユーザーに関する事実を取得します。
+ SNMPv3ユーザーは、関連する宛先にSNMPv3トラップを送信するために使用されます。1人のユーザーを複数の宛先に割り当てることができます。このモジュールは、アプライアンスのSNMPv3ユーザーに関する情報を取得します。
 
 #### 要件 (モジュールを実行するホスト)
   * python >= 2.7.9
@@ -2150,7 +2141,7 @@ OneViewアプライアンスSNMPv3ユーザーに関する事実を取得しま�
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| appliance_device_snmp_v3_users   | OneViewアプライアンスSNMPv3ユーザーに関するすべてのOneViewの事実を持っています。|  常時。|  dict |
+| appliance_device_snmp_v3_users   | OneViewアプライアンスSNMPv3ユーザーに関するすべてのOneViewの情報を持っています。|  常時。|  dict |
 
 
 #### 注記
@@ -2204,7 +2195,7 @@ OneViewアプライアンスのロケールと時間構成を管理します。
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| appliance_time_and_locale_configuration   | OneViewアプライアンスのロケールと時間の構成に関する事実があります。|  状態が 'present'。nullの場合があります。|  dict |
+| appliance_time_and_locale_configuration   | OneViewアプライアンスのロケールと時間の構成に関する情報があります。|  状態が 'present'。nullの場合があります。|  dict |
 
 
 #### 注記
@@ -2220,10 +2211,10 @@ OneViewアプライアンスのロケールと時間構成を管理します。
 
 
 ## oneview_appliance_time_and_locale_configuration_facts
-OneViewアプライアンスの時間とロケール構成に関する事実を取得します。
+OneViewアプライアンスの時間とロケール構成に関する情報を取得します。
 
 #### 概要
- OneViewアプライアンスの時間とロケール構成に関する事実を取得します。
+ OneViewアプライアンスの時間とロケール構成に関する情報を取得します。
 
 #### 要件 (モジュールを実行するホスト)
   * python >= 2.7.9
@@ -2255,7 +2246,7 @@ OneViewアプライアンスの時間とロケール構成に関する事実を�
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| appliance_time_and_locale_configuration   | アプライアンスの時間とロケール構成に関するすべてのOneViewの事実を持っています。|  常時。|  dict |
+| appliance_time_and_locale_configuration   | アプライアンスの時間とロケール構成に関するすべてのOneViewの情報を持っています。|  常時。|  dict |
 
 
 #### 注記
@@ -2268,6 +2259,157 @@ OneViewアプライアンスの時間とロケール構成に関する事実を�
 
 
 ---
+
+
+## oneview_certificates_server
+OneView証明書サーバーを管理します。
+
+#### 概要
+ OneView証明書サーバーを管理するインターフェースを提供します。 作成、更新、削除が可能です。
+
+#### 要件 (モジュールを実行するホスト)
+  * hpeOneView >= 5.4.0
+  * python >= 3.4.2
+
+#### オプション
+
+| パラメータ     | 必須    | デフォルト  | 選択    | コメント |
+| ------------- |-------------| ---------|----------- |--------- |
+| config  |   |  | |  OneViewクライアント構成を含む.json構成ファイルへのパス。構成ファイルはオプションです。ファイルパスが指定されていない場合、構成は環境変数からロードされます。設定ファイルをリンクさせる、または環境変数の使い方については注記を確認してください。 |
+| data  |   Yes  |  | |  証明書サーバー情報をセットします。  |
+| state  |   |  | <ul> <li>present</li>  <li>absent</li> </ul> |  証明書サーバーの希望の状態を指定します。`present`はデータプロパティがOneViewに準拠していることを保証します。 `absent`は指定したリソースが存在する場合、そのリソースをOneViewから削除します。  |
+| validate_etag  |   |  True  | <ul> <li>true</li>  <li>false</li> </ul> |  指定したetagが現在のリソースに付与しているetagに一致する場合のみ処理します。  |
+
+
+ 
+#### 例
+
+```yaml
+
+- name: Create a Server Certificate
+  oneview_certificates_server:
+    hostname: 172.16.101.48
+    username: administrator
+    password: my_password
+    api_version: 2200
+    state: present
+    data:
+      name: 'vcenter'
+      certificateDetails:
+        - aliasName: 'vcenter'
+          base64Data: '--- Certificate ---'
+
+- name: Update the Server Certificate name to 'vcenter Renamed'
+  oneview_certificates_server:
+    hostname: 172.16.101.48
+    username: administrator
+    password: my_password
+    api_version: 2200
+    state: present
+    data:
+      name: 'vcenter renamed'
+      certificateDetails:
+        - aliasName: 'vcenter'
+          base64Data: '--- Certificate ---'
+
+- name: Ensure that the Server Certificate is absent
+  oneview_certificates_server:
+    hostname: 172.16.101.48
+    username: administrator
+    password: my_password
+    api_version: 2200
+    state: absent
+    data:
+      alias_name: 'vcenter'
+
+---
+
+
+
+#### Notes
+
+- A sample configuration file for the config parameter can be found at: https://github.com/HewlettPackard/oneview-ansible/blob/master/examples/oneview_config-rename.json
+
+- Check how to use environment variables for configuration at: https://github.com/HewlettPackard/oneview-ansible#environment-variables
+
+- Additional Playbooks for the HPE OneView Ansible modules can be found at: https://github.com/HewlettPackard/oneview-ansible/tree/master/examples
+
+- The OneView API version used will directly affect returned and expected fields in resources. Information on setting the desired API version and can be found at: https://github.com/HewlettPackard/oneview-ansible#setting-your-oneview-version
+
+
+---
+
+
+## oneview_certificates_server_facts
+Retrieve the facts about one or more of the OneView Certificates Server.
+
+#### Synopsis
+ Retrieve the facts about one or more of the Certificates Server from OneView.
+
+#### Requirements (on the host that executes the module)
+  * hpeOneView >= 5.4.0
+  * python >= 3.4.2
+
+#### Options
+
+| Parameter     | Required    | Default  | Choices    | Comments |
+| ------------- |-------------| ---------|----------- |--------- |
+| config  |   |  | |  Path to a .json configuration file containing the OneView client configuration. The configuration file is optional and when used should be present in the host running the ansible commands. If the file path is not provided, the configuration will be loaded from environment variables. For links to example configuration files or how to use the environment variables verify the notes section.  |
+| aliasName  |   No  |  | |  Certificates Server aliasName.  |
+| remote  |   No  |  | |  Remote Server Certificate.  |
+
+
+ 
+#### Examples
+
+```yaml
+
+- name: Gather facts about a Server Certificate by aliasname
+  oneview_certificates_server_facts:
+    hostname: 172.16.101.48
+    username: administrator
+    password: my_password
+    api_version: 2200
+    aliasname: "vcenter"
+  delegate_to: localhost
+
+- debug: var=certificates_server
+
+- name: Gather facts about a Server Certificate by remote server
+  oneview_certificates_server_facts:
+    hostname: 172.16.101.48
+    username: administrator
+    password: my_password
+    api_version: 2200
+    remote: "172.18.13.11"
+  delegate_to: localhost
+
+- debug: var=remote_certificate
+
+```
+
+
+
+#### 戻り値
+
+| Name          | Description  | Returned | Type       |
+| ------------- |-------------| ---------|----------- |
+| certificates_servers   | 証明書サーバーの全ての情報を保持します。 |  常に値が戻されますが、nullの場合があります。 |  dict |
+| remote_certificate     | リモートサーバー証明書情報を保持します。 |  要求した場合、値が戻されます。 |  dict |
+
+#### 注記
+
+- configパラメーターのサンプル構成ファイルは、次の場所にあります。: https://github.com/HewlettPackard/oneview-ansible/blob/master/examples/oneview_config-rename.json
+
+- 構成用の環境変数の使用方法は、次の場所で確認してください。: https://github.com/HewlettPackard/oneview-ansible#environment-variables
+
+- その他のHPE OneView AnsibleモジュールのPlaybookは、次の場所にあります。: https://github.com/HewlettPackard/oneview-ansible/tree/master/examples
+
+- 使用されるOneViewAPIバージョンによって、リソース対しての設定値と戻り値が変わる場合があります。APIバージョン別の設定に関する情報は、次のURLにあります。: https://github.com/HewlettPackard/oneview-ansible#setting-your-oneview-version
+
+
+---
+
 
 
 ## oneview_connection_template
@@ -2318,7 +2460,7 @@ OneView接続テンプレートリソースを管理します。
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| connection_template   | 接続テンプレートに関するOneViewの事実を持っています。|  'present'の状態ですが、nullの場合があります。|  dict |
+| connection_template   | 接続テンプレートに関するOneViewの情報を持っています。|  'present'の状態ですが、nullの場合があります。|  dict |
 
 
 #### 注記
@@ -2334,10 +2476,10 @@ OneView接続テンプレートリソースを管理します。
 
 
 ## oneview_connection_template_facts
-OneView接続テンプレートに関する事実を取得します。
+OneView接続テンプレートに関する情報を取得します。
 
 #### 概要
- OneView接続テンプレートに関する事実を取得します。
+ OneView接続テンプレートに関する情報を取得します。
 
 #### 要件 (モジュールを実行するホスト)
   * python >= 2.7.9
@@ -2349,7 +2491,7 @@ OneView接続テンプレートに関する事実を取得します。
 | ------------- |-------------| ---------|----------- |--------- |
 | config  |   No  |  | |  OneViewクライアント構成を含む.json構成ファイルへのパス。構成ファイルはオプションです。ファイルパスが指定されていない場合、構成は環境変数からロードされます。  |
 | name  |   No  |  | |  接続テンプレート名。  |
-| options  |   No  |  | |  接続テンプレート関連のリソースに関する追加の事実を収集するオプションを表示します。可能なオプション: `defaultConnectionTemplate`.  |
+| options  |   No  |  | |  接続テンプレート関連のリソースに関する追加の情報を収集するオプションを表示します。可能なオプション: `defaultConnectionTemplate`.  |
 | params  |   No  |  | |  リソースのリストを区切り、フィルター、ソートするパラメーターのリスト。  可能なパラメーター: `start`: 0から始まるインデックスを使用して返される最初のアイテム。`count`: 返されるリソースの数。`filter`: 返されるアイテムのリストを絞り込むための一般的なフィルター/クエリ文字列。`sort`: 返されたデータセットのソート順。  |
 
 
@@ -2410,8 +2552,8 @@ OneView接続テンプレートに関する事実を取得します。
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| connection_templates   | 接続テンプレートに関するすべてのOneViewの事実を持っています。|  常時、defaultConnectionTemplateが要求された場合を除く。nullの場合があります。|  dict |
-| default_connection_template   | デフォルト接続テンプレートに関する事実を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
+| connection_templates   | 接続テンプレートに関するすべてのOneViewの情報を持っています。|  常時、defaultConnectionTemplateが要求された場合を除く。nullの場合があります。|  dict |
+| default_connection_template   | デフォルト接続テンプレートに関する情報を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
 
 
 #### 注記
@@ -2511,7 +2653,7 @@ OneViewデータセンターリソースを管理します。
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| datacenter   | データセンターに関するOneViewの事実を持っています。|  状態が 'present'。nullの場合があります。|  dict |
+| datacenter   | データセンターに関するOneViewの情報を持っています。|  状態が 'present'。nullの場合があります。|  dict |
 
 
 #### 注記
@@ -2527,10 +2669,10 @@ OneViewデータセンターリソースを管理します。
 
 
 ## oneview_datacenter_facts
-OneViewデータセンターに関する事実を取得します。
+OneViewデータセンターに関する情報を取得します。
 
 #### 概要
- OneViewデータセンターに関する事実を取得します。
+ OneViewデータセンターに関する情報を取得します。
 
 #### 要件 (モジュールを実行するホスト)
   * python >= 2.7.9
@@ -2542,7 +2684,7 @@ OneViewデータセンターに関する事実を取得します。
 | ------------- |-------------| ---------|----------- |--------- |
 | config  |   No  |  | |  OneViewクライアント構成を含む.json構成ファイルへのパス。構成ファイルはオプションです。ファイルパスが指定されていない場合、構成は環境変数からロードされます。  |
 | name  |   No  |  | |  データセンター名。  |
-| options  |   No  |  | |  追加の事実を取得します。利用可能なオプション: 'visualContent'.  |
+| options  |   No  |  | |  追加の情報を取得します。利用可能なオプション: 'visualContent'.  |
 | params  |   No  |  | |  リソースのリストを区切り、フィルター、ソートするパラメーターのリスト。  可能なパラメーター: `start`: 0から始まるインデックスを使用して返される最初のアイテム。`count`: 返されるリソースの数。`filter`: 返されるアイテムのリストを絞り込むための一般的なフィルター/クエリ文字列。`sort`: 返されたデータセットのソート順。  |
 
 
@@ -2592,8 +2734,8 @@ OneViewデータセンターに関する事実を取得します。
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| datacenter_visual_content   | データセンターのビジュアルコンテンツに関する事実を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
-| datacenters   | データセンターに関するすべてのOneViewの事実を持っています。|  常時、ただしnullの場合があります。|  dict |
+| datacenter_visual_content   | データセンターのビジュアルコンテンツに関する情報を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
+| datacenters   | データセンターに関するすべてのOneViewの情報を持っています。|  常時、ただしnullの場合があります。|  dict |
 
 
 #### 注記
@@ -2671,7 +2813,7 @@ OneViewドライブエンクロージャーリソースを管理します。
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| drive_enclosure   | ドライブエンクロージャーに関する事実を持っています。|  常時、ただしnullの場合があります。|  dict |
+| drive_enclosure   | ドライブエンクロージャーに関する情報を持っています。|  常時、ただしnullの場合があります。|  dict |
 
 
 #### 注記
@@ -2689,10 +2831,10 @@ OneViewドライブエンクロージャーリソースを管理します。
 
 
 ## oneview_drive_enclosure_facts
-1つ以上のOneViewドライブエンクロージャーに関する事実を取得します。
+1つ以上のOneViewドライブエンクロージャーに関する情報を取得します。
 
 #### 概要
- OneViewから1つ以上のドライブエンクロージャーに関する事実を取得します。
+ OneViewから1つ以上のドライブエンクロージャーに関する情報を取得します。
 
 #### 要件 (モジュールを実行するホスト)
   * python >= 2.7.9
@@ -2704,7 +2846,7 @@ OneViewドライブエンクロージャーリソースを管理します。
 | ------------- |-------------| ---------|----------- |--------- |
 | config  |   No  |  | |  OneViewクライアント構成を含む.json構成ファイルへのパス。構成ファイルはオプションです。ファイルパスが指定されていない場合、構成は環境変数からロードされます。  |
 | name  |   No  |  | |  ドライブエンクロージャー名。  |
-| options  |   No  |  | |  ドライブエンクロージャ関ー連のリソースに関する追加の事実を収集するオプションを表示します。可能なオプション: `portMap`。追加の事実を収集するには、ドライブエンクロージャー名を通知する必要があります。それ以外の場合、これらのオプションは無視されます。  |
+| options  |   No  |  | |  ドライブエンクロージャ関ー連のリソースに関する追加の情報を収集するオプションを表示します。可能なオプション: `portMap`。追加の情報を収集するには、ドライブエンクロージャー名を通知する必要があります。それ以外の場合、これらのオプションは無視されます。  |
 | params  |   No  |  | |  リソースのリストを区切り、フィルター、ソートするパラメーターのリスト。  可能なパラメーター: `start`: 0から始まるインデックスを使用して返される最初のアイテム。`count`: 返されるリソースの数。`filter`: 返されるアイテムのリストを絞り込むための一般的なフィルター/クエリ文字列。`sort`: 返されたデータセットのソート順。  |
 
 
@@ -2755,8 +2897,8 @@ OneViewドライブエンクロージャーリソースを管理します。
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| drive_enclosure_port_map   | ドライブエンクロージャポートマップに関するすべてのOneViewの事実を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
-| drive_enclosures   | ドライブエンクロージャーに関するすべてのOneViewの事実を持っています。|  常時、ただしnullの場合があります。|  dict |
+| drive_enclosure_port_map   | ドライブエンクロージャポートマップに関するすべてのOneViewの情報を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
+| drive_enclosures   | ドライブエンクロージャーに関するすべてのOneViewの情報を持っています。|  常時、ただしnullの場合があります。|  dict |
 
 
 #### 注記
@@ -3090,7 +3232,7 @@ OneViewエンクロージャーリソースを管理します。
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| enclosure   | エンクロージャーに関するすべての事実を持っています。|  状態が'present'、'reconfigured'、'refreshed'。nullの場合があります。|  dict |
+| enclosure   | エンクロージャーに関するすべての情報を持っています。|  状態が'present'、'reconfigured'、'refreshed'。nullの場合があります。|  dict |
 
 
 #### 注記
@@ -3108,10 +3250,10 @@ OneViewエンクロージャーリソースを管理します。
 
 
 ## oneview_enclosure_facts
-1つ以上のエンクロージャーに関する事実を取得します
+1つ以上のエンクロージャーに関する情報を取得します
 
 #### 概要
- OneViewから1つ以上のエンクロージャーに関する事実を取得します。
+ OneViewから1つ以上のエンクロージャーに関する情報を取得します。
 
 #### 要件 (モジュールを実行するホスト)
   * hpOneView >= 5.0.0
@@ -3122,7 +3264,7 @@ OneViewエンクロージャーリソースを管理します。
 | ------------- |-------------| ---------|----------- |--------- |
 | config  |   No  |  | |  OneViewクライアント構成を含む.json構成ファイルへのパス。構成ファイルはオプションです。ファイルパスが指定されていない場合、構成は環境変数からロードされます。  |
 | name  |   |  | |  エンクロージャー名。  |
-| options  |   |  | |  エンクロージャーおよび関連リソースに関する追加の事実を収集するオプションを表示します。可能なオプション: `script`、`environmentalConfiguration`、`utilization`。オプション`utilization`には、特定のパラメーターを指定できます。  |
+| options  |   |  | |  エンクロージャーおよび関連リソースに関する追加の情報を収集するオプションを表示します。可能なオプション: `script`、`environmentalConfiguration`、`utilization`。オプション`utilization`には、特定のパラメーターを指定できます。  |
 | params  |   No  |  | |  リソースのリストを区切り、フィルター、ソートするパラメーターのリスト。  可能なパラメーター: `start`: 0から始まるインデックスを使用して返される最初のアイテム。`count`: 返されるリソースの数。`filter`: 返されるアイテムのリストを絞り込むための一般的なフィルター/クエリ文字列。`sort`: 返されたデータセットのソート順。  |
 
 
@@ -3214,10 +3356,10 @@ OneViewエンクロージャーリソースを管理します。
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| enclosure_environmental_configuration   | エンクロージャーの環境構成に関するすべてのOneViewの事実を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
-| enclosure_script   | エンクロージャーのスクリプトに関するすべてのOneViewの事実を持っています。|  要求された場合、ただしnullの場合があります。 |  string |
-| enclosure_utilization   | エンクロージャーの利用に関するすべてのOneViewの事実を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
-| enclosures   | エンクロージャーに関するすべてのOneViewの事実を持っています。|  常時、ただしnullの場合があります。|  dict |
+| enclosure_environmental_configuration   | エンクロージャーの環境構成に関するすべてのOneViewの情報を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
+| enclosure_script   | エンクロージャーのスクリプトに関するすべてのOneViewの情報を持っています。|  要求された場合、ただしnullの場合があります。 |  string |
+| enclosure_utilization   | エンクロージャーの利用に関するすべてのOneViewの情報を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
+| enclosures   | エンクロージャーに関するすべてのOneViewの情報を持っています。|  常時、ただしnullの場合があります。|  dict |
 
 
 #### 注記
@@ -3308,7 +3450,7 @@ OneViewエンクロージャーグループリソースを管理します。
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| enclosure_group   | エンクロージャーグループに関する事実を持っています。|  状態が 'present'。nullの場合があります。|  dict |
+| enclosure_group   | エンクロージャーグループに関する情報を持っています。|  状態が 'present'。nullの場合があります。|  dict |
 
 
 #### 注記
@@ -3324,10 +3466,10 @@ OneViewエンクロージャーグループリソースを管理します。
 
 
 ## oneview_enclosure_group_facts
-1つ以上のOneViewエンクロージャーグループに関する事実を取得します。
+1つ以上のOneViewエンクロージャーグループに関する情報を取得します。
 
 #### 概要
- OneViewから1つ以上のエンクロージャーグループに関する事実を取得します。
+ OneViewから1つ以上のエンクロージャーグループに関する情報を取得します。
 
 #### 要件 (モジュールを実行するホスト)
   * python >= 2.7.9
@@ -3339,7 +3481,7 @@ OneViewエンクロージャーグループリソースを管理します。
 | ------------- |-------------| ---------|----------- |--------- |
 | config  |   No  |  | |  OneViewクライアント構成を含む.json構成ファイルへのパス。構成ファイルはオプションです。ファイルパスが指定されていない場合、構成は環境変数からロードされます。  |
 | name  |   No  |  | |  エンクロージャーグループ名。  |
-| options  |   No  |  | |  エンクロージャーグループに関する追加の事実を収集するオプションを表示します。可能なオプション: `configuration_script`は、エンクロージャーグループの構成スクリプトを取得します。  |
+| options  |   No  |  | |  エンクロージャーグループに関する追加の情報を収集するオプションを表示します。可能なオプション: `configuration_script`は、エンクロージャーグループの構成スクリプトを取得します。  |
 | params  |   No  |  | |  リソースのリストを区切り、フィルター、ソートするパラメーターのリスト。  可能なパラメーター: `start`: 0から始まるインデックスを使用して返される最初のアイテム。`count`: 返されるリソースの数。`filter`: 返されるアイテムのリストを絞り込むための一般的なフィルター/クエリ文字列。`sort`: 返されたデータセットのソート順。  |
 
 
@@ -3396,8 +3538,7 @@ OneViewエンクロージャーグループリソースを管理します。
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
 | enclosure_group_script   | エンクロージャーグループの構成スクリプト。|  要求された場合、ただしnullの場合があります。|  string |
-| enclosure_groups   | エンクロージャーグループに関するすべてのOneViewの事実を持っています。|  常時、ただしnullの場合があります。|  dict |
-
+| enclosure_groups   | エンクロージャーグループに関するすべてのOneViewの情報を持っています。|  常時、ただしnullの場合があります。|  dict |
 
 #### 注記
 
@@ -3533,9 +3674,9 @@ OneViewイーサネットネットワークリソースを管理します。
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| ethernet_network   | イーサネットネットワークに関する事実を持っています。|  状態 'present'nullの場合があります。|  dict |
-| ethernet_network_bulk   | バルクインサートの影響を受けるイーサネットネットワークに関する事実を持っています。|   'vlanIdRange' 属性がデータ引数にある場合。nullの場合があります。|  dict |
-| ethernet_network_connection_template   | イーサネットネットワーク接続テンプレートに関する事実を持っています。|  状態が 'default_bandwidth_reset'。nullの場合があります。|  dict |
+| ethernet_network   | イーサネットネットワークに関する情報を持っています。|  状態 'present'nullの場合があります。|  dict |
+| ethernet_network_bulk   | バルクインサートの影響を受けるイーサネットネットワークに関する情報を持っています。|   'vlanIdRange' 属性がデータ引数にある場合。nullの場合があります。|  dict |
+| ethernet_network_connection_template   | イーサネットネットワーク接続テンプレートに関する情報を持っています。|  状態が 'default_bandwidth_reset'。nullの場合があります。|  dict |
 
 
 #### 注記
@@ -3551,10 +3692,10 @@ OneViewイーサネットネットワークリソースを管理します。
 
 
 ## oneview_ethernet_network_facts
-1つ以上のOneViewイーサネットネットワークに関する事実を取得します。
+1つ以上のOneViewイーサネットネットワークに関する情報を取得します。
 
 #### 概要
- OneViewから1つ以上のイーサネットネットワークに関する事実を取得します。
+ OneViewから1つ以上のイーサネットネットワークに関する情報を取得します。
 
 #### 要件 (モジュールを実行するホスト)
   * python >= 2.7.9
@@ -3566,7 +3707,7 @@ OneViewイーサネットネットワークリソースを管理します。
 | ------------- |-------------| ---------|----------- |--------- |
 | config  |   No  |  | |  OneViewクライアント構成を含む.json構成ファイルへのパス。構成ファイルはオプションです。ファイルパスが指定されていない場合、構成は環境変数からロードされます。  |
 | name  |   No  |  | |  イーサネットネットワーク名。  |
-| options  |   No  |  | |  イーサネットネットワークおよび関連リソースに関する追加の事実を収集するオプションを表示します。可能なオプション: `associatedProfiles` と `associatedUplinkGroups`。  |
+| options  |   No  |  | |  イーサネットネットワークおよび関連リソースに関する追加の情報を収集するオプションを表示します。可能なオプション: `associatedProfiles` と `associatedUplinkGroups`。  |
 | params  |   No  |  | |  リソースのリストを区切り、フィルター、ソートするパラメーターのリスト。  可能なパラメーター: `start`: 0から始まるインデックスを使用して返される最初のアイテム。`count`: 返されるリソースの数。`filter`: 返されるアイテムのリストを絞り込むための一般的なフィルター/クエリ文字列。`sort`: 返されたデータセットのソート順。  |
 
 
@@ -3631,9 +3772,9 @@ OneViewイーサネットネットワークリソースを管理します。
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| enet_associated_profiles   | イーサネットネットワークを使用しているプロファイルに関するOneViewのすべての事実を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
-| enet_associated_uplink_groups   | イーサネットネットワークを使用しているアップリンクセットに関するすべてのOneViewの事実を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
-| ethernet_networks   | イーサネットネットワークに関するOneViewのすべての事実を持っています。|  常時、ただしnullの場合があります。|  dict |
+| enet_associated_profiles   | イーサネットネットワークを使用しているプロファイルに関するOneViewのすべての情報を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
+| enet_associated_uplink_groups   | イーサネットネットワークを使用しているアップリンクセットに関するすべてのOneViewの情報を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
+| ethernet_networks   | イーサネットネットワークに関するOneViewのすべての情報を持っています。|  常時、ただしnullの場合があります。|  dict |
 
 
 #### 注記
@@ -3693,7 +3834,7 @@ OneViewイベントを管理します。
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| event   | OneViewイベントに関する事実を持っています。|  状態 'present'nullの場合があります。|  dict |
+| event   | OneViewイベントに関する情報を持っています。|  状態 'present'nullの場合があります。|  dict |
 
 
 #### 注記
@@ -3709,10 +3850,10 @@ OneViewイベントを管理します。
 
 
 ## oneview_event_facts
-1つ以上のOneViewイベントに関する事実を取得します。
+1つ以上のOneViewイベントに関する情報を取得します。
 
 #### 概要
- OneViewから1つ以上のイベントに関する事実を取得します。
+ OneViewから1つ以上のイベントに関する情報を取得します。
 
 #### 要件 (モジュールを実行するホスト)
   * python >= 2.7.9
@@ -3757,7 +3898,7 @@ OneViewイベントを管理します。
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| events   | イベントに関するすべてのOneViewの事実を持っています。|  常時、ただしnullの場合があります。|  dict |
+| events   | イベントに関するすべてのOneViewの情報を持っています。|  常時、ただしnullの場合があります。|  dict |
 
 
 #### 注記
@@ -3814,7 +3955,7 @@ OneView Fabricリソースを管理します。
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| fabric   | ファブリックに関するすべてのOneView事実を持っています。|  常時、ただしnullの場合があります。|  dict |
+| fabric   | ファブリックに関するすべてのOneView情報を持っています。|  常時、ただしnullの場合があります。|  dict |
 
 
 #### 注記
@@ -3832,10 +3973,10 @@ OneView Fabricリソースを管理します。
 
 
 ## oneview_fabric_facts
-1つまたは複数のOneViewファブリックに関する事実を取得します。
+1つまたは複数のOneViewファブリックに関する情報を取得します。
 
 #### 概要
- OneViewから1つ以上のファブリックに関する事実を取得します。
+ OneViewから1つ以上のファブリックに関する情報を取得します。
 
 #### 要件 (モジュールを実行するホスト)
   * python >= 2.7.9
@@ -3847,7 +3988,7 @@ OneView Fabricリソースを管理します。
 | ------------- |-------------| ---------|----------- |--------- |
 | config  |   No  |  | |  OneViewクライアント構成を含む.json構成ファイルへのパス。構成ファイルはオプションです。ファイルパスが指定されていない場合、構成は環境変数からロードされます。  |
 | name  |   No  |  | |  ファブリック名。  |
-| options  |   No  |  | |  ファブリックおよび関連リソースに関する追加の事実を収集するオプションを表示します。可能なオプション: `reservedVlanRange`.  |
+| options  |   No  |  | |  ファブリックおよび関連リソースに関する追加の情報を収集するオプションを表示します。可能なオプション: `reservedVlanRange`.  |
 | params  |   No  |  | |  リソースのリストを区切り、フィルター、ソートするパラメーターのリスト。  可能なパラメーター: `start`: 0から始まるインデックスを使用して返される最初のアイテム。`count`: 返されるリソースの数。`filter`: 返されるアイテムのリストを絞り込むための一般的なフィルター/クエリ文字列。`sort`: 返されたデータセットのソート順。  |
 
 
@@ -3897,8 +4038,8 @@ OneView Fabricリソースを管理します。
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| fabric_reserved_vlan_range   | 予約されたVLAN範囲に関するすべてのOneViewの事実を持っています |  要求された場合、nullの場合があります。|  dict |
-| fabrics   | ファブリックに関するすべてのOneViewの事実を持っています。|  常時、ただしnullの場合があります。|  dict |
+| fabric_reserved_vlan_range   | 予約されたVLAN範囲に関するすべてのOneViewの情報を持っています |  要求された場合、nullの場合があります。|  dict |
+| fabrics   | ファブリックに関するすべてのOneViewの情報を持っています。|  常時、ただしnullの場合があります。|  dict |
 
 
 #### 注記
@@ -3990,7 +4131,7 @@ OneViewファイバーチャネルネットワークリソースを管理しま�
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| fc_network   | 管理対象のOneView FCネットワークに関する事実を持っています。|  状態 'present'nullの場合があります。|  dict |
+| fc_network   | 管理対象のOneView FCネットワークに関する情報を持っています。|  状態 'present'nullの場合があります。|  dict |
 
 
 #### 注記
@@ -4006,10 +4147,10 @@ OneViewファイバーチャネルネットワークリソースを管理しま�
 
 
 ## oneview_fc_network_facts
-1つ以上のOneViewファイバーチャネルネットワークに関する事実を取得します
+1つ以上のOneViewファイバーチャネルネットワークに関する情報を取得します
 
 #### 概要
- OneViewから1つ以上のファイバーチャネルネットワークに関する事実を取得します。
+ OneViewから1つ以上のファイバーチャネルネットワークに関する情報を取得します。
 
 #### 要件 (モジュールを実行するホスト)
   * hpOneView >= 5.0.0
@@ -4071,7 +4212,7 @@ OneViewファイバーチャネルネットワークリソースを管理しま�
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| fc_networks   | ファイバーチャネルネットワークに関するOneViewのすべての事実を持っています。|  常時、ただしnullの場合があります。|  dict |
+| fc_networks   | ファイバーチャネルネットワークに関するOneViewのすべての情報を持っています。|  常時、ただしnullの場合があります。|  dict |
 
 
 #### 注記
@@ -4156,7 +4297,7 @@ OneView FCoEネットワークリソースを管理します
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| fcoe_network   | OneView FCoEネットワークに関する事実を持っています。|  状態 'present'nullの場合があります。|  dict |
+| fcoe_network   | OneView FCoEネットワークに関する情報を持っています。|  状態 'present'nullの場合があります。|  dict |
 
 
 #### 注記
@@ -4172,10 +4313,10 @@ OneView FCoEネットワークリソースを管理します
 
 
 ## oneview_fcoe_network_facts
-1つ以上のOneView FCoEネットワークに関する事実を取得します
+1つ以上のOneView FCoEネットワークに関する情報を取得します
 
 #### 概要
- OneViewから1つ以上のFCoEネットワークに関する事実を取得します。
+ OneViewから1つ以上のFCoEネットワークに関する情報を取得します。
 
 #### 要件 (モジュールを実行するホスト)
   * hpOneView >= 5.0.0
@@ -4238,7 +4379,7 @@ OneView FCoEネットワークリソースを管理します
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| fcoe_networks   | FCoEネットワークに関するすべてのOneViewの事実を持っています。|  常時、ただしnullの場合があります。|  dict |
+| fcoe_networks   | FCoEネットワークに関するすべてのOneViewの情報を持っています。|  常時、ただしnullの場合があります。|  dict |
 
 
 #### 注記
@@ -4292,7 +4433,7 @@ OneViewファームウェアバンドルリソースをアップロードしま�
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| firmware_bundle   | OneViewファームウェアバンドルに関する事実を持っています。|  常時。nullの場合があります。|  dict |
+| firmware_bundle   | OneViewファームウェアバンドルに関する情報を持っています。|  常時。nullの場合があります。|  dict |
 
 
 #### 注記
@@ -4375,10 +4516,10 @@ OneViewファームウェアバンドルリソースをアップロードしま�
 
 
 ## oneview_firmware_driver_facts
-1つ以上のOneViewファームウェアドライバーに関する事実を取得します。
+1つ以上のOneViewファームウェアドライバーに関する情報を取得します。
 
 #### 概要
- OneViewから1つ以上のファームウェアドライバーに関する事実を取得します。
+ OneViewから1つ以上のファームウェアドライバーに関する情報を取得します。
 
 #### 要件 (モジュールを実行するホスト)
   * python >= 2.7.9
@@ -4429,7 +4570,7 @@ OneViewファームウェアバンドルリソースをアップロードしま�
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| firmware_drivers   | ファームウェアドライバーに関するOneViewのすべての事実を持っています。|  常時、ただしnullの場合があります。|  dict |
+| firmware_drivers   | ファームウェアドライバーに関するOneViewのすべての情報を持っています。|  常時、ただしnullの場合があります。|  dict |
 
 
 #### 注記
@@ -4444,6 +4585,359 @@ OneViewファームウェアバンドルリソースをアップロードしま�
 ---
 
 
+## oneview_hypervisor_cluster_profile
+OneViewハイパーバイザークラスタープロファイルを管理します。
+
+#### 概要
+ ハイパーバイザークラスタープロファイルを管理するためのインターフェースを提供します。作成、更新、削除が可能です。
+
+#### 要件 (モジュールを実行するホスト)
+  * hpeOneView >= 5.4.0
+  * python >= 3.4.2
+
+#### オプション
+
+| Parameter     | Required    | Default  | Choices    | Comments |
+| ------------- |-------------| ---------|----------- |--------- |
+| config  |   |  | |  OneViewクライアント構成を含む.json構成ファイルへのパス。構成ファイルはオプションです。ファイルパスが指定されていない場合、構成は環境変数からロードされます。設定ファイルをリンクさせる、または環境変数の使い方については注記を確認してください。  |
+| data  |   Yes  |  | |  ハイパーバイザークラスタープロファイル情報をセットします.  |
+| params  |     |  | |  フラグを強制します。  |
+| state  |   |  | <ul> <li>present</li>  <li>absent</li> </ul> |  ハイパーバイザークラスタープロファイルの希望の状態を指定します。`present`はデータプロパティがOneViewに準拠していることを保証します。 `absent`は指定したリソースが存在する場合、そのリソースをOneViewから削除します。  |
+| validate_etag  |   |  True  | <ul> <li>true</li>  <li>false</li> </ul> |  指定したetagが現在のリソースに付与しているetagに一致する場合のみ処理します。  |
+
+
+ 
+#### 例
+
+```yaml
+
+- name: Create a Hypervisor Cluster Profile
+  oneview_hypervisor_cluster_profile:
+    hostname: 172.16.101.48
+    username: administrator
+    password: my_password
+    api_version: 2200
+    state: present
+    data:
+      name: 'hcp'
+      path: 'DC1'
+      hypervisorType: 'Vmware'
+      hypervisorManagerUri: '/rest/hypervisor-manager/rdy-dfdf12'
+      hypervisorHostProfileTemplate:
+        serverProfileTemplateUri: '/rest/server-profile-template/2323-32323'
+        hostprefix: 'test-host'
+
+- name: Update the Hypervisor Cluster Profile name to 'hcp Renamed'
+  oneview_hypervisor_cluster_profile:
+    hostname: 172.16.101.48
+    username: administrator
+    password: my_password
+    api_version: 2200
+    state: present
+    data:
+      name: 'hcp Renamed'
+      path: 'DC1'
+      hypervisorType: 'Vmware'
+      hypervisorManagerUri: '/rest/hypervisor-manager/rdy-dfdf12'
+    params:
+      force: True
+
+- name: Ensure that the Hypervisor Cluster Profile is absent
+  oneview_hypervisor_cluster_profile:
+    hostname: 172.16.101.48
+    username: administrator
+    password: my_password
+    api_version: 2200
+    state: absent
+    data:
+      name: 'hcp'
+
+---
+
+
+
+#### Notes
+
+- A sample configuration file for the config parameter can be found at: https://github.com/HewlettPackard/oneview-ansible/blob/master/examples/oneview_config-rename.json
+
+- Check how to use environment variables for configuration at: https://github.com/HewlettPackard/oneview-ansible#environment-variables
+
+- Additional Playbooks for the HPE OneView Ansible modules can be found at: https://github.com/HewlettPackard/oneview-ansible/tree/master/examples
+
+- The OneView API version used will directly affect returned and expected fields in resources. Information on setting the desired API version and can be found at: https://github.com/HewlettPackard/oneview-ansible#setting-your-oneview-version
+
+
+---
+
+
+## oneview_hypervisor_cluster_profile_facts
+Retrieve the facts about one or more of the OneView Hypervisor Cluster Profiles.
+
+#### Synopsis
+ Retrieve the facts about one or more of the Hypervisor Cluster Profiles from OneView.
+
+#### Requirements (on the host that executes the module)
+  * hpeOneView >= 5.4.0
+  * python >= 3.4.2
+
+#### Options
+
+| Parameter     | Required    | Default  | Choices    | Comments |
+| ------------- |-------------| ---------|----------- |--------- |
+| config  |   |  | |  Path to a .json configuration file containing the OneView client configuration. The configuration file is optional and when used should be present in the host running the ansible commands. If the file path is not provided, the configuration will be loaded from environment variables. For links to example configuration files or how to use the environment variables verify the notes section.  |
+| name  |   No  |  | |  Hypervisor Cluster Profile name.  |
+| options  |   No  |  | |  Hypervisor Cluster Profile compliance.  |
+| params  |   No  |  | |  List of params to delimit, filter and sort the list of resources.  params allowed: `start`: The first item to return, using 0-based indexing. `count`: The number of resources to return. `sort`: The sort order of the returned data set.  |
+
+
+ 
+#### Examples
+
+```yaml
+
+- name: Gather facts about all Hypervisor Cluster Profiles
+  oneview_hypervisor_cluster_profile_facts:
+    hostname: 172.16.101.48
+    username: administrator
+    password: my_password
+    api_version: 2200
+  delegate_to: localhost
+
+- debug: var=hypervisor_cluster_profiles
+
+- name: Gather paginated, filtered and sorted facts about Hypervisor Managers
+  oneview_hypervisor_cluster_profile_facts:
+    hostname: 172.16.101.48
+    username: administrator
+    password: my_password
+    api_version: 2200
+    params:
+      start: 1
+      count: 3
+      sort: 'name:descending'
+      filter: 'hypervisorType=Vmware'
+  delegate_to: localhost
+
+- debug: var=hypervisor_cluster_profiles
+
+- name: Gather facts about a Hypervisor Manager by name
+  oneview_hypervisor_cluster_profile_facts:
+    hostname: 172.16.101.48
+    username: administrator
+    password: my_password
+    api_version: 2200
+    name: hypervisor cluster profile name
+  delegate_to: localhost
+
+- debug: var=hypervisor_cluster_profiles
+
+- name: Gather facts about a Hypervisor Manager by name with options
+  oneview_hypervisor_cluster_profile_facts:
+    hostname: 172.16.101.48
+    username: administrator
+    password: my_password
+    api_version: 2200
+    name: hypervisor cluster profile name
+    options:
+      - compliancePreview
+  delegate_to: localhost
+
+- debug: var=hypervisor_cluster_profiles
+- debug: var=hypervisor_cluster_profile_compliance_preview
+
+```
+
+
+
+#### 戻り値
+
+| Name          | Description  | Returned | Type       |
+| ------------- |-------------| ---------|----------- |
+| hypervisor_cluster_profiles   | ハイパーバイザークラスタープロファイルの全ての情報を保持します。 |  常に値が戻されますが、nullの場合があります。 |  dict |
+| hypervisor_cluster_profile_compliance_preview   | ハイパーバイザークラスタープロファイルコンプライアンスプレビューの全ての情報を保持します. |  要求した場合、値が戻されます。 |  dict |
+
+
+#### 注記
+
+- configパラメーターのサンプル構成ファイルは、次の場所にあります。: https://github.com/HewlettPackard/oneview-ansible/blob/master/examples/oneview_config-rename.json
+
+- 構成用の環境変数の使用方法は、次の場所で確認してください。: https://github.com/HewlettPackard/oneview-ansible#environment-variables
+
+- その他のHPE OneView AnsibleモジュールのPlaybookは、次の場所にあります。: https://github.com/HewlettPackard/oneview-ansible/tree/master/examples
+
+- 使用されるOneViewAPIバージョンによって、リソース対しての設定値と戻り値が変わる場合があります。APIバージョン別の設定に関する情報は、次のURLにあります。: https://github.com/HewlettPackard/oneview-ansible#setting-your-oneview-version
+
+
+---
+
+
+
+## oneview_hypervisor_manager
+Manage OneView Hypervisor Manager resources.
+
+#### Synopsis
+ Provides an interface to manage Hypervisor Manager resources. Can create, update, or delete.
+
+#### Requirements (on the host that executes the module)
+  * hpeOneView >= 5.4.0
+  * python >= 3.4.2
+
+#### Options
+
+| Parameter     | Required    | Default  | Choices    | Comments |
+| ------------- |-------------| ---------|----------- |--------- |
+| config  |   |  | |  Path to a .json configuration file containing the OneView client configuration. The configuration file is optional and when used should be present in the host running the ansible commands. If the file path is not provided, the configuration will be loaded from environment variables. For links to example configuration files or how to use the environment variables verify the notes section.  |
+| data  |   Yes  |  | |  List with the Hypervisor Manager properties.  |
+| state  |   |  | <ul> <li>present</li>  <li>absent</li> </ul> |  Indicates the desired state for the Hypervisor Manager resource. `present` ensures data properties are compliant with OneView. `absent` removes the resource from OneView, if it exists.  |
+| validate_etag  |   |  True  | <ul> <li>true</li>  <li>false</li> </ul> |  When the ETag Validation is enabled, the request will be conditionally processed only if the current ETag for the resource matches the ETag provided in the data.  |
+
+
+ 
+#### Examples
+
+```yaml
+
+- name: Create a Hypervisor Manager
+  oneview_hypervisor_manager:
+    hostname: 172.16.101.48
+    username: administrator
+    password: my_password
+    api_version: 2200
+    state: present
+    data:
+      name: '172.18.13.11'
+      displayName: 'vcenter'
+      hypervisorType: 'Vmware'
+      username: 'dcs'
+      password: 'dcs'
+
+- name: Update the Hypervisor Manager display name to 'vcenter Renamed'
+  oneview_hypervisor_manager:
+    hostname: 172.16.101.48
+    username: administrator
+    password: my_password
+    api_version: 2200
+    state: present
+    data:
+      name: '172.18.13.11'
+      displayName: 'vcenter Renamed'
+      hypervisorType: 'Vmware'
+      username: 'dcs'
+      password: 'dcs'
+
+- name: Ensure that the Hypervisor Manager is absent
+  oneview_hypervisor_manager:
+    hostname: 172.16.101.48
+    username: administrator
+    password: my_password
+    api_version: 2200
+    state: absent
+    data:
+      name: '172.18.13.11'
+
+---
+
+
+
+#### Notes
+
+- A sample configuration file for the config parameter can be found at: https://github.com/HewlettPackard/oneview-ansible/blob/master/examples/oneview_config-rename.json
+
+- Check how to use environment variables for configuration at: https://github.com/HewlettPackard/oneview-ansible#environment-variables
+
+- Additional Playbooks for the HPE OneView Ansible modules can be found at: https://github.com/HewlettPackard/oneview-ansible/tree/master/examples
+
+- The OneView API version used will directly affect returned and expected fields in resources. Information on setting the desired API version and can be found at: https://github.com/HewlettPackard/oneview-ansible#setting-your-oneview-version
+
+
+---
+
+
+## oneview_hypervisor_manager_facts
+Retrieve the facts about one or more of the OneView Hypervisor Managers.
+
+#### Synopsis
+ Retrieve the facts about one or more of the Hypervisor Managers from OneView.
+
+#### Requirements (on the host that executes the module)
+  * hpeOneView >= 5.4.0
+  * python >= 3.4.2
+
+#### Options
+
+| Parameter     | Required    | Default  | Choices    | Comments |
+| ------------- |-------------| ---------|----------- |--------- |
+| config  |   |  | |  Path to a .json configuration file containing the OneView client configuration. The configuration file is optional and when used should be present in the host running the ansible commands. If the file path is not provided, the configuration will be loaded from environment variables. For links to example configuration files or how to use the environment variables verify the notes section.  |
+| name  |   No  |  | |  Hypervisor Manager name.  |
+| params  |   No  |  | |  List of params to delimit, filter and sort the list of resources.  params allowed: `start`: The first item to return, using 0-based indexing. `count`: The number of resources to return. `sort`: The sort order of the returned data set.  |
+
+
+ 
+#### Examples
+
+```yaml
+
+- name: Gather facts about all Hypervisor Managers
+  oneview_hypervisor_manager_facts:
+    hostname: 172.16.101.48
+    username: administrator
+    password: my_password
+    api_version: 2200
+  delegate_to: localhost
+
+- debug: var=hypervisor_managers
+
+- name: Gather paginated, filtered and sorted facts about Hypervisor Managers
+  oneview_hypervisor_manager_facts:
+    hostname: 172.16.101.48
+    username: administrator
+    password: my_password
+    api_version: 2200
+    params:
+      start: 1
+      count: 3
+      sort: 'name:descending'
+      filter: 'hypervisorType=Vmware'
+  delegate_to: localhost
+
+- debug: var=hypervisor_managers
+
+- name: Gather facts about a Hypervisor Manager by name
+  oneview_hypervisor_manager_facts:
+    hostname: 172.16.101.48
+    username: administrator
+    password: my_password
+    api_version: 2200
+    name: hypervisor manager name
+  delegate_to: localhost
+
+- debug: var=hypervisor_managers
+
+```
+
+
+
+#### Return Values
+
+| Name          | Description  | Returned | Type       |
+| ------------- |-------------| ---------|----------- |
+| hypervisor_managers   | Has all the OneView facts about the Hypervisor Managers. |  Always, but can be null. |  dict |
+
+
+#### Notes
+
+- A sample configuration file for the config parameter can be found at: https://github.com/HewlettPackard/oneview-ansible/blob/master/examples/oneview_config-rename.json
+
+- Check how to use environment variables for configuration at: https://github.com/HewlettPackard/oneview-ansible#environment-variables
+
+- Additional Playbooks for the HPE OneView Ansible modules can be found at: https://github.com/HewlettPackard/oneview-ansible/tree/master/examples
+
+- The OneView API version used will directly affect returned and expected fields in resources. Information on setting the desired API version and can be found at: https://github.com/HewlettPackard/oneview-ansible#setting-your-oneview-version
+
+
+---
+
+
 ## oneview_id_pools_ipv4_range
 OneView IDプールのIPV4範囲リソースを管理します。
 
@@ -4452,7 +4946,7 @@ OneView IDプールのIPV4範囲リソースを管理します。
 
 #### 要件 (モジュールを実行するホスト)
   * python >= 2.7.9
-  * hpOneView >= 4.0.0
+  * hpOneView >= 5.0.0
 
 #### オプション
 
@@ -4491,7 +4985,7 @@ OneView IDプールのIPV4範囲リソースを管理します。
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| id_pools_ipv4_range   | OneView IDプールIPV4範囲に関する事実を持っています。|  状態 'present'nullの場合があります。|  dict |
+| id_pools_ipv4_range   | OneView IDプールIPV4範囲に関する情報を持っています。|  状態 'present'nullの場合があります。|  dict |
 
 
 #### 注記
@@ -4507,10 +5001,10 @@ OneView IDプールのIPV4範囲リソースを管理します。
 
 
 ## oneview_id_pools_ipv4_range_facts
-1つ以上のOneView IDプールIPV4範囲に関する事実を取得します。
+1つ以上のOneView IDプールIPV4範囲に関する情報を取得します。
 
 #### 概要
- OneViewから1つ以上のIDプールIPV4範囲に関する事実を取得します。
+ OneViewから1つ以上のIDプールIPV4範囲に関する情報を取得します。
 
 #### 要件 (モジュールを実行するホスト)
   * python >= 2.7.9
@@ -4522,7 +5016,7 @@ OneView IDプールのIPV4範囲リソースを管理します。
 | ------------- |-------------| ---------|----------- |--------- |
 | config  |   No  |  | |  OneViewクライアント構成を含む.json構成ファイルへのパス。構成ファイルはオプションです。ファイルパスが指定されていない場合、構成は環境変数からロードされます。  |
 | name  |   No  |  | |  IDプールIPV4範囲名。  |
-| options  |   No  |  | |  IPv4範囲および関連リソースに関する追加の事実を収集するオプションを表示します。可能なオプション: `allocatedFragments` は、範囲内で割り当てられたすべてのフラグメントを取得します。`freeFragments`は、IPv4範囲内のすべての空きフラグメントを取得します。  |
+| options  |   No  |  | |  IPv4範囲および関連リソースに関する追加の情報を収集するオプションを表示します。可能なオプション: `allocatedFragments` は、範囲内で割り当てられたすべてのフラグメントを取得します。`freeFragments`は、IPv4範囲内のすべての空きフラグメントを取得します。  |
 | params  |   No  |  | |  リソースのリストを区切り、フィルター、ソートするパラメーターのリスト。  可能なパラメーター: `start`: 0から始まるインデックスを使用して返される最初のアイテム。`count`: 返されるリソースの数。`filter`: 返されるアイテムのリストを絞り込むための一般的なフィルター/クエリ文字列。`sort`: 返されたデータセットのソート順。  |
 | uri  |   No  |  | |  IDプールIPV4範囲IDまたはURI。  |
 
@@ -4584,9 +5078,9 @@ OneView IDプールのIPV4範囲リソースを管理します。
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| id_pools_ipv4_ranges   | IDプールIPV4範囲に関するすべてのOneViewの事実を持っています。|  常時、ただしnullの場合があります。|  dict |
-| id_pools_ipv4_ranges_allocated_fragments   | IDプールIPV4範囲に割り当てられたフラグメントに関するすべてのOneViewの事実を持っています。|  常時、ただしnullの場合があります。|  dict |
-| id_pools_ipv4_ranges_free_fragments   | ID Pools IPV4 Range Freeフラグメントに関するすべてのOneViewの事実を持っています。|  常時、ただしnullの場合があります。|  dict |
+| id_pools_ipv4_ranges   | IDプールIPV4範囲に関するすべてのOneViewの情報を持っています。|  常時、ただしnullの場合があります。|  dict |
+| id_pools_ipv4_ranges_allocated_fragments   | IDプールIPV4範囲に割り当てられたフラグメントに関するすべてのOneViewの情報を持っています。|  常時、ただしnullの場合があります。|  dict |
+| id_pools_ipv4_ranges_free_fragments   | ID Pools IPV4 Range Freeフラグメントに関するすべてのOneViewの情報を持っています。|  常時、ただしnullの場合があります。|  dict |
 
 
 #### 注記
@@ -4649,7 +5143,7 @@ OneView IDプールのIPV4サブネットリソースを管理します。
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| id_pools_ipv4_subnet   | OneView IDプールIPV4サブネットに関する事実を持っています。|  状態 'present'nullの場合があります。|  dict |
+| id_pools_ipv4_subnet   | OneView IDプールIPV4サブネットに関する情報を持っています。|  状態 'present'nullの場合があります。|  dict |
 
 
 #### 注記
@@ -4719,7 +5213,7 @@ OneView IDプールのIPV4サブネットリソースを管理します。
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| id_pools_ipv4_subnets   | IDプールIPV4サブネットに関するすべてのOneViewの事実を持っています。|  常時、ただしnullの場合があります。|  dict |
+| id_pools_ipv4_subnets   | IDプールIPV4サブネットに関するすべてのOneViewの情報を持っています。|  常時、ただしnullの場合があります。|  dict |
 
 
 #### 注記
@@ -4804,7 +5298,7 @@ OneViewインターコネクトリソースを管理します。
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| interconnect   | OneViewインターコネクトに関する事実を持っています。|  常時。nullの場合があります。|  dict |
+| interconnect   | OneViewインターコネクトに関する情報を持っています。|  常時。nullの場合があります。|  dict |
 
 
 #### 注記
@@ -4820,7 +5314,7 @@ OneViewインターコネクトリソースを管理します。
 
 
 ## oneview_interconnect_facts
-1つ以上のOneViewインターコネクトに関する事実を取得します。
+1つ以上のOneViewインターコネクトに関する情報を取得します。
 
 #### 概要
  OneViewから1つ以上のインターコネクトに関するファクトを取得します。
@@ -4835,7 +5329,7 @@ OneViewインターコネクトリソースを管理します。
 | ------------- |-------------| ---------|----------- |--------- |
 | config  |   No  |  | |  OneViewクライアント構成を含む.json構成ファイルへのパス。構成ファイルはオプションです。ファイルパスが指定されていない場合、構成は環境変数からロードされます。  |
 | name  |   No  |  | |  インターコネクト名。  |
-| options  |   No  |  | |  インターコネクトに関する追加の事実を収集するオプションを表示します。可能なオプション: `nameServers`は、インターコネクトの名前付きサーバーを取得します。`statistics`は、インターコネクトから統計を取得します。`portStatistics`は、インターコネクト上の指定されたポート名の統計を取得します。`subPortStatistics`は、インターコネクトのサブポート統計を取得します。`ports`は、すべての相互接続ポートを取得します。`port`は、特定の相互接続ポートを取得します。`pluggableModuleInformation`は、すべてのSFP情報を取得します。  追加のファクトを収集するには、インターコネクト名を通知する必要があります。それ以外の場合、これらのオプションは無視されます。  |
+| options  |   No  |  | |  インターコネクトに関する追加の情報を収集するオプションを表示します。可能なオプション: `nameServers`は、インターコネクトの名前付きサーバーを取得します。`statistics`は、インターコネクトから統計を取得します。`portStatistics`は、インターコネクト上の指定されたポート名の統計を取得します。`subPortStatistics`は、インターコネクトのサブポート統計を取得します。`ports`は、すべての相互接続ポートを取得します。`port`は、特定の相互接続ポートを取得します。`pluggableModuleInformation`は、すべてのSFP情報を取得します。  追加のファクトを収集するには、インターコネクト名を通知する必要があります。それ以外の場合、これらのオプションは無視されます。  |
 | params  |   No  |  | |  リソースのリストを区切り、フィルター、ソートするパラメーターのリスト。  可能なパラメーター: `start`: 0から始まるインデックスを使用して返される最初のアイテム。`count`: 返されるリソースの数。`filter`: 返されるアイテムのリストを絞り込むための一般的なフィルター/クエリ文字列。`sort`: 返されたデータセットのソート順。  |
 
 
@@ -4985,7 +5479,7 @@ OneViewインターコネクトリソースを管理します。
 | interconnect_port   | インターコネクトポート。|  要求された場合、ただしnullの場合があります。|  dict |
 | interconnect_port_statistics   | インターコネクト上の指定されたポート名の統計。|  要求された場合、ただしnullの場合があります。|  dict |
 | interconnect_ports   | すべてのインターコネクトポート。|  要求された場合、ただしnullの場合があります。|  list |
-| interconnect_statistics   | インターコネクト統計に関するすべてのOneViewの事実を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
+| interconnect_statistics   | インターコネクト統計に関するすべてのOneViewの情報を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
 | interconnect_subport_statistics   | インターコネクトのサブポート統計。|  要求された場合、ただしnullの場合があります。|  dict |
 | interconnects   | インターコネクトのリスト。|  常時、ただしnullの場合があります。|  list |
 
@@ -5003,10 +5497,10 @@ OneViewインターコネクトリソースを管理します。
 
 
 ## oneview_interconnect_link_topology_facts
-OneView Interconnect Linkトポロジに関する事実を取得します。
+OneView Interconnect Linkトポロジに関する情報を取得します。
 
 #### 概要
- OneViewからインターコネクトリンクトポロジに関する事実を取得します。
+ OneViewからインターコネクトリンクトポロジに関する情報を取得します。
 
 #### 要件 (モジュールを実行するホスト)
   * python >= 2.7.9
@@ -5058,7 +5552,7 @@ OneView Interconnect Linkトポロジに関する事実を取得します。
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| interconnect_link_topologies   | インターコネクトリンクトポロジーに関するすべてのOneViewの事実を持っています。|  常時、ただしnullの場合があります。|  dict |
+| interconnect_link_topologies   | インターコネクトリンクトポロジーに関するすべてのOneViewの情報を持っています。|  常時、ただしnullの場合があります。|  dict |
 
 
 #### 注記
@@ -5076,10 +5570,10 @@ OneView Interconnect Linkトポロジに関する事実を取得します。
 
 
 ## oneview_interconnect_type_facts
-1つ以上のOneViewインターコネクトタイプに関する事実を取得します。
+1つ以上のOneViewインターコネクトタイプに関する情報を取得します。
 
 #### 概要
- OneViewから1つ以上のインターコネクトタイプに関する事実を取得します。
+ OneViewから1つ以上のインターコネクトタイプに関する情報を取得します。
 
 #### 要件 (モジュールを実行するホスト)
   * python >= 2.7.9
@@ -5140,7 +5634,7 @@ OneView Interconnect Linkトポロジに関する事実を取得します。
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| interconnect_types   | インターコネクトタイプに関するすべてのOneViewの事実を持っています。|  常時、ただしnullの場合があります。|  dict |
+| interconnect_types   | インターコネクトタイプに関するすべてのOneViewの情報を持っています。|  常時、ただしnullの場合があります。|  dict |
 
 
 #### 注記
@@ -5156,10 +5650,10 @@ OneView Interconnect Linkトポロジに関する事実を取得します。
 
 
 ## oneview_internal_link_set_facts
-OneView内部リンクセットに関する事実を取得します。
+OneView内部リンクセットに関する情報を取得します。
 
 #### 概要
- OneViewから内部リンクセットに関する事実を取得します。すべての内部リンクセットを取得するか、名前でフィルタリングすることができます。
+ OneViewから内部リンクセットに関する情報を取得します。すべての内部リンクセットを取得するか、名前でフィルタリングすることができます。
 
 #### 要件 (モジュールを実行するホスト)
   * python >= 2.7.9
@@ -5219,7 +5713,7 @@ OneView内部リンクセットに関する事実を取得します。
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| internal_link_sets   | 内部リンクセットに関するすべてのOneViewの事実を持っています。|  常時、ただしnullの場合があります。|  dict |
+| internal_link_sets   | 内部リンクセットに関するすべてのOneViewの情報を持っています。|  常時、ただしnullの場合があります。|  dict |
 
 
 #### 注記
@@ -5237,10 +5731,10 @@ OneView内部リンクセットに関する事実を取得します。
 
 
 ## oneview_logical_downlinks_facts
-1つ以上のOneView論理ダウンリンクに関する事実を取得します。
+1つ以上のOneView論理ダウンリンクに関する情報を取得します。
 
 #### 概要
- OneViewから1つ以上の論理ダウンリンクに関する事実を取得します。
+ OneViewから1つ以上の論理ダウンリンクに関する情報を取得します。
 
 #### 要件 (モジュールを実行するホスト)
   * python >= 2.7.9
@@ -5251,7 +5745,7 @@ OneView内部リンクセットに関する事実を取得します。
 | パラメーター     | 必要    | デフォルト  | 選択肢    | コメント |
 | ------------- |-------------| ---------|----------- |--------- |
 | config  |   No  |  | |  OneViewクライアント構成を含む.json構成ファイルへのパス。構成ファイルはオプションです。ファイルパスが指定されていない場合、構成は環境変数からロードされます。  |
-| excludeEthernet  |   No  |  | |  論理ダウンリンクからイーサネットネットワークに関する事実を除外します。  |
+| excludeEthernet  |   No  |  | |  論理ダウンリンクからイーサネットネットワークに関する情報を除外します。  |
 | name  |   No  |  | |  論理ダウンリンク名。  |
 | params  |   No  |  | |  リソースのリストを区切り、フィルター、ソートするパラメーターのリスト。  可能なパラメーター: `start`: 0から始まるインデックスを使用して返される最初のアイテム。`count`: 返されるリソースの数。`filter`: 返されるアイテムのリストを絞り込むための一般的なフィルター/クエリ文字列。`sort`: 返されたデータセットのソート順。  |
 
@@ -5477,9 +5971,9 @@ OneView論理エンクロージャリソースを管理します。
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| configuration_script   | 論理エンクロージャー構成スクリプトに関する事実を持っています。|  状態が 'script_updated'。nullの場合があります。|  dict |
-| generated_dump_uri   | 論理エンクロージャーで生成されたサポートダンプURIに関する事実を持っています。|  状態が 'dumped'。nullの場合があります。|  dict |
-| logical_enclosure   | OneView論理エンクロージャーに関する事実を持っています。| 状態が 'present'、'firmware_updated'、'reconfigured、'updated_from_group'、'absent'。nullの場合があります。|  dict |
+| configuration_script   | 論理エンクロージャー構成スクリプトに関する情報を持っています。|  状態が 'script_updated'。nullの場合があります。|  dict |
+| generated_dump_uri   | 論理エンクロージャーで生成されたサポートダンプURIに関する情報を持っています。|  状態が 'dumped'。nullの場合があります。|  dict |
+| logical_enclosure   | OneView論理エンクロージャーに関する情報を持っています。| 状態が 'present'、'firmware_updated'、'reconfigured、'updated_from_group'、'absent'。nullの場合があります。|  dict |
 
 
 #### 注記
@@ -5497,10 +5991,10 @@ OneView論理エンクロージャリソースを管理します。
 
 
 ## oneview_logical_enclosure_facts
-1つ以上のOneView論理エンクロージャーに関する事実を取得します。
+1つ以上のOneView論理エンクロージャーに関する情報を取得します。
 
 #### 概要
- OneViewから1つ以上の論理エンクロージャーに関する事実を取得します。
+ OneViewから1つ以上の論理エンクロージャーに関する情報を取得します。
 
 #### 要件 (モジュールを実行するホスト)
   * python >= 2.7.9
@@ -5512,7 +6006,7 @@ OneView論理エンクロージャリソースを管理します。
 | ------------- |-------------| ---------|----------- |--------- |
 | config  |   No  |  | |  OneViewクライアント構成を含む.json構成ファイルへのパス。構成ファイルはオプションです。ファイルパスが指定されていない場合、構成は環境変数からロードされます。  |
 | name  |   No  |  | |  論理エンクロージャー名。  |
-| options  |   No  |  | |  論理エンクロージャーおよび関連リソースに関する追加の事実を収集するオプションを表示します。可能なオプション: script。  |
+| options  |   No  |  | |  論理エンクロージャーおよび関連リソースに関する追加の情報を収集するオプションを表示します。可能なオプション: script。  |
 | params  |   No  |  | |  リソースのリストを区切り、フィルター、ソートするパラメーターのリスト。  可能なパラメーター: `start`: 0から始まるインデックスを使用して返される最初のアイテム。`count`: 返されるリソースの数。`filter`: 返されるアイテムのリストを絞り込むための一般的なフィルター/クエリ文字列。`sort`: 返されたデータセットのソート順。  |
 
 
@@ -5579,8 +6073,8 @@ OneView論理エンクロージャリソースを管理します。
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| logical_enclosure_script   | 論理エンクロージャーのスクリプトに関する事実を持っています。|  必要な場合、ただしnullの場合があります。|  dict |
-| logical_enclosures   | 論理エンクロージャーに関するすべてのOneViewの事実を持っています。|  常時、ただしnullの場合があります。|  dict |
+| logical_enclosure_script   | 論理エンクロージャーのスクリプトに関する情報を持っています。|  必要な場合、ただしnullの場合があります。|  dict |
+| logical_enclosures   | 論理エンクロージャーに関するすべてのOneViewの情報を持っています。|  常時、ただしnullの場合があります。|  dict |
 
 
 #### 注記
@@ -5781,14 +6275,14 @@ OneView論理インターコネクトリソースを管理します。
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| interconnect_fib   | 転送情報ベースに関するOneViewの事実を持っています。|  状態が'forwarding_information_base_generated'、ただしnullの場合があります。|  dict |
-| li_firmware   | インストールされたファームウェアに関するOneViewの事実を持っています。|  状態が'firmware_installed'、ただし、nullの場合があります。|  dict |
-| port_monitor   | ポートモニターの構成に関するOneViewの事実がある|  状態が'port_monitor_updated'、ただし、nullの場合があります。|  dict |
-| qos_configuration   | QoS構成に関するOneViewの事実を持っています。|  状態が「qos_aggregated_configuration_updated」状態ですが、nullの場合があります。|  dict |
+| interconnect_fib   | 転送情報ベースに関するOneViewの情報を持っています。|  状態が'forwarding_information_base_generated'、ただしnullの場合があります。|  dict |
+| li_firmware   | インストールされたファームウェアに関するOneViewの情報を持っています。|  状態が'firmware_installed'、ただし、nullの場合があります。|  dict |
+| port_monitor   | ポートモニターの構成に関するOneViewの情報がある|  状態が'port_monitor_updated'、ただし、nullの場合があります。|  dict |
+| qos_configuration   | QoS構成に関するOneViewの情報を持っています。|  状態が「qos_aggregated_configuration_updated」状態ですが、nullの場合があります。|  dict |
 | scope_uris   | 指定された論理インターコネクトが挿入されるスコープURIを持っています。|  状態が'scopes_updated’、ただし、nullの場合があります。|  dict |
-| snmp_configuration   | SNMP構成に関するOneViewの事実を持っています。|  状態が'snmp_configuration_updated'、ただし、nullの場合があります。|  dict |
-| storage_volume_template   | 論理インターコネクトに関するOneViewの事実を持っています。|  状態が 'compliant'、'ethernet_settings_updated'、'internal_networks_updated'、'settings_updated'、'configuration_updated'、ただし、nullの場合があります。|  dict |
-| telemetry_configuration   | テレメトリ構成に関するOneViewの事実を持っています。|  状態が'telemetry_configuration_updated'、ただし、nullの場合があります。|  dict |
+| snmp_configuration   | SNMP構成に関するOneViewの情報を持っています。|  状態が'snmp_configuration_updated'、ただし、nullの場合があります。|  dict |
+| storage_volume_template   | 論理インターコネクトに関するOneViewの情報を持っています。|  状態が 'compliant'、'ethernet_settings_updated'、'internal_networks_updated'、'settings_updated'、'configuration_updated'、ただし、nullの場合があります。|  dict |
+| telemetry_configuration   | テレメトリ構成に関するOneViewの情報を持っています。|  状態が'telemetry_configuration_updated'、ただし、nullの場合があります。|  dict |
 
 
 #### 注記
@@ -5804,10 +6298,10 @@ OneView論理インターコネクトリソースを管理します。
 
 
 ## oneview_logical_interconnect_facts
-1つ以上のOneView論理インターコネクトに関する事実を取得します。
+1つ以上のOneView論理インターコネクトに関する情報を取得します。
 
 #### 概要
- 1つ以上のOneView論理インターコネクトに関する事実を取得します。
+ 1つ以上のOneView論理インターコネクトに関する情報を取得します。
 
 #### 要件 (モジュールを実行するホスト)
   * python >= 2.7.9
@@ -5819,7 +6313,7 @@ OneView論理インターコネクトリソースを管理します。
 | ------------- |-------------| ---------|----------- |--------- |
 | config  |   No  |  | |  OneViewクライアント構成を含む.json構成ファイルへのパス。構成ファイルはオプションです。ファイルパスが指定されていない場合、構成は環境変数からロードされます。  |
 | name  |   No  |  | |  論理インターコネクト名。  |
-| options  |   No  |  | |  論理インターコネクトに関する追加の事実を収集するオプションを表示します。可能なオプション: `qos_aggregated_configuration`は、論理インターコネクトのQoS集約構成を取得します。`snmp_configuration`は、論理インターコネクトのSNMP設定を取得します。`port_monitor`は、論理インターコネクトのポートモニター構成を取得します。「internal_vlans」は、論理インターコネクト上のプロビジョニングされたネットワークの内部VLAN IDを取得します。`forwarding_information_base`は、論理インターコネクトの転送情報ベースデータを取得します。`firmware`は、論理インターコネクトのインストール済みファームウェアを取得します。`unassigned_ports`は、アナライザーポートへの割り当てに適格なメンバー相互接続からポートのコレクションを取得します。`unassigned_uplink_ports`は、アナライザーポートへの割り当てに適格なメンバー相互接続からアップリンクポートのコレクションを取得します。`telemetry_configuration`は、論理インターコネクトのテレメトリ構成を取得します。`ethernet_settings`は、論理インターコネクトのイーサネット相互接続設定を取得します。- これらのオプションは、`name`が指定されている場合にのみ有効です。それ以外の場合は無視されます。  |
+| options  |   No  |  | |  論理インターコネクトに関する追加の情報を収集するオプションを表示します。可能なオプション: `qos_aggregated_configuration`は、論理インターコネクトのQoS集約構成を取得します。`snmp_configuration`は、論理インターコネクトのSNMP設定を取得します。`port_monitor`は、論理インターコネクトのポートモニター構成を取得します。「internal_vlans」は、論理インターコネクト上のプロビジョニングされたネットワークの内部VLAN IDを取得します。`forwarding_information_base`は、論理インターコネクトの転送情報ベースデータを取得します。`firmware`は、論理インターコネクトのインストール済みファームウェアを取得します。`unassigned_ports`は、アナライザーポートへの割り当てに適格なメンバー相互接続からポートのコレクションを取得します。`unassigned_uplink_ports`は、アナライザーポートへの割り当てに適格なメンバー相互接続からアップリンクポートのコレクションを取得します。`telemetry_configuration`は、論理インターコネクトのテレメトリ構成を取得します。`ethernet_settings`は、論理インターコネクトのイーサネット相互接続設定を取得します。- これらのオプションは、`name`が指定されている場合にのみ有効です。それ以外の場合は無視されます。  |
 | params  |   No  |  | |  リソースのリストを区切り、フィルター、ソートするパラメーターのリスト。  可能なパラメーター: `start`: 0から始まるインデックスを使用して返される最初のアイテム。`count`: 返されるリソースの数。`filter`: 返されるアイテムのリストを絞り込むための一般的なフィルター/クエリ文字列。`sort`: 返されたデータセットのソート順。  |
 
 
@@ -6043,7 +6537,7 @@ OneView論理インターコネクトグループリソースを管理します�
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| logical_interconnect_group   | OneView論理インターコネクトグループに関する事実を持っています。|  状態 'present'nullの場合があります。|  dict |
+| logical_interconnect_group   | OneView論理インターコネクトグループに関する情報を持っています。|  状態 'present'nullの場合があります。|  dict |
 
 
 #### 注記
@@ -6142,7 +6636,7 @@ OneView論理インターコネクトグループリソースを管理します�
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| logical_interconnect_groups   | 論理インターコネクトグループに関するすべてのOneViewの事実を持っています。|  常時、ただしnullの場合があります。|  dict |
+| logical_interconnect_groups   | 論理インターコネクトグループに関するすべてのOneViewの情報を持っています。|  常時、ただしnullの場合があります。|  dict |
 
 
 #### 注記
@@ -6290,7 +6784,7 @@ OneView論理スイッチリソースを管理します。
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| logical_switch   | OneView論理スイッチに関する事実を持っています。|  状態が 'present'、'updated'、'refreshed'。nullの場合があります。|  dict |
+| logical_switch   | OneView論理スイッチに関する情報を持っています。|  状態が 'present'、'updated'、'refreshed'。nullの場合があります。|  dict |
 
 
 #### 注記
@@ -6308,10 +6802,10 @@ OneView論理スイッチリソースを管理します。
 
 
 ## oneview_logical_switch_facts
-1つ以上のOneView論理スイッチに関する事実を取得します。
+1つ以上のOneView論理スイッチに関する情報を取得します。
 
 #### 概要
- OneViewから1つ以上の論理スイッチに関する事実を取得します。
+ OneViewから1つ以上の論理スイッチに関する情報を取得します。
 
 #### 要件 (モジュールを実行するホスト)
   * python >= 2.7.9
@@ -6371,7 +6865,7 @@ OneView論理スイッチリソースを管理します。
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| logical_switches   | 論理スイッチに関するすべてのOneViewの事実を持っています。|  常時、ただしnullの場合があります。|  dict |
+| logical_switches   | 論理スイッチに関するすべてのOneViewの情報を持っています。|  常時、ただしnullの場合があります。|  dict |
 
 
 #### 注記
@@ -6474,7 +6968,7 @@ OneView論理スイッチリソースを管理します。
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| logical_switch_group   | 論理スイッチグループに関するOneViewの事実を持っています。|  状態 'present'nullの場合があります。|  dict |
+| logical_switch_group   | 論理スイッチグループに関するOneViewの情報を持っています。|  状態 'present'nullの場合があります。|  dict |
 
 
 #### 注記
@@ -6492,10 +6986,10 @@ OneView論理スイッチリソースを管理します。
 
 
 ## oneview_logical_switch_group_facts
-OneView論理スイッチグループに関する事実を取得します。
+OneView論理スイッチグループに関する情報を取得します。
 
 #### 概要
- OneViewの論理スイッチグループに関する事実を取得します。
+ OneViewの論理スイッチグループに関する情報を取得します。
 
 #### 要件 (モジュールを実行するホスト)
   * python >= 2.7.9
@@ -6558,7 +7052,7 @@ OneView論理スイッチグループに関する事実を取得します。
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| logical_switch_groups   | 論理スイッチグループに関するすべてのOneViewの事実を持っています。|  常時、ただしnullの場合があります。|  dict |
+| logical_switch_groups   | 論理スイッチグループに関するすべてのOneViewの情報を持っています。|  常時、ただしnullの場合があります。|  dict |
 
 
 #### 注記
@@ -6576,10 +7070,10 @@ OneView論理スイッチグループに関する事実を取得します。
 
 
 ## oneview_login_detail_facts
-ログインの詳細に関する事実を取得します
+ログインの詳細に関する情報を取得します
 
 #### 概要
- oneviewからログインの詳細に関する事実を取得します
+ oneviewからログインの詳細に関する情報を取得します
 
 #### 要件 (モジュールを実行するホスト)
   * hpOneView >= 4.3.0
@@ -6641,7 +7135,7 @@ OneView Managed SANリソースを管理します。
 | パラメーター     | 必要    | デフォルト  | 選択肢    | コメント |
 | ------------- |-------------| ---------|----------- |--------- |
 | config  |   No  |  | |  OneViewクライアント構成を含む.json構成ファイルへのパス。構成ファイルはオプションです。ファイルパスが指定されていない場合、構成は環境変数からロードされます。  |
-| data  |   Yes  |  | |  管理対象SANプロパティとその関連状態を表示します。警告: 'present' 状態では、publicAttributesの内容が既存のリストを置き換えます。そのため、指定されたリストからパブリック属性を除外すると、事実上リストが削除されます。  |
+| data  |   Yes  |  | |  管理対象SANプロパティとその関連状態を表示します。警告: 'present' 状態では、publicAttributesの内容が既存のリストを置き換えます。そのため、指定されたリストからパブリック属性を除外すると、情報上リストが削除されます。  |
 | state  |   Yes  |  | <ul> <li>present</li>  <li>refresh_state_set</li>  <li>endpoints_csv_file_created</li>  <li>issues_report_created</li> </ul> |  管理対象SANリソースの望ましい状態を示します。`present`は、データプロパティがOneViewに準拠していることを保証します。`refresh_state_set`は、管理対象SANの更新状態を更新します。`endpoints_csv_file_created`は、SANエンドポイントCSVファイルを作成します。`issues_report_created`は、SANの予期しないゾーニングレポートを作成します。  |
 
 
@@ -6714,12 +7208,11 @@ OneView Managed SANリソースを管理します。
 
 #### 戻り値
 
-| 名前          | 説明  | 戻り | タイプ       |
+| Name          | Description  | Returned | Type       |
 | ------------- |-------------| ---------|----------- |
-| managed_san   | Managed SANに関するOneViewの事実を持っています。|  状態が 'present' and 'refresh_state_set'。nullの場合があります。|  dict |
-| managed_san_endpoints   | 
-作成されたエンドポイントCSVファイルに関するOneViewの事実を持っています。|  状態が'endpoints_csv_file_created'。nullの場合があります。|  dict |
-| managed_san_issues   | 予期しないゾーニングレポートに関するOneViewの事実を持っています。|  状態が'issues_report_created'。nullの場合があります。|  dict |
+| managed_san   | 管理されているSANの情報を保持します。 |  状態は'present'または'refresh_state_set'が戻されますが、nullの場合もあります。 |  dict |
+| managed_san_endpoints   | 作成されたSANエンドポイントCSVをの情報を保持します。 |  状態は'endpoints_csv_file_created'が戻りますが、nullの場合もあります。 |  dict |
+| managed_san_issues   | 予期せぬゾーニングの情報を保持します。 |  状態は'issues_report_created'が戻りますが、nullの場合もあります。 |  dict |
 
 
 #### 注記
@@ -6735,10 +7228,10 @@ OneView Managed SANリソースを管理します。
 
 
 ## oneview_managed_san_facts
-OneView Managed に関する事実を取得します。
+OneView Managed に関する情報を取得します。
 
 #### 概要
- OneView Managed SANに関する事実を取得します。
+ OneView Managed SANに関する情報を取得します。
 
 #### 要件 (モジュールを実行するホスト)
   * python >= 2.7.9
@@ -6750,7 +7243,7 @@ OneView Managed に関する事実を取得します。
 | ------------- |-------------| ---------|----------- |--------- |
 | config  |   No  |  | |  OneViewクライアント構成を含む.json構成ファイルへのパス。構成ファイルはオプションです。ファイルパスが指定されていない場合、構成は環境変数からロードされます。  |
 | name  |   No  |  | |  管理対象SANの名前。  |
-| options  |   No  |  | |  管理対象SANに関する追加の事実を収集するオプションを表示します。可能なオプション: 「endpoints」は、名前で識別されるSAN内のエンドポイントのリストを取得します。`wwn`は、情報に基づいたWWN` locate`に関連付けられた管理対象SANのリストを取得します。  |
+| options  |   No  |  | |  管理対象SANに関する追加の情報を収集するオプションを表示します。可能なオプション: 「endpoints」は、名前で識別されるSAN内のエンドポイントのリストを取得します。`wwn`は、情報に基づいたWWN`locate`に関連付けられた管理対象SANのリストを取得します。  |
 | params  |   No  |  | |  リソースのリストを区切り、フィルター、ソートするパラメーターのリスト。  可能なパラメーター: `start`: 0から始まるインデックスを使用して返される最初のアイテム。`count`: 返されるリソースの数。`query`: 返されるリソースのリストを絞り込むための一般的なクエリ文字列。`sort`: 返されたデータセットのソート順。  |
 
 
@@ -6931,7 +7424,7 @@ OneView ネットワークセットリソースを管理します。
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-OneViewネットワークセットに関する事実を取得します。|  状態は'present'ですが、nullの場合があります。|  dict |
+OneViewネットワークセットに関する情報を取得します。|  状態は'present'ですが、nullの場合があります。|  dict |
 
 
 #### 注記
@@ -6947,10 +7440,10 @@ OneViewネットワークセットに関する事実を取得します。|  状�
 
 
 ## oneview_network_set_facts
-OneViewネットワークセットに関する事実を取得します
+OneViewネットワークセットに関する情報を取得します
 
 #### 概要
- OneViewからネットワークセットに関する事実を取得します。
+ OneViewからネットワークセットに関する情報を取得します。
 
 #### 要件 (モジュールを実行するホスト)
   * hpOneView >= 2.0.1
@@ -6961,7 +7454,7 @@ OneViewネットワークセットに関する事実を取得します
 | ------------- |-------------| ---------|----------- |--------- |
 | config  |   No  |  | |  OneViewクライアント構成を含む.json構成ファイルへのパス。構成ファイルはオプションです。ファイルパスが指定されていない場合、構成は環境変数からロードされます。  |
 | name  |   |  | |  ネットワークセット名。  |
-| options  |   |  | |  ネットワークセットに関する事実を収集するオプションを表示します。 Option allowed: `withoutEthernet`. オプション`withoutEthernet`は、イーサネットネットワークを除くnetwork_setsのリストを取得します。  |
+| options  |   |  | |  ネットワークセットに関する情報を収集するオプションを表示します。 Option allowed: `withoutEthernet`. オプション`withoutEthernet`は、イーサネットネットワークを除くnetwork_setsのリストを取得します。  |
 | params  |   No  |  | |  リソースのリストを区切り、フィルター、ソートするパラメーターのリスト。  可能なパラメーター: `start`: 0から始まるインデックスを使用して返される最初のアイテム。`count`: 返されるリソースの数。`filter`: 返されるアイテムのリストを絞り込むための一般的なフィルター/クエリ文字列。`sort`: 返されたデータセットのソート順。  |
 
 
@@ -7046,7 +7539,7 @@ OneViewネットワークセットに関する事実を取得します
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| network_sets   | ネットワークセットに関するすべてのOneViewの事実を持っています。|  常時、ただし、空の場合があります。|  dict |
+| network_sets   | ネットワークセットに関するすべてのOneViewの情報を持っています。|  常時、ただし、空の場合があります。|  dict |
 
 
 #### 注記
@@ -7062,10 +7555,10 @@ OneViewネットワークセットに関する事実を取得します
 
 
 ## oneview_os_deployment_plan_facts
-1つ以上のOS展開計画に関する事実を取得します。
+1つ以上のOS展開計画に関する情報を取得します。
 
 #### 概要
- OneViewから1つ以上のOS展開計画に関する事実を取得します。
+ OneViewから1つ以上のOS展開計画に関する情報を取得します。
 
 #### 要件 (モジュールを実行するホスト)
   * python >= 2.7.9
@@ -7077,7 +7570,7 @@ OneViewネットワークセットに関する事実を取得します
 | ------------- |-------------| ---------|----------- |--------- |
 | config  |   No  |  | |  OneViewクライアント構成を含む.json構成ファイルへのパス。構成ファイルはオプションです。ファイルパスが指定されていない場合、構成は環境変数からロードされます。  |
 | name  |   No  |  | |  OS展開計画名。  |
-| options  |   No  |  | |  OS展開計画に関する事実を収集するためのオプションを表示します。Option allowed: `osCustomAttributesForServerProfile` オプション` osCustomAttributesForServerProfile`は、サーバープロファイル用に準備された編集可能なOSカスタム属性のリストを取得します。  |
+| options  |   No  |  | |  OS展開計画に関する情報を収集するためのオプションを表示します。Option allowed: `osCustomAttributesForServerProfile` オプション` osCustomAttributesForServerProfile`は、サーバープロファイル用に準備された編集可能なOSカスタム属性のリストを取得します。  |
 | params  |   No  |  | |  リソースのリストを区切り、フィルター、ソートするパラメーターのリスト。  可能なパラメーター: `start`: 0から始まるインデックスを使用して返される最初のアイテム。`count`: 返されるリソースの数。`filter`: 返されるアイテムのリストを絞り込むための一般的なフィルター/クエリ文字列。`sort`: 返されたデータセットのソート順。  |
 
 
@@ -7141,8 +7634,8 @@ OneViewネットワークセットに関する事実を取得します
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| os_deployment_plan_custom_attributes   | サーバープロファイル形式のOs展開計画の編集可能なカスタム属性の事実を持っています。|  要求された場合、ただし、空の場合があります。|  dict |
-| os_deployment_plans   | OS展開計画に関するすべてのOneViewの事実を持っています。|  常時、ただしnullの場合があります。|  dict |
+| os_deployment_plan_custom_attributes   | サーバープロファイル形式のOs展開計画の編集可能なカスタム属性の情報を持っています。|  要求された場合、ただし、空の場合があります。|  dict |
+| os_deployment_plans   | OS展開計画に関するすべてのOneViewの情報を持っています。|  常時、ただしnullの場合があります。|  dict |
 
 
 #### 注記
@@ -7217,7 +7710,7 @@ OneView展開サーバーリソースを管理します。
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| os_deployment_server   | 展開サーバーに関する事実を持っています。|  状態 'present'nullの場合があります。|  dict |
+| os_deployment_server   | 展開サーバーに関する情報を持っています。|  状態 'present'nullの場合があります。|  dict |
 
 
 #### 注記
@@ -7237,7 +7730,7 @@ OneView展開サーバーリソースを管理します。
 
 
 ## oneview_os_deployment_server_facts
-1つ以上のOS展開サーバーに関する事実を取得します。
+1つ以上のOS展開サーバーに関する情報を取得します。
 
 #### 概要
  OneViewから1つ以上のOS展開サーバーに関するファクトを取得します。
@@ -7252,7 +7745,7 @@ OneView展開サーバーリソースを管理します。
 | ------------- |-------------| ---------|----------- |--------- |
 | config  |   No  |  | |  OneViewクライアント構成を含む.json構成ファイルへのパス。構成ファイルはオプションです。ファイルパスが指定されていない場合、構成は環境変数からロードされます。  |
 | name  |   No  |  | |  OS展開サーバー名。  |
-| options  |   No  |  | |  OS展開サーバーと関連リソースに関する追加の事実を収集するオプションを表示します。可能なオプション: `networks`、`appliances`、`appliance`。  |
+| options  |   No  |  | |  OS展開サーバーと関連リソースに関する追加の情報を収集するオプションを表示します。可能なオプション: `networks`、`appliances`、`appliance`。  |
 | params  |   No  |  | |  リソースのリストを区切り、フィルター、ソートするパラメーターのリスト。  可能なパラメーター: `start`: 0から始まるインデックスを使用して返される最初のアイテム。`count`: 返されるリソースの数。`filter`: 返されるアイテムのリストを絞り込むための一般的なフィルター/クエリ文字列。`sort`: 返されたデータセットのソート順。`query`: 返されるリソースのリストを絞り込むための一般的なクエリ文字列。`fields`: 結果セットで返されるフィールドを指定します。`view`: 定義済みのビューの名前を指定して、リソースまたはコレクションの属性の特定のサブセットを返します。  |
 
 
@@ -7298,10 +7791,10 @@ OneView展開サーバーリソースを管理します。
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| os_deployment_server_appliance   | 特定のイメージストリーマーリソースに関する事実を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
-| os_deployment_server_appliances   | すべてのイメージストリーマーリソースに関するすべてのOneViewの事実を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
-| os_deployment_server_networks   | OneViewネットワークに関するすべてのOneViewの事実を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
-| os_deployment_servers   | OS展開サーバーに関するすべてのOneViewの事実を持っています。|  常時、ただしnullの場合があります。|  dict |
+| os_deployment_server_appliance   | 特定のイメージストリーマーリソースに関する情報を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
+| os_deployment_server_appliances   | すべてのイメージストリーマーリソースに関するすべてのOneViewの情報を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
+| os_deployment_server_networks   | OneViewネットワークに関するすべてのOneViewの情報を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
+| os_deployment_servers   | OS展開サーバーに関するすべてのOneViewの情報を持っています。|  常時、ただしnullの場合があります。|  dict |
 
 
 #### 注記
@@ -7409,7 +7902,7 @@ OneView Power Deviceリソースを管理します。
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| power_device   | パワーデバイスに関するOneViewの事実を持っています。|  状態が 'present'、'discovered'、'power_state_set'、'refresh_state_set'、'uid_state_set'。nullの場合があります。|  dict |
+| power_device   | パワーデバイスに関するOneViewの情報を持っています。|  状態が 'present'、'discovered'、'power_state_set'、'refresh_state_set'、'uid_state_set'。nullの場合があります。|  dict |
 
 
 #### 注記
@@ -7425,10 +7918,10 @@ OneView Power Deviceリソースを管理します。
 
 
 ## oneview_power_device_facts
-OneViewパワーデバイスに関する事実を取得します。
+OneViewパワーデバイスに関する情報を取得します。
 
 #### 概要
- OneViewから電力供給デバイスに関する事実を取得します。
+ OneViewから電力供給デバイスに関する情報を取得します。
 
 #### 要件 (モジュールを実行するホスト)
   * python >= 2.7.9
@@ -7440,7 +7933,7 @@ OneViewパワーデバイスに関する事実を取得します。
 | ------------- |-------------| ---------|----------- |--------- |
 | config  |   No  |  | |  OneViewクライアント構成を含む.json構成ファイルへのパス。構成ファイルはオプションです。ファイルパスが指定されていない場合、構成は環境変数からロードされます。  |
 | name  |   No  |  | |  パワーデバイス名。  |
-| options  |   No  |  | |  パワーデバイスに関する追加の事実を収集するオプションをリストします。可能なオプション: `powerState`、`uidState`、`utilization`  |
+| options  |   No  |  | |  パワーデバイスに関する追加の情報を収集するオプションをリストします。可能なオプション: `powerState`、`uidState`、`utilization`  |
 | params  |   No  |  | |  リソースのリストを区切り、フィルター、ソートするパラメーターのリスト。  可能なパラメーター: `start`: 0から始まるインデックスを使用して返される最初のアイテム。`count`: 返されるリソースの数。`filter`: 返されるアイテムのリストを絞り込むための一般的なフィルター/クエリ文字列。`query`: 返されるリソースのリストを絞り込むための一般的なクエリ文字列。`sort`: 返されたデータセットのソート順。  |
 
 
@@ -7510,10 +8003,10 @@ OneViewパワーデバイスに関する事実を取得します。
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| power_device_power_state   | パワーデバイスの電源状態に関するすべての事実を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
-| power_device_uid_state   | パワーデバイスのUID状態に関するすべての事実を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
-| power_device_utilization   | パワーデバイスの利用に関するすべての事実を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
-| power_devices   | パワーデバイスに関するすべてのOneViewの事実を持っています。|  常時、ただしnullの場合があります。|  dict |
+| power_device_power_state   | パワーデバイスの電源状態に関するすべての情報を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
+| power_device_uid_state   | パワーデバイスのUID状態に関するすべての情報を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
+| power_device_utilization   | パワーデバイスの利用に関するすべての情報を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
+| power_devices   | パワーデバイスに関するすべてのOneViewの情報を持っています。|  常時、ただしnullの場合があります。|  dict |
 
 
 #### 注記
@@ -7597,7 +8090,7 @@ OneViewラックリソースを管理します。
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| rack   | OneViewラックに関する事実を持っています。|  状態 'present'nullの場合があります。|  dict |
+| rack   | OneViewラックに関する情報を持っています。|  状態 'present'nullの場合があります。|  dict |
 
 
 #### 注記
@@ -7613,7 +8106,7 @@ OneViewラックリソースを管理します。
 
 
 ## oneview_rack_facts
-Rackリソースに関する事実を取得します。
+Rackリソースに関する情報を取得します。
 
 #### 概要
  ラックリソースのリストを取得します。名前によるフィルターを使用して、特定のラックを取得できます。名前を指定すると、デバイストポロジに関する情報を取得できます。
@@ -7628,7 +8121,7 @@ Rackリソースに関する事実を取得します。
 | ------------- |-------------| ---------|----------- |--------- |
 | config  |   No  |  | |  OneViewクライアント構成を含む.json構成ファイルへのパス。構成ファイルはオプションです。ファイルパスが指定されていない場合、構成は環境変数からロードされます。  |
 | name  |   No  |  | |  ラック名。  |
-| options  |   No  |  | |  追加の事実を取得します。 Options available: 'deviceTopology'.  |
+| options  |   No  |  | |  追加の情報を取得します。 Options available: 'deviceTopology'.  |
 | params  |   No  |  | |  リソースのリストを区切り、フィルター、ソートするパラメーターのリスト。  可能なパラメーター: `start`: 0から始まるインデックスを使用して返される最初のアイテム。`count`: 返されるリソースの数。`filter`: 返されるアイテムのリストを絞り込むための一般的なフィルター/クエリ文字列。`sort`: 返されたデータセットのソート順。  |
 
 
@@ -7678,7 +8171,7 @@ Rackリソースに関する事実を取得します。
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
 | rack_device_topology   | ラックリソースのトポロジ情報を取得します。|  要求された場合、ただしnullの場合があります。|  dict |
-| racks   | ラックに関するすべてのOneViewの事実を持っています。|  常時、ただしnullの場合があります。|  dict |
+| racks   | ラックに関するすべてのOneViewの情報を持っています。|  常時、ただしnullの場合があります。|  dict |
 
 
 #### 注記
@@ -7776,7 +8269,7 @@ OneView SAN Managerリソースを管理します。
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| san_manager   | SAN Managerに関するOneViewの事実を持っています。|  状態 'present'nullの場合があります。|  dict |
+| san_manager   | SAN Managerに関するOneViewの情報を持っています。|  状態 'present'nullの場合があります。|  dict |
 
 
 #### 注記
@@ -7792,10 +8285,10 @@ OneView SAN Managerリソースを管理します。
 
 
 ## oneview_san_manager_facts
-1つ以上のOneView SANマネージャーに関する事実を取得します。
+1つ以上のOneView SANマネージャーに関する情報を取得します。
 
 #### 概要
- OneViewから1つ以上のSANマネージャーに関する事実を取得します。
+ OneViewから1つ以上のSANマネージャーに関する情報を取得します。
 
 #### 要件 (モジュールを実行するホスト)
   * hpOneView >= 2.0.1
@@ -7849,7 +8342,7 @@ OneView SAN Managerリソースを管理します。
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| san_managers   | SANマネージャーに関するOneViewのすべての事実を持っています。|  常時、ただしnullの場合があります。|  dict |
+| san_managers   | SANマネージャーに関するOneViewのすべての情報を持っています。|  常時、ただしnullの場合があります。|  dict |
 
 
 #### 注記
@@ -7935,10 +8428,10 @@ OneView SASインターコネクトリソースを管理します。
 
 
 ## oneview_sas_interconnect_facts
-OneView SASインターコネクトに関する事実を取得します。
+OneView SASインターコネクトに関する情報を取得します。
 
 #### 概要
- OneView SASインターコネクトに関する事実を取得します。
+ OneView SASインターコネクトに関する情報を取得します。
 
 #### 要件 (モジュールを実行するホスト)
   * python >= 2.7.9
@@ -8011,10 +8504,10 @@ OneView SASインターコネクトに関する事実を取得します。
 
 
 ## oneview_sas_interconnect_type_facts
-OneView SASインターコネクトタイプに関する事実を取得します。
+OneView SASインターコネクトタイプに関する情報を取得します。
 
 #### 概要
- OneViewからSASインターコネクトタイプに関する事実を取得します。
+ OneViewからSASインターコネクトタイプに関する情報を取得します。
 
 #### 要件 (モジュールを実行するホスト)
   * python >= 2.7.9
@@ -8072,7 +8565,7 @@ OneView SASインターコネクトタイプに関する事実を取得します
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| sas_interconnect_types   | SASインターコネクトタイプに関するOneViewのすべての事実を持っています。|  常時、ただしnullの場合があります。|  dict |
+| sas_interconnect_types   | SASインターコネクトタイプに関するOneViewのすべての情報を持っています。|  常時、ただしnullの場合があります。|  dict |
 
 
 #### 注記
@@ -8186,8 +8679,8 @@ SAS論理インターコネクトのプロパティとその関連状態を表�
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| li_firmware   | 更新されたファームウェアに関するOneViewの事実を持っています。|  状態が'firmware_updated'、ただし、nullの場合があります。|  dict |
-| sas_logical_interconnect   | SAS論理インターコネクトに関するOneViewの事実を持っています。|  状態が 'drive_enclosure_replaced'、'configuration_updated'、ただし、nullの場合があります。|  dict |
+| li_firmware   | 更新されたファームウェアに関するOneViewの情報を持っています。|  状態が'firmware_updated'、ただし、nullの場合があります。|  dict |
+| sas_logical_interconnect   | SAS論理インターコネクトに関するOneViewの情報を持っています。|  状態が 'drive_enclosure_replaced'、'configuration_updated'、ただし、nullの場合があります。|  dict |
 
 
 #### 注記
@@ -8205,10 +8698,10 @@ SAS論理インターコネクトのプロパティとその関連状態を表�
 
 
 ## oneview_sas_logical_interconnect_facts
-1つ以上のOneView SAS論理インターコネクトに関する事実を取得します。
+1つ以上のOneView SAS論理インターコネクトに関する情報を取得します。
 
 #### 概要
- 1つ以上のOneView SAS論理インターコネクトに関する事実を取得します。
+ 1つ以上のOneView SAS論理インターコネクトに関する情報を取得します。
 
 #### 要件 (モジュールを実行するホスト)
   * python >= 2.7.9
@@ -8220,7 +8713,7 @@ SAS論理インターコネクトのプロパティとその関連状態を表�
 | ------------- |-------------| ---------|----------- |--------- |
 | config  |   No  |  | |  OneViewクライアント構成を含む.json構成ファイルへのパス。構成ファイルはオプションです。ファイルパスが指定されていない場合、構成は環境変数からロードされます。  |
 | name  |   No  |  | |  SAS論理インターコネクト名。  |
-| options  |   No  |  | |  SAS論理インターコネクトに関する追加の事実を収集するオプションを表示します。`firmware`は、SAS論理インターコネクトのインストール済みファームウェアを取得します。  これらのオプションは、name`が指定されている場合にのみ有効です。それ以外の場合は無視されます。  |
+| options  |   No  |  | |  SAS論理インターコネクトに関する追加の情報を収集するオプションを表示します。`firmware`は、SAS論理インターコネクトのインストール済みファームウェアを取得します。  これらのオプションは、name`が指定されている場合にのみ有効です。それ以外の場合は無視されます。  |
 | params  |   No  |  | |  リソースのリストを区切り、フィルター、ソートするパラメーターのリスト。  可能なパラメーター: `start`: 0から始まるインデックスを使用して返される最初のアイテム。`count`: 返されるリソースの数。`filter`: 返されるアイテムのリストを絞り込むための一般的なフィルター/クエリ文字列。`sort`: 返されたデータセットのソート順。  |
 
 
@@ -8385,7 +8878,7 @@ OneView SAS論理インターコネクトグループリソースを管理しま
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| sas_logical_interconnect_group   | OneView SAS論理インターコネクトグループに関する事実を持っています。|  状態 'present'nullの場合があります。|  dict |
+| sas_logical_interconnect_group   | OneView SAS論理インターコネクトグループに関する情報を持っています。|  状態 'present'nullの場合があります。|  dict |
 
 
 #### 注記
@@ -8403,10 +8896,10 @@ OneView SAS論理インターコネクトグループリソースを管理しま
 
 
 ## oneview_sas_logical_interconnect_group_facts
-1つ以上のOneView SAS論理インターコネクトグループに関する事実を取得します。
+1つ以上のOneView SAS論理インターコネクトグループに関する情報を取得します。
 
 #### 概要
- OneViewから1つ以上のSAS論理インターコネクトグループに関する事実を取得します。
+ OneViewから1つ以上のSAS論理インターコネクトグループに関する情報を取得します。
 
 #### 要件 (モジュールを実行するホスト)
   * python >= 2.7.9
@@ -8474,7 +8967,7 @@ OneView SAS論理インターコネクトグループリソースを管理しま
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| sas_logical_interconnect_groups   | SAS論理インターコネクトグループに関するすべてのOneViewの事実を持っています。|  常時、ただしnullの場合があります。|  dict |
+| sas_logical_interconnect_groups   | SAS論理インターコネクトグループに関するすべてのOneViewの情報を持っています。|  常時、ただしnullの場合があります。|  dict |
 
 
 #### 注記
@@ -8492,10 +8985,10 @@ OneView SAS論理インターコネクトグループリソースを管理しま
 
 
 ## oneview_sas_logical_jbod_attachment_facts
-1つ以上のOneView SAS論理JBODアタッチメントに関する事実を取得します。
+1つ以上のOneView SAS論理JBODアタッチメントに関する情報を取得します。
 
 #### 概要
- OneViewから1つ以上のSAS論理JBODアタッチメントに関する事実を取得します。
+ OneViewから1つ以上のSAS論理JBODアタッチメントに関する情報を取得します。
 
 #### 要件 (モジュールを実行するホスト)
   * python >= 2.7.9
@@ -8548,7 +9041,7 @@ OneView SAS論理インターコネクトグループリソースを管理しま
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| sas_logical_jbod_attachments   | SAS論理JBOD添付ファイルに関するすべてのOneViewの事実を持っています。|  常時、ただしnullの場合があります。|  dict |
+| sas_logical_jbod_attachments   | SAS論理JBOD添付ファイルに関するすべてのOneViewの情報を持っています。|  常時、ただしnullの場合があります。|  dict |
 
 
 #### 注記
@@ -8566,10 +9059,10 @@ OneView SAS論理インターコネクトグループリソースを管理しま
 
 
 ## oneview_sas_logical_jbod_facts
-OneViewから1つ以上のSAS論理JBODアタッチメントに関する事実を取得します。
+OneViewから1つ以上のSAS論理JBODアタッチメントに関する情報を取得します。
 
 #### 概要
- OneViewから1つ以上のSAS論理JBODに関する事実を取得します。
+ OneViewから1つ以上のSAS論理JBODに関する情報を取得します。
 
 #### 要件 (モジュールを実行するホスト)
   * python >= 2.7.9
@@ -8581,7 +9074,7 @@ OneViewから1つ以上のSAS論理JBODアタッチメントに関する事実�
 | ------------- |-------------| ---------|----------- |--------- |
 | config  |   No  |  | |  OneViewクライアント構成を含む.json構成ファイルへのパス。構成ファイルはオプションです。ファイルパスが指定されていない場合、構成は環境変数からロードされます。  |
 | name  |   No  |  | |  SAS論理JBODの名前。  |
-| options  |   No  |  | |  SAS論理JBODおよび関連リソースに関する追加の事実を収集するオプションを表示します。可能なオプション: `drives`.  |
+| options  |   No  |  | |  SAS論理JBODおよび関連リソースに関する追加の情報を収集するオプションを表示します。可能なオプション: `drives`.  |
 | params  |   No  |  | |  リソースのリストを区切り、フィルター、ソートするパラメーターのリスト。  可能なパラメーター: `start`: 0から始まるインデックスを使用して返される最初のアイテム。`count`: 返されるリソースの数。`filter`: 返されるアイテムのリストを絞り込むための一般的なフィルター/クエリ文字列。`sort`: 返されたデータセットのソート順。  |
 
 
@@ -8632,8 +9125,8 @@ OneViewから1つ以上のSAS論理JBODアタッチメントに関する事実�
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| sas_logical_jbod_drives   | SAS論理JBODに割り当てられたドライブのリストに関するすべてのOneViewの事実を持っています。|  常時、ただしnullの場合があります。|  dict |
-| sas_logical_jbods   | SAS論理JBODに関するすべてのOneViewの事実を持っています。|  常時、ただしnullの場合があります。|  dict |
+| sas_logical_jbod_drives   | SAS論理JBODに割り当てられたドライブのリストに関するすべてのOneViewの情報を持っています。|  常時、ただしnullの場合があります。|  dict |
+| sas_logical_jbods   | SAS論理JBODに関するすべてのOneViewの情報を持っています。|  常時、ただしnullの場合があります。|  dict |
 
 
 #### 注記
@@ -8733,7 +9226,7 @@ OneView Scopeリソースを管理します。
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| scope   | スコープに関する事実を持っています。|  状態が 'present' および 'resource_assignments_updated'、ただし、nullの場合があります。|  dict |
+| scope   | スコープに関する情報を持っています。|  状態が 'present' および 'resource_assignments_updated'、ただし、nullの場合があります。|  dict |
 
 
 #### 注記
@@ -8751,10 +9244,10 @@ OneView Scopeリソースを管理します。
 
 
 ## oneview_scope_facts
-1つ以上のOneViewスコープに関する事実を取得します。
+1つ以上のOneViewスコープに関する情報を取得します。
 
 #### 概要
- OneViewから1つ以上のスコープに関する事実を取得します。
+ OneViewから1つ以上のスコープに関する情報を取得します。
 
 #### 要件 (モジュールを実行するホスト)
   * python >= 2.7.9
@@ -8807,7 +9300,7 @@ OneView Scopeリソースを管理します。
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| scopes   | スコープに関するすべてのOneViewの事実を持っています。|  常時、ただしnullの場合があります。|  dict |
+| scopes   | スコープに関するすべてのOneViewの情報を持っています。|  常時、ただしnullの場合があります。|  dict |
 
 
 #### 注記
@@ -8978,7 +9471,7 @@ OneViewサーバーハードウェアリソースを管理します。
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| server_hardware   | サーバーハードウェアに関するOneViewの事実を持っています。|  状態が 'present'、'power_state_set'、'refresh_state_set'、'ilo_firmware_version_updated'。nullの場合があります。|  dict |
+| server_hardware   | サーバーハードウェアに関するOneViewの情報を持っています。|  状態が 'present'、'power_state_set'、'refresh_state_set'、'ilo_firmware_version_updated'。nullの場合があります。|  dict |
 
 
 #### 注記
@@ -8994,10 +9487,10 @@ OneViewサーバーハードウェアリソースを管理します。
 
 
 ## oneview_server_hardware_facts
-OneViewサーバーハードウェアに関する事実を取得します。
+OneViewサーバーハードウェアに関する情報を取得します。
 
 #### 概要
- OneViewからサーバーハードウェアに関する事実を取得します。
+ OneViewからサーバーハードウェアに関する情報を取得します。
 
 #### 要件 (モジュールを実行するホスト)
   * python >= 2.7.9
@@ -9005,12 +9498,13 @@ OneViewサーバーハードウェアに関する事実を取得します。
 
 #### オプション
 
-| パラメーター     | 必要    | デフォルト  | 選択肢    | コメント |
+| パラメータ     | 必須    | デフォルト  | 選択肢    | コメント |
 | ------------- |-------------| ---------|----------- |--------- |
-| config  |   No  |  | |  OneViewクライアント構成を含む.json構成ファイルへのパス。構成ファイルはオプションです。ファイルパスが指定されていない場合、構成は環境変数からロードされます。  |
+| config  |   No  |  | |  OneViewクライアント構成を含む.json構成ファイルへのパス。構成ファイルはオプションです。ファイルパスが指定されていない場合、構成は環境変数からロードされます。設定ファイルをリンクさせる、または環境変数の使い方については注記を確認してください。  |
 | name  |   No  |  | |  サーバーハードウェア名。  |
-| options  |   No  |  | |  サーバーハードウェア関連のリソースに関する追加の事実を収集するオプションを表示します。可能なオプション: `bios`、`javaRemoteConsoleUrl`、`environmentalConfig`、`iloSsoUrl`、`remoteConsoleUrl`、`utilization`、`firmware`、`firmwares`、`physicalServerHardware`。  |
-| params  |   No  |  | |  リソースのリストを区切り、フィルター、ソートするパラメーターのリスト。  可能なパラメーター: `start`: 0から始まるインデックスを使用して返される最初のアイテム。`count`: 返されるリソースの数。`filter`: 返されるアイテムのリストを絞り込むための一般的なフィルター/クエリ文字列。`sort`: 返されたデータセットのソート順。  |
+| uri  |   No  |  | |  サーバーハードウェアURI。  |
+| options  |   No  |  | |  追加のサーバーハードウェア関連リソース情報を収集するためのオプションをセットします。オプションは`bios`, `javaRemoteConsoleUrl`、`environmentalConfig`、`iloSsoUrl`、`remoteConsoleUrl`、`utilization`、`firmware`、`firmwares`、 `physicalServerHardware`が選択できます。  |
+| params  |   No  |  | |  リソースの区切る、フィルターする、ソートするためのパラメータをセットします。パラメータは0ベースのインデックスを最初に返す`start`、リソースの数を表す`count`、 戻り値をフィルタリングするための文字列を設定する`filter`、戻り値の順番を指定する`sort`が指定できます。  |
 
 
  
@@ -9023,7 +9517,7 @@ OneViewサーバーハードウェアに関する事実を取得します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
   delegate_to: localhost
 
 - debug: var=server_hardwares
@@ -9034,7 +9528,7 @@ OneViewサーバーハードウェアに関する事実を取得します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     params:
       start: 0
       count: 3
@@ -9050,8 +9544,19 @@ OneViewサーバーハードウェアに関する事実を取得します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     name: "172.18.6.15"
+  delegate_to: localhost
+
+- debug: var=server_hardwares
+
+- name: Gather facts about a Server Hardware by uri
+  oneview_server_hardware_facts:
+    hostname: 172.16.101.48
+    username: administrator
+    password: my_password
+    api_version: 2200
+    uri: "/rest/server-hardware/30303437-3034-4D32-3230-313030364752"
   delegate_to: localhost
 
 - debug: var=server_hardwares
@@ -9062,7 +9567,7 @@ OneViewサーバーハードウェアに関する事実を取得します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     name: "Encl1, bay 1"
     options:
       - bios
@@ -9077,7 +9582,7 @@ OneViewサーバーハードウェアに関する事実を取得します。
    hostname: 172.16.101.48
    username: administrator
    password: my_password
-   api_version: 800
+   api_version: 2200
    name : "Encl1, bay 1"
    options:
        - bios                   # optional
@@ -9108,7 +9613,7 @@ OneViewサーバーハードウェアに関する事実を取得します。
    hostname: 172.16.101.48
    username: administrator
    password: my_password
-   api_version: 800
+   api_version: 2200
    name : "0000A66102, bay 12"
    options:
        - firmware
@@ -9124,16 +9629,16 @@ OneViewサーバーハードウェアに関する事実を取得します。
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| server_hardware_bios   | サーバーハードウェアBIOSに関するすべての事実を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
-| server_hardware_env_config   | サーバーハードウェアの環境構成に関するすべての事実を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
-| server_hardware_firmware   | サーバーハードウェアファームウェアに関するすべての事実を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
-| server_hardware_firmwares   | すべてのサーバーにわたるファームウェアインベントリに関するすべての事実を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
-| server_hardware_ilo_sso_url   | サーバーハードウェアのiLO SSO URLに関する事実を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
-| server_hardware_java_remote_console_url   | サーバーハードウェアjavaリモートコンソールURLに関する事実を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
-| server_hardware_physical_server_hardware   | 'SDX'パーティションを記述するすべての事実を持っています。SDXエンクロージャーでのみ使用されます。|  要求された場合、ただしnullの場合があります。|  dict |
-| server_hardware_remote_console_url   | サーバーハードウェアのリモートコンソールURLに関する事実を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
-| server_hardware_utilization   | サーバーハードウェアの使用率に関するすべての事実を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
-| server_hardware_utilization   | サーバーハードウェアに関するOneViewのすべての事実を持っています。|  常時、ただしnullの場合があります。|  dict |
+| server_hardware_bios   | サーバーハードウェアBIOSに関するすべての情報を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
+| server_hardware_env_config   | サーバーハードウェアの環境構成に関するすべての情報を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
+| server_hardware_firmware   | サーバーハードウェアファームウェアに関するすべての情報を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
+| server_hardware_firmwares   | すべてのサーバーにわたるファームウェアインベントリに関するすべての情報を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
+| server_hardware_ilo_sso_url   | サーバーハードウェアのiLO SSO URLに関する情報を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
+| server_hardware_java_remote_console_url   | サーバーハードウェアjavaリモートコンソールURLに関する情報を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
+| server_hardware_physical_server_hardware   | 'SDX'パーティションを記述するすべての情報を持っています。SDXエンクロージャーでのみ使用されます。|  要求された場合、ただしnullの場合があります。|  dict |
+| server_hardware_remote_console_url   | サーバーハードウェアのリモートコンソールURLに関する情報を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
+| server_hardware_utilization   | サーバーハードウェアの使用率に関するすべての情報を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
+| server_hardware_utilization   | サーバーハードウェアに関するOneViewのすべての情報を持っています。|  常時、ただしnullの場合があります。|  dict |
 
 
 #### 注記
@@ -9220,7 +9725,7 @@ OneViewサーバーのハードウェアタイプリソースを管理します�
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| server_hardware_type   | サーバーハードウェアタイプに関するOneViewの事実を持っています。|  状態 'present'nullの場合があります。|  dict |
+| server_hardware_type   | サーバーハードウェアタイプに関するOneViewの情報を持っています。|  状態 'present'nullの場合があります。|  dict |
 
 
 #### 注記
@@ -9236,10 +9741,10 @@ OneViewサーバーのハードウェアタイプリソースを管理します�
 
 
 ## oneview_server_hardware_type_facts
-OneViewのサーバーハードウェアタイプに関する事実を取得します。
+OneViewのサーバーハードウェアタイプに関する情報を取得します。
 
 #### 概要
- OneViewのサーバーハードウェアタイプに関する事実を取得します。
+ OneViewのサーバーハードウェアタイプに関する情報を取得します。
 
 #### 要件 (モジュールを実行するホスト)
   * python >= 2.7.9
@@ -9300,7 +9805,7 @@ OneViewのサーバーハードウェアタイプに関する事実を取得し�
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| server_hardware_types   | サーバーハードウェアタイプに関するすべてのOneViewの事実を持っています。|  常時、ただしnullの場合があります。|  dict |
+| server_hardware_types   | サーバーハードウェアタイプに関するすべてのOneViewの情報を持っています。|  常時、ただしnullの場合があります。|  dict |
 
 
 #### 注記
@@ -9346,10 +9851,11 @@ OneViewサーバープロファイルリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: present
     data:
         name: Web-Server-L2
+        description: Server Profile created from a selected Server Profile Template
         # You can choose either server_template or serverProfileTemplateUri to inform the Server Profile Template
         # serverProfileTemplateUri: "/rest/server-profile-templates/31ade62c-2112-40a0-935c-2f9450a75198"
         server_template: Compute-node-template
@@ -9361,6 +9867,9 @@ OneViewサーバープロファイルリソースを管理します。
         # You can choose either serverHardwareTypeUri or serverHardwareTypeName to inform the Server Hardware Type
         # serverHardwareTypeUri: /rest/server-hardware-types/BCAB376E-DA2E-450D-B053-0A9AE7E5114C
         # serverHardwareTypeName: SY 480 Gen9 1
+        # You can choose either enclosureGroupName or enclosureGroupUri to inform the EnclosureGroup
+        # enclosureGroupUri: /rest/enclosuregroups/EG
+        enclosureGroupName: EG
         # You can choose either enclosureName or enclosureUri to inform the Enclosure
         # enclosureUri: /rest/enclosures/09SGH100Z6J1
         enclosureName: 0000A66102
@@ -9399,9 +9908,11 @@ OneViewサーバープロファイルリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     data:
       name: server-profile-with-connections
+      serverHardwareTypeName: "BL460c Gen8 1"
+      description: Server Profile with connections created from a selected Server Profile Template
       connectionSettings:
         connections:
           - id: 1
@@ -9417,7 +9928,7 @@ OneViewサーバープロファイルリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     # This is required for unassigning a SH, or creating a SP and not auto-assigning a SH
     auto_assign_server_hardware: False
     data:
@@ -9431,7 +9942,7 @@ OneViewサーバープロファイルリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: compliant
     data:
         name: Web-Server-L2
@@ -9442,7 +9953,7 @@ OneViewサーバープロファイルリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: absent
     data:
         name: Web-Server-L2
@@ -9456,11 +9967,11 @@ OneViewサーバープロファイルリソースを管理します。
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| compliance_preview   | サーバープロファイルをそのテンプレートと一致させるために必要な手動および自動更新に関するOneViewの事実を持っています。|  状態が 'present' および 'compliant'。|  dict |
+| compliance_preview   | サーバープロファイルをそのテンプレートと一致させるために必要な手動および自動更新に関するOneViewの情報を持っています。|  状態が 'present' および 'compliant'。|  dict |
 | created   | サーバープロファイルが作成されたかどうかを示します。|  状態が 'present' および 'compliant'。 |  bool |
 | serial_number   | サーバープロファイルのシリアル番号があります。|  状態が 'present' および 'compliant'。|  dict |
-| server_hardware   | サーバーハードウェアに関するOneViewの事実を持っています。|  状態が 'present' および 'compliant'。|  dict |
-| server_profile   | サーバープロファイルに関するOneViewの事実を持っています。|  状態が 'present' および 'compliant'。|  dict |
+| server_hardware   | サーバーハードウェアに関するOneViewの情報を持っています。|  状態が 'present' および 'compliant'。|  dict |
+| server_profile   | サーバープロファイルに関するOneViewの情報を持っています。|  状態が 'present' および 'compliant'。|  dict |
 
 
 #### 注記
@@ -9480,10 +9991,10 @@ volumeAttachmentsリストでvolumeUriをnullとして定義すると、ボリ�
 
 
 ## oneview_server_profile_facts
-OneViewサーバープロファイルに関する事実を取得します。
+OneViewサーバープロファイルに関する情報を取得します。
 
 #### 概要
- OneViewからサーバープロファイルに関する事実を取得します。
+ OneViewからサーバープロファイルに関する情報を取得します。
 
 #### 要件 (モジュールを実行するホスト)
   * python >= 2.7.9
@@ -9495,7 +10006,7 @@ OneViewサーバープロファイルに関する事実を取得します。
 | ------------- |-------------| ---------|----------- |--------- |
 | config  |   No  |  | |  OneViewクライアント構成を含む.json構成ファイルへのパス。構成ファイルはオプションです。ファイルパスが指定されていない場合、構成は環境変数からロードされます。  |
 | name  |   |  | |  サーバープロファイル名。  |
-| options  |   |  | |  サーバープロファイル関連のリソースに関する追加の事実を収集するオプションを表示します。可能なオプション: `schema`、`compliancePreview`、`profilePorts`、`messages`, `transformation`、`available_networks`、`available_servers`、`available_storage_system`、`available_storage_systems`、`available_targets`、`newProfileTemplate`、  `compliancePreview`、`messages`、`newProfileTemplate`、および`transformation`に関する事実を収集するには、サーバープロファイル名が必要です。それ以外の場合、これらのオプションは無視されます。  |
+| options  |   |  | |  サーバープロファイル関連のリソースに関する追加の情報を収集するオプションを表示します。可能なオプション: `schema`、`compliancePreview`、`profilePorts`、`messages`, `transformation`、`available_networks`、`available_servers`、`available_storage_system`、`available_storage_systems`、`available_targets`、`newProfileTemplate`、  `compliancePreview`、`messages`、`newProfileTemplate`、および`transformation`に関する情報を収集するには、サーバープロファイル名が必要です。それ以外の場合、これらのオプションは無視されます。  |
 | params  |   No  |  | |  リソースのリストを区切り、フィルター、ソートするパラメーターのリスト。  可能なパラメーター: `start`: 0から始まるインデックスを使用して返される最初のアイテム。`count`: 返されるリソースの数。`filter`: 返されるアイテムのリストを絞り込むための一般的なフィルター/クエリ文字列。`sort`: 返されたデータセットのソート順。  |
 | uri  |   |  | |  サーバープロファイルuri。  |
 
@@ -9623,18 +10134,18 @@ OneViewサーバープロファイルに関する事実を取得します。
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| server_profile_available_networks   | サーバープロファイルで使用可能なイーサネットネットワーク、ファイバーチャネルネットワーク、およびネットワークセットのリストと、それぞれのポートに関するすべての事実と、それぞれのポートがあります。|  要求された場合、ただしnullの場合があります。|  dict |
-| server_profile_available_servers   | 利用可能なサーバーのリストに関する事実を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
-| server_profile_available_storage_system   | サーバープロファイルで利用可能な特定のストレージシステムとそれに関連するボリュームに関する事実を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
-| server_profile_available_storage_systems   | サーバープロファイルで利用可能なストレージシステムとそれに関連するボリュームのリストに関する事実を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
-| server_profile_available_targets   | サーバープロファイルへの割り当てに使用できるターゲットサーバーと空のデバイスベイに関する事実を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
-| server_profile_compliance_preview   | サーバープロファイルをそのテンプレートに準拠させるために必要な手動および自動更新に関するすべての事実を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
-| server_profile_messages   | プロファイルに関連付けられたプロファイルステータスメッセージに関する事実を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
-| server_profile_new_profile_template   | サーバープロファイルテンプレートの生成に使用できる、サーバープロファイルから派生した事実を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
-| server_profile_profile_ports   | プロファイルに関連付けられているポートモデルに関する事実を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
-| server_profile_schema   | サーバープロファイルスキームに関する事実を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
-| server_profile_transformation   | 新しいサーバーハードウェアタイプやエンクロージャグループを提供することにより、既存のプロファイルの変換に関する事実を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
-| server_profiles   | サーバープロファイルに関するすべてのOneViewの事実を持っています。|  常時、ただしnullの場合があります。|  dict |
+| server_profile_available_networks   | サーバープロファイルで使用可能なイーサネットネットワーク、ファイバーチャネルネットワーク、およびネットワークセットのリストと、それぞれのポートに関するすべての情報と、それぞれのポートがあります。|  要求された場合、ただしnullの場合があります。|  dict |
+| server_profile_available_servers   | 利用可能なサーバーのリストに関する情報を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
+| server_profile_available_storage_system   | サーバープロファイルで利用可能な特定のストレージシステムとそれに関連するボリュームに関する情報を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
+| server_profile_available_storage_systems   | サーバープロファイルで利用可能なストレージシステムとそれに関連するボリュームのリストに関する情報を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
+| server_profile_available_targets   | サーバープロファイルへの割り当てに使用できるターゲットサーバーと空のデバイスベイに関する情報を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
+| server_profile_compliance_preview   | サーバープロファイルをそのテンプレートに準拠させるために必要な手動および自動更新に関するすべての情報を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
+| server_profile_messages   | プロファイルに関連付けられたプロファイルステータスメッセージに関する情報を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
+| server_profile_new_profile_template   | サーバープロファイルテンプレートの生成に使用できる、サーバープロファイルから派生した情報を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
+| server_profile_profile_ports   | プロファイルに関連付けられているポートモデルに関する情報を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
+| server_profile_schema   | サーバープロファイルスキームに関する情報を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
+| server_profile_transformation   | 新しいサーバーハードウェアタイプやエンクロージャグループを提供することにより、既存のプロファイルの変換に関する情報を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
+| server_profiles   | サーバープロファイルに関するすべてのOneViewの情報を持っています。|  常時、ただしnullの場合があります。|  dict |
 
 
 #### 注記
@@ -9726,7 +10237,7 @@ OneViewサーバープロファイルテンプレートリソースを管理し�
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| server_profile_template   | サーバープロファイルテンプレートに関するOneViewの事実を持っています。|  状態 'present'nullの場合があります。|  dict |
+| server_profile_template   | サーバープロファイルテンプレートに関するOneViewの情報を持っています。|  状態 'present'nullの場合があります。|  dict |
 
 
 #### 注記
@@ -9746,10 +10257,10 @@ volumeAttachmentsリストでvolumeUriをnullとして定義すると、ボリ�
 
 
 ## oneview_server_profile_template_facts
-OneViewからサーバープロファイルテンプレートに関する事実を取得します。
+OneViewからサーバープロファイルテンプレートに関する情報を取得します。
 
 #### 概要
- OneViewからサーバープロファイルテンプレートに関する事実を取得します。
+ OneViewからサーバープロファイルテンプレートに関する情報を取得します。
 
 #### 要件 (モジュールを実行するホスト)
   * python >= 2.7.9
@@ -9761,7 +10272,7 @@ OneViewからサーバープロファイルテンプレートに関する事実�
 | ------------- |-------------| ---------|----------- |--------- |
 | config  |   No  |  | |  OneViewクライアント構成を含む.json構成ファイルへのパス。構成ファイルはオプションです。ファイルパスが指定されていない場合、構成は環境変数からロードされます。  |
 | name  |   |  | |  サーバープロファイルテンプレート名。  |
-| options  |   |  | |  サーバープロファイルテンプレートリソースに関する追加の事実を収集するオプションを表示します。可能なオプション: `new_profile`、`transformation`、`available_networks`。  |
+| options  |   |  | |  サーバープロファイルテンプレートリソースに関する追加の情報を収集するオプションを表示します。可能なオプション: `new_profile`、`transformation`、`available_networks`。  |
 | params  |   No  |  | |  リソースのリストを区切り、フィルター、ソートするパラメーターのリスト。  可能なパラメーター: `start`: 0から始まるインデックスを使用して返される最初のアイテム。`count`: 返されるリソースの数。`filter`: 返されるアイテムのリストを絞り込むための一般的なフィルター/クエリ文字列。`sort`: 返されたデータセットのソート順。  |
 | uri  |   |  | |  サーバープロファイルテンプレートuri。  |
 
@@ -9842,8 +10353,8 @@ OneViewからサーバープロファイルテンプレートに関する事実�
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
 | new_profile   | このテンプレートに基づいた構成を持つプロファイルオブジェクト。|  要求された場合、ただしnullの場合があります。|  dict |
-| server_profile_template_available_networks   | サーバープロファイルで使用可能なイーサネットネットワーク、ファイバーチャネルネットワーク、およびネットワークセットのリストと、それぞれのポートに関するすべての事実と、それぞれのポートがあります。|  要求された場合、ただしnullの場合があります。|  dict |
-| server_profile_templates   | サーバープロファイルテンプレートに関するすべてのOneViewの事実を持っています。|  常時、ただしnullの場合があります。|  dict |
+| server_profile_template_available_networks   | サーバープロファイルで使用可能なイーサネットネットワーク、ファイバーチャネルネットワーク、およびネットワークセットのリストと、それぞれのポートに関するすべての情報と、それぞれのポートがあります。|  要求された場合、ただしnullの場合があります。|  dict |
+| server_profile_templates   | サーバープロファイルテンプレートに関するすべてのOneViewの情報を持っています。|  常時、ただしnullの場合があります。|  dict |
 
 
 #### 注記
@@ -9897,7 +10408,6 @@ OneViewストレージプールリソースを管理します。
        storageSystemUri: "/rest/storage-systems/TXQ1010307"
        poolName: "FST_CPG2"
   delegate_to: localhost
-
 - name: Delete the Storage Pool (prior to API500)
   oneview_storage_pool:
     hostname: 172.16.101.48
@@ -9908,26 +10418,24 @@ OneViewストレージプールリソースを管理します。
     data:
        poolName: "FST_CPG2"
   delegate_to: localhost
-
 - name: Ensure the storage pool 'FST_CPG2' is managed by the appliance (API500 onwards)
   oneview_storage_pool:
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     state: present
     data:
        storageSystemUri: "/rest/storage-systems/TXQ1010307"
        poolName: FST_CPG2
        isManaged: True
   delegate_to: localhost
-
 - name: Ensure the storage pool 'FST_CPG2' is unmanaged (API500 onwards)
   oneview_storage_pool:
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     state: present
     data:
        storageSystemUri: "/rest/storage-systems/TXQ1010307"
@@ -9943,7 +10451,7 @@ OneViewストレージプールリソースを管理します。
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| storage_pool   | ストレージプールに関するOneViewの事実を持っています。|  'present'の状態ですが、nullの場合があります。|  dict |
+| storage_pool   | ストレージプールに関するOneViewの情報を持っています。|  'present'の状態ですが、nullの場合があります。|  dict |
 
 
 #### 注記
@@ -9959,10 +10467,10 @@ OneViewストレージプールリソースを管理します。
 
 
 ## oneview_storage_pool_facts
-1つ以上のストレージプールに関する事実を取得します。
+1つ以上のストレージプールに関する情報を取得します。
 
 #### 概要
- OneViewから1つ以上のストレージプールに関する事実を取得します。
+ OneViewから1つ以上のストレージプールに関する情報を取得します。
 
 #### 要件 (モジュールを実行するホスト)
   * python >= 2.7.9
@@ -9974,7 +10482,7 @@ OneViewストレージプールリソースを管理します。
 | ------------- |-------------| ---------|----------- |--------- |
 | config  |   No  |  | |  OneViewクライアント構成を含む.json構成ファイルへのパス。構成ファイルはオプションです。ファイルパスが指定されていない場合、構成は環境変数からロードされます。  |
 | name  |   No  |  | |  ストレージプール名。  |
-| options  |   No  |  | |  ストレージプールに関する追加の事実を収集するオプションを表示します。可能なオプション: `reachableStoragePools`は、ネットワークパラメーターに基づいて到達可能なストレージプールのリストを取得します。ネットワークパラメータが指定されていない場合は、すべてが取得されます。  |
+| options  |   No  |  | |  ストレージプールに関する追加の情報を収集するオプションを表示します。可能なオプション: `reachableStoragePools`は、ネットワークパラメーターに基づいて到達可能なストレージプールのリストを取得します。ネットワークパラメータが指定されていない場合は、すべてが取得されます。  |
 | params  |   No  |  | |  リソースのリストを区切り、フィルター、ソートするパラメーターのリスト。  可能なパラメーター: `start`: 0から始まるインデックスを使用して返される最初のアイテム。`count`: 返されるリソースの数。`filter`: 返されるアイテムのリストを絞り込むための一般的なフィルター/クエリ文字列。`sort`: 返されたデータセットのソート順。  |
 
 
@@ -9988,42 +10496,36 @@ OneViewストレージプールリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
   delegate_to: localhost
-
 - debug: var=storage_pools
-
 - name: Gather paginated, filtered and sorted facts about Storage Pools
   oneview_storage_pool_facts:
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     params:
       start: 0
       count: 3
       sort: 'name:descending'
       filter: status='OK'
-
 - debug: var=storage_pools
-
 - name: Gather facts about a Storage Pool by name
   oneview_storage_pool_facts:
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     name: "CPG_FC-AO"
   delegate_to: localhost
-
 - debug: var=storage_pools
-
 - name: Gather facts about the reachable Storage Pools
   oneview_storage_pool_facts:
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     options:
         - reachableStoragePools
     params:
@@ -10036,7 +10538,6 @@ OneViewストレージプールリソースを管理します。
             - /rest/storage-pools/5F9CA89B-C632-4F09-BC55-A8AA00DA5C4A
         scope_uris: '/rest/scopes/754e0dce-3cbd-4188-8923-edf86f068bf7'
   delegate_to: localhost
-
 - debug: var=storage_pools_reachable_storage_pools
 
 ```
@@ -10047,8 +10548,8 @@ OneViewストレージプールリソースを管理します。
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| storage_pools   | ストレージプールに関するすべてのOneViewの事実を持っています。|  常時、ただしnullの場合があります。|  dict |
-Reachableストレージプールに関するすべてのOneViewの事実を持っています。|  常時、ただしnullの場合があります。|  dict |
+| storage_pools   | ストレージプールに関するすべてのOneViewの情報を持っています。|  常時、ただしnullの場合があります。|  dict |
+Reachableストレージプールに関するすべてのOneViewの情報を持っています。|  常時、ただしnullの場合があります。|  dict |
 
 
 #### 注記
@@ -10164,7 +10665,7 @@ OneViewストレージシステムリソースを管理します。
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| storage_system   | ストレージシステムに関するOneViewの事実を持っています。|  状態 'present'nullの場合があります。|  dict |
+| storage_system   | ストレージシステムに関するOneViewの情報を持っています。|  状態 'present'nullの場合があります。|  dict |
 
 
 #### 注記
@@ -10180,10 +10681,10 @@ OneViewストレージシステムリソースを管理します。
 
 
 ## oneview_storage_system_facts
-OneViewストレージシステムに関する事実を取得します。
+OneViewストレージシステムに関する情報を取得します。
 
 #### 概要
- OneViewからストレージシステムに関する事実を取得します。
+ OneViewからストレージシステムに関する情報を取得します。
 
 #### 要件 (モジュールを実行するホスト)
   * python >= 2.7.9
@@ -10195,7 +10696,7 @@ OneViewストレージシステムに関する事実を取得します。
 | ------------- |-------------| ---------|----------- |--------- |
 | config  |   No  |  | |  OneViewクライアント構成を含む.json構成ファイルへのパス。構成ファイルはオプションです。ファイルパスが指定されていない場合、構成は環境変数からロードされます。  |
 | name  |   |  | |  ストレージシステム名。  |
-| options  |   |  | |  ストレージシステムと関連リソースに関する追加の事実を収集するオプションを表示します。可能なオプション: `hostTypes`は、サポートされているホストタイプのリストを取得します。`storagePools`は、指定されたストレージシステムに属するストレージプールのリストを取得します。`reachablePorts`は、ストレージシステムの到達可能なポートのリストを取得します。`params`を受け入れます。追加の `networks`リストパラメータを使用して、これらのみの検索を制限できます。`templates`は、ストレージシステムに属するストレージテンプレートのリストを取得します。  `storagePools`、`reachablePorts`、および`templates`に関する事実を収集するには、引数`name`、`ip_hostname`、または`hostname`のいずれかを通知する必要があります。それ以外の場合、このオプションは無視されます。  |
+| options  |   |  | |  ストレージシステムと関連リソースに関する追加の情報を収集するオプションを表示します。可能なオプション: `hostTypes`は、サポートされているホストタイプのリストを取得します。`storagePools`は、指定されたストレージシステムに属するストレージプールのリストを取得します。`reachablePorts`は、ストレージシステムの到達可能なポートのリストを取得します。`params`を受け入れます。追加の `networks`リストパラメータを使用して、これらのみの検索を制限できます。`templates`は、ストレージシステムに属するストレージテンプレートのリストを取得します。  `storagePools`、`reachablePorts`、および`templates`に関する情報を収集するには、引数`name`、`ip_hostname`、または`hostname`のいずれかを通知する必要があります。それ以外の場合、このオプションは無視されます。  |
 | params  |   No  |  | |  リソースのリストを区切り、フィルター、ソートするパラメーターのリスト。  可能なパラメーター: `start`: 0から始まるインデックスを使用して返される最初のアイテム。`count`: 返されるリソースの数。`filter`: 返されるアイテムのリストを絞り込むための一般的なフィルター/クエリ文字列。`sort`: 返されたデータセットのソート順。  |
 | storage_hostname  |   |  | |  ストレージシステムのIPまたはホスト名。  |
 
@@ -10318,11 +10819,11 @@ OneViewストレージシステムに関する事実を取得します。
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| storage_system_host_types   | サポートされているホストタイプに関するすべてのOneViewの事実を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
-| storage_system_pools   | ストレージシステム-ストレージプールに関するすべてのOneViewの事実を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
-| storage_system_reachable_ports   | ストレージシステムの到達可能ポートに関するすべてのOneViewの事実を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
-| storage_system_templates   | ストレージシステム-ストレージテンプレートに関するすべてのOneViewの事実を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
-| storage_systems   | ストレージシステムに関するすべてのOneViewの事実を持っています。|  常時、ただしnullの場合があります。|  dict |
+| storage_system_host_types   | サポートされているホストタイプに関するすべてのOneViewの情報を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
+| storage_system_pools   | ストレージシステム-ストレージプールに関するすべてのOneViewの情報を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
+| storage_system_reachable_ports   | ストレージシステムの到達可能ポートに関するすべてのOneViewの情報を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
+| storage_system_templates   | ストレージシステム-ストレージテンプレートに関するすべてのOneViewの情報を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
+| storage_systems   | ストレージシステムに関するすべてのOneViewの情報を持っています。|  常時、ただしnullの場合があります。|  dict |
 
 
 #### 注記
@@ -10363,7 +10864,10 @@ OneViewストレージシステムに関する事実を取得します。
 
 - name: Removes extra presentations from a specified server profile URI
   oneview_storage_volume_attachment:
-    config: "{{ config }}"
+    hostname: 172.16.101.48
+    username: administrator
+    password: my_password
+    api_version: 2200
     state: extra_presentations_removed
     server_profile: "/rest/server-profiles/e6516410-c873-4644-ab93-d26dba6ccf0d"
   delegate_to: localhost
@@ -10373,7 +10877,10 @@ OneViewストレージシステムに関する事実を取得します。
 
 - name: Removes extra presentations from a specified server profile name
   oneview_storage_volume_attachment:
-    config: "{{ config }}"
+    hostname: 172.16.101.48
+    username: administrator
+    password: my_password
+    api_version: 2200
     state: extra_presentations_removed
     server_profile: "SV-1001"
   delegate_to: localhost
@@ -10388,7 +10895,7 @@ OneViewストレージシステムに関する事実を取得します。
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| server_profile   | 修復されたサーバープロファイルに関するすべてのOneViewの事実を持っています。|  常時。|  dict |
+| server_profile   | 修復されたサーバープロファイルに関するすべてのOneViewの情報を持っています。|  常時。|  dict |
 
 
 #### 注記
@@ -10404,10 +10911,10 @@ OneViewストレージシステムに関する事実を取得します。
 
 
 ## oneview_storage_volume_attachment_facts
-OneViewストレージボリュームのアタッチメントに関する事実を取得します。
+OneViewストレージボリュームのアタッチメントに関する情報を取得します。
 
 #### 概要
- OneViewストレージボリュームのアタッチメントに関する事実を取得します。特定のストレージボリュームアタッチメントに関する事実を収集するには、_storageVolumeAttachmentUri_オプションに通知する必要があります。サーバープロファイルとボリュームによって特定のストレージボリュームのアタッチメントを取得することもできます。このオプションでは、_serverProfileName_オプションと_storageVolumeName_または_storageVolumeUri_パラメーターに通知する必要があります。
+ OneViewストレージボリュームのアタッチメントに関する情報を取得します。特定のストレージボリュームアタッチメントに関する情報を収集するには、_storageVolumeAttachmentUri_オプションに通知する必要があります。サーバープロファイルとボリュームによって特定のストレージボリュームのアタッチメントを取得することもできます。このオプションでは、_serverProfileName_オプションと_storageVolumeName_または_storageVolumeUri_パラメーターに通知する必要があります。
 
 #### 要件 (モジュールを実行するホスト)
   * python >= 2.7.9
@@ -10418,7 +10925,7 @@ OneViewストレージボリュームのアタッチメントに関する事実�
 | パラメーター     | 必要    | デフォルト  | 選択肢    | コメント |
 | ------------- |-------------| ---------|----------- |--------- |
 | config  |   No  |  | |  OneViewクライアント構成を含む.json構成ファイルへのパス。構成ファイルはオプションです。ファイルパスが指定されていない場合、構成は環境変数からロードされます。  |
-| options  |   No  |  | |  追加の事実を取得します。利用可能なオプション: `extraUnmanagedStorageVolumes`は、追加のアンマネージドストレージボリュームのリストを取得します。`paths`は、指定されたボリュームアタッチメントのすべてのパスまたは特定のアタッチメントパスを取得します。特定のパスを取得するには、「pathUri」または「pathId」に通知する必要があります  |
+| options  |   No  |  | |  追加の情報を取得します。利用可能なオプション: `extraUnmanagedStorageVolumes`は、追加のアンマネージドストレージボリュームのリストを取得します。`paths`は、指定されたボリュームアタッチメントのすべてのパスまたは特定のアタッチメントパスを取得します。特定のパスを取得するには、「pathUri」または「pathId」に通知する必要があります  |
 | params  |   No  |  | |  リソースのリストを区切り、フィルター、ソートするパラメーターのリスト。  可能なパラメーター: `start`: 0から始まるインデックスを使用して返される最初のアイテム。`count`: 返されるリソースの数。`filter`: 返されるアイテムのリストを絞り込むための一般的なフィルター/クエリ文字列。`sort`: 返されたデータセットのソート順。  |
 | serverProfileName  |   No  |  | |  サーバープロファイル名。  |
 | storageVolumeAttachmentUri  |   No  |  | |  ストレージボリュームアタッチメントURI。  |
@@ -10433,14 +10940,20 @@ OneViewストレージボリュームのアタッチメントに関する事実�
 
 - name: Gather facts about all Storage Volume Attachments
   oneview_storage_volume_attachment_facts:
-    config: "{{ config }}"
+    hostname: 172.16.101.48
+    username: administrator
+    password: my_password
+    api_version: 2200
   delegate_to: localhost
 
 - debug: var=storage_volume_attachments
 
 - name: Gather paginated, filtered and sorted facts about Storage Volume Attachments
   oneview_storage_volume_attachment_facts:
-    config: "{{ config }}"
+    hostname: 172.16.101.48
+    username: administrator
+    password: my_password
+    api_version: 2200
     params:
       start: 0
       count: 2
@@ -10451,7 +10964,10 @@ OneViewストレージボリュームのアタッチメントに関する事実�
 
 - name: Gather facts about a Storage Volume Attachment by Server Profile and Volume
   oneview_storage_volume_attachment_facts:
-    config: "{{ config }}"
+    hostname: 172.16.101.48
+    username: administrator
+    password: my_password
+    api_version: 2200
     serverProfileName: "sp-web"
     storageVolumeName: "volume-test" # You could inform either the volume name or the volume uri
     # storageVolumeUri: "volume-test"
@@ -10462,7 +10978,10 @@ OneViewストレージボリュームのアタッチメントに関する事実�
 
 - name: Gather facts about extra unmanaged storage volumes
   oneview_storage_volume_attachment_facts:
-    config: "{{ config }}"
+    hostname: 172.16.101.48
+    username: administrator
+    password: my_password
+    api_version: 2200
     options:
       - extraUnmanagedStorageVolumes:
             start: 0     # optional
@@ -10476,7 +10995,10 @@ OneViewストレージボリュームのアタッチメントに関する事実�
 
 - name: Gather facts about all paths for the specified volume attachment
   oneview_storage_volume_attachment_facts:
-    config: "{{ config }}"
+    hostname: 172.16.101.48
+    username: administrator
+    password: my_password
+    api_version: 2200
     serverProfileName: "sp-web"
     storageVolumeUri: "/rest/storage-volumes/12345-AAA-BBBB-CCCC-121212AA"
     options:
@@ -10488,7 +11010,10 @@ OneViewストレージボリュームのアタッチメントに関する事実�
 
 - name: Gather facts about a specific attachment path
   oneview_storage_volume_attachment_facts:
-    config: "{{ config }}"
+    hostname: 172.16.101.48
+    username: administrator
+    password: my_password
+    api_version: 2200
     serverProfileName: "sp-web"
     storageVolumeUri: "/rest/storage-volumes/12345-AAA-BBBB-CCCC-121212AA"
     options:
@@ -10509,9 +11034,9 @@ OneViewストレージボリュームのアタッチメントに関する事実�
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| extra_unmanaged_storage_volumes   | 追加の非管理対象ストレージボリュームに関する事実を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
-Has facts about all 指定されたボリュームアタッチメントのすべてのパスまたは特定のアタッチメントパスに関する事実を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
-| storage_volume_attachments   | ストレージボリュームの添付ファイルに関するすべてのOneViewの事実を持っています。|  常時、ただしnullの場合があります。|  dict |
+| extra_unmanaged_storage_volumes   | 追加の非管理対象ストレージボリュームに関する情報を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
+Has facts about all 指定されたボリュームアタッチメントのすべてのパスまたは特定のアタッチメントパスに関する情報を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
+| storage_volume_attachments   | ストレージボリュームの添付ファイルに関するすべてのOneViewの情報を持っています。|  常時、ただしnullの場合があります。|  dict |
 
 
 #### 注記
@@ -10585,7 +11110,7 @@ OneViewストレージボリュームテンプレートリソースを管理し�
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| storage_volume_template   | ストレージボリュームテンプレートに関するOneViewの事実を持っています。|  'present'の状態ですが、nullの場合があります。|  dict |
+| storage_volume_template   | ストレージボリュームテンプレートに関するOneViewの情報を持っています。|  'present'の状態ですが、nullの場合があります。|  dict |
 
 
 #### 注記
@@ -10616,7 +11141,7 @@ Retrieve facts about Storage Volume Templates of the OneView.
 | ------------- |-------------| ---------|----------- |--------- |
 | config  |   No  |  | |  OneViewクライアント構成を含む.json構成ファイルへのパス。構成ファイルはオプションです。ファイルパスが指定されていない場合、構成は環境変数からロードされます。  |
 | name  |   No  |  | |  ストレージボリュームテンプレート名。  |
-| options  |   No  |  | |  追加の事実を取得します。 Options available: `connectableVolumeTemplates`, `reachableVolumeTemplates`, `compatibleSystems`  |
+| options  |   No  |  | |  追加の情報を取得します。 Options available: `connectableVolumeTemplates`, `reachableVolumeTemplates`, `compatibleSystems`  |
 | params  |   No  |  | |  リソースのリストを区切り、フィルター、ソートするパラメーターのリスト。  可能なパラメーター: `start`: 0から始まるインデックスを使用して返される最初のアイテム。`count`: 返されるリソースの数。`filter`: 返されるアイテムのリストを絞り込むための一般的なフィルター/クエリ文字列。`sort`: 返されたデータセットのソート順。  |
 
 
@@ -10703,10 +11228,10 @@ Retrieve facts about Storage Volume Templates of the OneView.
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| compatible_systems   | ストレージボリュームテンプレートと互換性のあるストレージシステムに関する事実を持っています。APIバージョン500以降のみ。|  要求された場合、ただしnullの場合があります。|  dict |
-| connectable_volume_templates   | 接続可能なストレージボリュームテンプレートに関する事実を持っています。APIバージョン<= 300のみ。|  要求された場合、ただしnullの場合があります。|  dict |
-| reachable_volume_templates   | Reachable Storage Volumeテンプレートに関する事実を持っています。APIバージョン500以降のみ。|  要求された場合、ただしnullの場合があります。|  dict |
-| storage_volume_templates   | ストレージボリュームテンプレートに関するすべてのOneViewの事実を持っています。|  常時、ただしnullの場合があります。|  dict |
+| compatible_systems   | ストレージボリュームテンプレートと互換性のあるストレージシステムに関する情報を持っています。APIバージョン500以降のみ。|  要求された場合、ただしnullの場合があります。|  dict |
+| connectable_volume_templates   | 接続可能なストレージボリュームテンプレートに関する情報を持っています。APIバージョン<= 300のみ。|  要求された場合、ただしnullの場合があります。|  dict |
+| reachable_volume_templates   | Reachable Storage Volumeテンプレートに関する情報を持っています。APIバージョン500以降のみ。|  要求された場合、ただしnullの場合があります。|  dict |
+| storage_volume_templates   | ストレージボリュームテンプレートに関するすべてのOneViewの情報を持っています。|  常時、ただしnullの場合があります。|  dict |
 
 
 #### 注記
@@ -10788,7 +11313,7 @@ Retrieve facts about the OneView Switches.
 | ------------- |-------------| ---------|----------- |--------- |
 | config  |   No  |  | |  OneViewクライアント構成を含む.json構成ファイルへのパス。構成ファイルはオプションです。ファイルパスが指定されていない場合、構成は環境変数からロードされます。  |
 | name  |   No  |  | |  スイッチ名。  |
-| options  |   No  |  | |  スイッチに関する追加の事実を収集するオプションを表示します。可能なオプション: `environmentalConfiguration`は、スイッチの環境設定を取得します。  |
+| options  |   No  |  | |  スイッチに関する追加の情報を収集するオプションを表示します。可能なオプション: `environmentalConfiguration`は、スイッチの環境設定を取得します。  |
 | params  |   No  |  | |  リソースのリストを区切り、フィルター、ソートするパラメーターのリスト。  可能なパラメーター: `start`: 0から始まるインデックスを使用して返される最初のアイテム。`count`: 返されるリソースの数。`filter`: 返されるアイテムのリストを絞り込むための一般的なフィルター/クエリ文字列。`sort`: 返されたデータセットのソート順。  |
 
 
@@ -10925,7 +11450,7 @@ Retrieve facts about the OneView Switch Types.
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| switch_types   | スイッチタイプに関するすべてのOneViewの事実を持っています。|  常時、ただしnullの場合があります。|  dict |
+| switch_types   | スイッチタイプに関するすべてのOneViewの情報を持っています。|  常時、ただしnullの場合があります。|  dict |
 
 
 #### 注記
@@ -10941,10 +11466,10 @@ Retrieve facts about the OneView Switch Types.
 
 
 ## oneview_task_facts
-OneViewタスクに関する事実を取得します。
+OneViewタスクに関する情報を取得します。
 
 #### 概要
- OneViewタスクに関する事実を取得します。
+ OneViewタスクに関する情報を取得します。
 
 #### 要件 (モジュールを実行するホスト)
   * python >= 2.7.9
@@ -11090,7 +11615,7 @@ OneView非管理対象デバイスリソースを管理します。
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| unmanaged_device   | 非管理対象デバイスに関するOneViewの事実を持っています。|  状態 'present'nullの場合があります。|  dict |
+| unmanaged_device   | 非管理対象デバイスに関するOneViewの情報を持っています。|  状態 'present'nullの場合があります。|  dict |
 
 
 #### 注記
@@ -11108,10 +11633,10 @@ OneView非管理対象デバイスリソースを管理します。
 
 
 ## oneview_unmanaged_device_facts
-1つ以上のOneView非管理対象デバイスに関する事実を取得します。
+1つ以上のOneView非管理対象デバイスに関する情報を取得します。
 
 #### 概要
- OneViewから1つ以上の管理対象外デバイスに関する事実を取得します。
+ OneViewから1つ以上の管理対象外デバイスに関する情報を取得します。
 
 #### 要件 (モジュールを実行するホスト)
   * python >= 2.7.9
@@ -11123,7 +11648,7 @@ OneView非管理対象デバイスリソースを管理します。
 | ------------- |-------------| ---------|----------- |--------- |
 | config  |   No  |  | |  OneViewクライアント構成を含む.json構成ファイルへのパス。構成ファイルはオプションです。ファイルパスが指定されていない場合、構成は環境変数からロードされます。  |
 | name  |   No  |  | |  非管理対象デバイス名。  |
-| options  |   |  | |  非管理対象デバイスに関する追加の事実を収集するオプションを表示します。可能なオプション: `environmental_configuration`は、非管理対象デバイスの環境設定の説明を取得します。  |
+| options  |   |  | |  非管理対象デバイスに関する追加の情報を収集するオプションを表示します。可能なオプション: `environmental_configuration`は、非管理対象デバイスの環境設定の説明を取得します。  |
 | params  |   No  |  | |  リソースのリストを区切り、フィルター、ソートするパラメーターのリスト。  可能なパラメーター: `start`: 0から始まるインデックスを使用して返される最初のアイテム。`count`: 返されるリソースの数。`filter`: 返されるアイテムのリストを絞り込むための一般的なフィルター/クエリ文字列。`sort`: 返されたデータセットのソート順。  |
 
 
@@ -11269,7 +11794,7 @@ OneViewアップリンクセットリソースを管理します。
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| uplink_set   | アップリンクセットに関するOneViewの事実を持っています。|  状態 'present'nullの場合があります。|  dict |
+| uplink_set   | アップリンクセットに関するOneViewの情報を持っています。|  状態 'present'nullの場合があります。|  dict |
 
 
 #### 注記
@@ -11287,10 +11812,10 @@ OneViewアップリンクセットリソースを管理します。
 
 
 ## oneview_uplink_set_facts
-1つ以上のOneViewアップリンクセットに関する事実を取得します。
+1つ以上のOneViewアップリンクセットに関する情報を取得します。
 
 #### 概要
- OneViewから1つ以上のアップリンクセットに関する事実を取得します。
+ OneViewから1つ以上のアップリンクセットに関する情報を取得します。
 
 #### 要件 (モジュールを実行するホスト)
   * python >= 2.7.9
@@ -11351,7 +11876,7 @@ OneViewアップリンクセットリソースを管理します。
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| uplink_sets   | アップリンクセットに関するすべてのOneViewの事実を持っています。|  常時、ただしnullの場合があります。|  dict |
+| uplink_sets   | アップリンクセットに関するすべてのOneViewの情報を持っています。|  常時、ただしnullの場合があります。|  dict |
 
 
 #### 注記
@@ -11436,7 +11961,7 @@ OneViewユーザーを管理します。
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| user   | OneViewユーザーに関する事実を持っています。|  状態 'present'nullの場合があります。|  dict |
+| user   | OneViewユーザーに関する情報を持っています。|  状態 'present'nullの場合があります。|  dict |
 
 
 #### 注記
@@ -11452,10 +11977,10 @@ OneViewユーザーを管理します。
 
 
 ## oneview_user_facts
-1人以上のOneViewユーザーに関する事実を取得します。
+1人以上のOneViewユーザーに関する情報を取得します。
 
 #### 概要
- OneViewから1人以上のユーザーに関する事実を取得します。
+ OneViewから1人以上のユーザーに関する情報を取得します。
 
 #### 要件 (モジュールを実行するホスト)
   * python >= 2.7.9
@@ -11507,7 +12032,7 @@ OneViewユーザーを管理します。
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| users   | ユーザーに関するすべてのOneViewの事実を持っています。|  常時、ただしnullの場合があります。|  dict |
+| users   | ユーザーに関するすべてのOneViewの情報を持っています。|  常時、ただしnullの場合があります。|  dict |
 
 
 #### 注記
@@ -11558,7 +12083,7 @@ OneViewユーザーを管理します。
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| version   | OneViewの現在および最小バージョンに関する事実を持っています。|  要求された場合、nullの場合があります |  dict |
+| version   | OneViewの現在および最小バージョンに関する情報を持っています。|  要求された場合、nullの場合があります |  dict |
 
 
 #### 注記
@@ -11590,7 +12115,7 @@ OneView Volumeリソースを管理します。
 | config  |   No  |  | |  OneViewクライアント構成を含む.json構成ファイルへのパス。構成ファイルはオプションです。ファイルパスが指定されていない場合、構成は環境変数からロードされます。  |
 | data  |   Yes  |  | |  ボリュームまたはスナップショットデータ。  |
 | export_only  |   |  False  | |  Trueに設定すると、ステータスが `absent`でリソースが存在する場合、OneViewからのみ削除されます。  |
-| state  |   |  | <ul> <li>present</li>  <li>absent</li>  <li>repaired</li>  <li>snapshot_created</li>  <li>snapshot_deleted</li> </ul> |  ボリュームリソースの望ましい状態を示します。`present`は、リソースが存在しない場合にリソースを作成/追加し、存在しない場合はリソースを更新します。リソースが既に存在する場合、指定されたオプションが既存のデータに準拠している場合でも常に呼び出されるため、更新操作は非集中的です。ボリュームの名前を変更するには、_data_の `newName`を提供する必要があります。`absent`は、デフォルトでOneViewとストレージシステムからボリュームを削除します。export_onlyがTrueの場合、ボリュームはOneViewからのみ削除されます。`repaired`は、ストレージシステム上の指定されたボリュームから余分なプレゼンテーションを削除します。この操作は冪等ではありません。`snapshot_created`は、指定されたボリュームのスナップショットを作成します。この操作は冪等ではありません。`snapshot_deleted`は、OneViewとストレージシステムからスナップショットを削除します。  |
+| state  |   |  | <ul> <li>present</li>  <li>absent</li>  <li>repaired</li>  <li>snapshot_created</li>  <li>snapshot_deleted</li> </ul> |  ボリュームリソースの望ましい状態を示します。`present`は、リソースが存在しない場合にリソースを作成/追加し、存在しない場合はリソースを更新します。リソースが既に存在する場合、指定されたオプションが既存のデータに準拠している場合でも常に呼び出されるため、更新操作は非集中的です。ボリュームの名前を変更するには、\_data\_の `newName`を提供する必要があります。`absent`は、デフォルトでOneViewとストレージシステムからボリュームを削除します。export_onlyがTrueの場合、ボリュームはOneViewからのみ削除されます。`repaired`は、ストレージシステム上の指定されたボリュームから余分なプレゼンテーションを削除します。この操作は冪等ではありません。`snapshot_created`は、指定されたボリュームのスナップショットを作成します。この操作は冪等ではありません。` snapshot_deleted `は、OneViewとストレージシステムからスナップショットを削除します。  |
 | validate_etag  |   |  True  | <ul> <li>true</li>  <li>false</li> </ul> |  ETag検証が有効になっている場合、リソースの現在のETagがデータで提供されているETagと一致する場合にのみ、リクエストが条件付きで処理されます。  |
 
 
@@ -11740,7 +12265,7 @@ OneView Volumeリソースを管理します。
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| storage_volume   | ストレージボリュームに関する事実を持っています。|  状態は'present'ですが、nullの場合があります。|  dict |
+| storage_volume   | ストレージボリュームに関する情報を持っています。|  状態は'present'ですが、nullの場合があります。|  dict |
 
 
 #### 注記
@@ -11756,10 +12281,10 @@ OneView Volumeリソースを管理します。
 
 
 ## oneview_volume_facts
-OneViewボリュームに関する事実を取得します。
+OneViewボリュームに関する情報を取得します。
 
 #### 概要
- OneViewからボリュームに関する事実を取得します。
+ OneViewからボリュームに関する情報を取得します。
 
 #### 要件 (モジュールを実行するホスト)
   * python >= 2.7.9
@@ -11771,7 +12296,7 @@ OneViewボリュームに関する事実を取得します。
 | ------------- |-------------| ---------|----------- |--------- |
 | config  |   No  |  | |  OneViewクライアント構成を含む.json構成ファイルへのパス。構成ファイルはオプションです。ファイルパスが指定されていない場合、構成は環境変数からロードされます。  |
 | name  |   No  |  | |  ボリューム名。  |
-| options  |   No  |  | |  ボリュームおよび関連リソースに関する追加の事実を収集するオプションを表示します。可能なオプション: - `attachableVolumes` - `extraManagedVolumePaths` - `snapshots`。このオプションでは、名前を指定できます。  |
+| options  |   No  |  | |  ボリュームおよび関連リソースに関する追加の情報を収集するオプションを表示します。可能なオプション: - `attachableVolumes` - `extraManagedVolumePaths` - `snapshots`。このオプションでは、名前を指定できます。  |
 | params  |   No  |  | |  リソースのリストを区切り、フィルター、ソートするパラメーターのリスト。  可能なパラメーター: `start`: 0から始まるインデックスを使用して返される最初のアイテム。`count`: 返されるリソースの数。`filter`: 返されるアイテムのリストを絞り込むための一般的なフィルター/クエリ文字列。`sort`: 返されたデータセットのソート順。  |
 
 
@@ -11850,9 +12375,9 @@ OneViewボリュームに関する事実を取得します。
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| attachable_volumes   | アプライアンスによって管理される接続可能なボリュームに関するすべての事実を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
-| extra_managed_volume_paths   | アプライアンスからの追加の管理ストレージボリュームパスに関するすべての事実を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
-| storage_volumes   | ボリュームに関するすべてのOneViewの事実を持っています。|  常時、ただしnullの場合があります。|  dict |
+| attachable_volumes   | アプライアンスによって管理される接続可能なボリュームに関するすべての情報を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
+| extra_managed_volume_paths   | アプライアンスからの追加の管理ストレージボリュームパスに関するすべての情報を持っています。|  要求された場合、ただしnullの場合があります。|  dict |
+| storage_volumes   | ボリュームに関するすべてのOneViewの情報を持っています。|  常時、ただしnullの場合があります。|  dict |
 
 
 #### 注記
@@ -11865,3 +12390,4 @@ OneViewボリュームに関する事実を取得します。
 
 
 ---
+
