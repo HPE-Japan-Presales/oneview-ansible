@@ -518,7 +518,7 @@ Image Stream OSビルド計画リソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     state: present
     data:
       name: 'Demo OS Build Plan'
@@ -531,7 +531,7 @@ Image Stream OSビルド計画リソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     state: present
     data:
       name: 'Demo OS Build Plan'
@@ -544,7 +544,7 @@ Image Stream OSビルド計画リソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     state: absent
     data:
         name: 'Demo OS Build Plan'
@@ -602,7 +602,7 @@ Image Stream OSビルド計画リソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
   delegate_to: localhost
 - debug: var=build_plans
 
@@ -611,7 +611,7 @@ Image Stream OSビルド計画リソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     params:
       start: 0
       count: 3
@@ -625,7 +625,7 @@ Image Stream OSビルド計画リソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     name: "{{ name }}"
   delegate_to: localhost
 - debug: var=build_plans
@@ -756,7 +756,7 @@ Retrieve facts about the Image Streamer Deployment Groups.
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     state: present
     data:
       description: "Description of this Deployment Plan"
@@ -770,7 +770,7 @@ Retrieve facts about the Image Streamer Deployment Groups.
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     state: present
     data:
       name: 'Demo Deployment Plan'
@@ -783,7 +783,7 @@ Retrieve facts about the Image Streamer Deployment Groups.
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     state: absent
     data:
         name: 'Demo Deployment Plan'
@@ -841,7 +841,7 @@ Retrieve facts about the Image Streamer Deployment Groups.
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
   delegate_to: localhost
 - debug: var=deployment_plans
 
@@ -850,7 +850,7 @@ Retrieve facts about the Image Streamer Deployment Groups.
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     params:
       start: 0
       count: 3
@@ -864,7 +864,7 @@ Retrieve facts about the Image Streamer Deployment Groups.
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     name: "Demo Deployment Plan"
   delegate_to: localhost
 - debug: var=deployment_plans
@@ -874,7 +874,7 @@ Retrieve facts about the Image Streamer Deployment Groups.
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     name: "Demo Deployment Plan"
     options: "usedby"
   delegate_to: localhost
@@ -885,7 +885,7 @@ Retrieve facts about the Image Streamer Deployment Groups.
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     name: "Demo Deployment Plan"
     options: "osdp"
   delegate_to: localhost
@@ -943,7 +943,7 @@ Retrieve facts about the Image Streamer Deployment Groups.
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     state: present
     data:
       name: 'Demo Golden Image creation'
@@ -958,7 +958,7 @@ Retrieve facts about the Image Streamer Deployment Groups.
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     state: present
     data:
       name: 'Demo Golden Image upload'
@@ -971,7 +971,7 @@ Retrieve facts about the Image Streamer Deployment Groups.
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     state: present
     data:
       name: 'Demo Golden Image upload'
@@ -984,7 +984,7 @@ Retrieve facts about the Image Streamer Deployment Groups.
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     state: downloaded
     data:
       name: 'Demo Golden Image'
@@ -996,7 +996,7 @@ Retrieve facts about the Image Streamer Deployment Groups.
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     state: archive_downloaded
     data:
       name: 'Demo Golden Image'
@@ -1008,7 +1008,7 @@ Retrieve facts about the Image Streamer Deployment Groups.
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     state: absent
     data:
         name: 'Golden Image name'
@@ -1066,7 +1066,7 @@ Retrieve facts about the Image Streamer Deployment Groups.
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
   delegate_to: localhost
 - debug: var=golden_images
 
@@ -1075,7 +1075,7 @@ Retrieve facts about the Image Streamer Deployment Groups.
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     params:
       start: 0
       count: 3
@@ -1089,7 +1089,7 @@ Retrieve facts about the Image Streamer Deployment Groups.
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     name: "{{ name }}"
   delegate_to: localhost
 - debug: var=golden_images
@@ -1147,7 +1147,7 @@ Retrieve facts about the Image Streamer Deployment Groups.
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     image_streamer_hostname: 172.16.101.48
   delegate_to: localhost
 - debug: var=os_volumes
@@ -1157,7 +1157,7 @@ Retrieve facts about the Image Streamer Deployment Groups.
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     image_streamer_hostname: 172.16.101.48
     params:
       start: 0
@@ -1172,7 +1172,7 @@ Retrieve facts about the Image Streamer Deployment Groups.
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     image_streamer_hostname: 172.16.101.48
     name: "Test Volume"
   delegate_to: localhost
@@ -1183,7 +1183,7 @@ Retrieve facts about the Image Streamer Deployment Groups.
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     image_streamer_hostname: 172.16.101.48
     name: "Test Volume"
     options:
@@ -1196,7 +1196,7 @@ Retrieve facts about the Image Streamer Deployment Groups.
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     image_streamer_hostname: 172.16.101.48
     name: "Test Volume"
     options:
@@ -1260,7 +1260,7 @@ Retrieve facts about the Image Streamer Deployment Groups.
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     image_streamer_hostname: 172.16.101.48
     state: present
     data:
@@ -1276,7 +1276,7 @@ Retrieve facts about the Image Streamer Deployment Groups.
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     image_streamer_hostname: 172.16.101.48
     state: present
     data:
@@ -1291,7 +1291,7 @@ Retrieve facts about the Image Streamer Deployment Groups.
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     image_streamer_hostname: 172.16.101.48
     state: differences_retrieved
     data:
@@ -1305,7 +1305,7 @@ Retrieve facts about the Image Streamer Deployment Groups.
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     image_streamer_hostname: 172.16.101.48
     state: absent
     data:
@@ -1365,7 +1365,7 @@ Retrieve facts about the Image Streamer Deployment Groups.
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     image_streamer_hostname: 172.16.101.48
   delegate_to: localhost
 - debug: var=plan_scripts
@@ -1375,7 +1375,7 @@ Retrieve facts about the Image Streamer Deployment Groups.
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     image_streamer_hostname: 172.16.101.48
     params:
       start: 0
@@ -1390,7 +1390,7 @@ Retrieve facts about the Image Streamer Deployment Groups.
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     image_streamer_hostname: 172.16.101.48
     name: "Demo Plan Script"
   delegate_to: localhost
@@ -1447,7 +1447,7 @@ OneViewアラートに関する情報を取得します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     params:
       count: 2
 
@@ -1458,7 +1458,7 @@ OneViewアラートに関する情報を取得します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     params:
       count: 2
       filter: "alertState='Cleared'"
@@ -1470,7 +1470,7 @@ OneViewアラートに関する情報を取得します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     params:
       count: 5
       filter: "urgency='High'"
@@ -1529,7 +1529,7 @@ OneViewアラートに関する情報を取得します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: present
     data:
       communityString: 'public'
@@ -1588,7 +1588,7 @@ OneViewアプライアンスデバイス読み取りコミュニティに関す�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
 
 - debug:
     var: appliance_device_read_community
@@ -1645,7 +1645,7 @@ OneViewアプライアンスデバイス読み取りコミュニティに関す�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: present
     data:
       communityString: "public"
@@ -1661,7 +1661,7 @@ OneViewアプライアンスデバイス読み取りコミュニティに関す�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: present
     data:
       communityString: "private"
@@ -1677,7 +1677,7 @@ OneViewアプライアンスデバイス読み取りコミュニティに関す�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: absent
     data:
       destination: "10.0.0.1"
@@ -1691,7 +1691,7 @@ OneViewアプライアンスデバイス読み取りコミュニティに関す�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: absent
     data:
         uri: "/rest/appliance/trap-destinations/1"
@@ -1752,7 +1752,7 @@ OneViewアプライアンスのSNMPv1トラップ転送先に関する情報を�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
   delegate_to: localhost
 
 - debug:
@@ -1763,7 +1763,7 @@ OneViewアプライアンスのSNMPv1トラップ転送先に関する情報を�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     params:
       start: 0
       count: 3
@@ -1779,7 +1779,7 @@ OneViewアプライアンスのSNMPv1トラップ転送先に関する情報を�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     destination: '1.1.1.1'
   delegate_to: localhost
 
@@ -1838,7 +1838,7 @@ OneViewアプライアンスのSNMPv1トラップ転送先に関する情報を�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: present
     data:
         type: "Destination"
@@ -1855,7 +1855,7 @@ OneViewアプライアンスのSNMPv1トラップ転送先に関する情報を�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: present
     data:
       destinationAddress: "10.0.0.1"
@@ -1870,7 +1870,7 @@ OneViewアプライアンスのSNMPv1トラップ転送先に関する情報を�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: absent
     data:
         destinationAddress: "10.0.0.1"
@@ -1926,7 +1926,7 @@ OneViewアプライアンスのSNMPv3トラップ転送先に関する情報を�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
   delegate_to: localhost
 
 - debug:
@@ -1937,7 +1937,7 @@ OneViewアプライアンスのSNMPv3トラップ転送先に関する情報を�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     params:
       start: 0
       count: 3
@@ -1953,7 +1953,7 @@ OneViewアプライアンスのSNMPv3トラップ転送先に関する情報を�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     id: "19dc6a96-bd04-4724-819b-32bc660fcefc"
   delegate_to: localhost
 
@@ -2012,7 +2012,7 @@ OneViewアプライアンスのSNMPv3トラップ転送先に関する情報を�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: present
     data:
         type: "Users"
@@ -2029,7 +2029,7 @@ OneViewアプライアンスのSNMPv3トラップ転送先に関する情報を�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: set_password
     data:
       userName: "testUser"
@@ -2044,7 +2044,7 @@ OneViewアプライアンスのSNMPv3トラップ転送先に関する情報を�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: absent
     data:
         userName: "testUser"
@@ -2100,7 +2100,7 @@ OneViewアプライアンスSNMPv3ユーザーに関する情報を取得しま�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
 
 - debug:
     var: appliance_device_snmp_v3_users
@@ -2110,7 +2110,7 @@ OneViewアプライアンスSNMPv3ユーザーに関する情報を取得しま�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     params:
       start: 0
       count: 3
@@ -2126,7 +2126,7 @@ OneViewアプライアンスSNMPv3ユーザーに関する情報を取得しま�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     id: "2af33d0c-dc1f-4b5f-ba3e-e4a0b1acb899"
   delegate_to: localhost
 
@@ -2441,7 +2441,7 @@ OneView接続テンプレートリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: present
     data:
         name: 'name1304244267-1467656930023'
@@ -2505,7 +2505,7 @@ OneView接続テンプレートに関する情報を取得します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
   delegate_to: localhost
 - debug: var=connection_templates
 
@@ -2514,7 +2514,7 @@ OneView接続テンプレートに関する情報を取得します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     params:
       start: 0
       count: 3
@@ -2528,7 +2528,7 @@ OneView接続テンプレートに関する情報を取得します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     name: 'connection template name'
   delegate_to: localhost
 - debug: var=connection_templates
@@ -2538,7 +2538,7 @@ OneView接続テンプレートに関する情報を取得します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     options:
       - defaultConnectionTemplate
   delegate_to: localhost
@@ -2944,7 +2944,7 @@ OneViewエンクロージャーリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: present
     data:
       enclosureGroupUri : '{{ enclosure_group_uri }}'
@@ -2959,7 +2959,7 @@ OneViewエンクロージャーリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: present
     data:
       name: ‘Test-Enclosure'
@@ -2970,7 +2970,7 @@ OneViewエンクロージャーリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: reconfigured
     data:
       name: ‘Test-Enclosure'
@@ -2980,7 +2980,7 @@ OneViewエンクロージャーリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: absent
     data:
       name: ‘Test-Enclosure'
@@ -2990,7 +2990,7 @@ OneViewエンクロージャーリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: refreshed
     data:
       name: ‘Test-Enclosure'
@@ -3001,7 +3001,7 @@ OneViewエンクロージャーリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: create_certificate_request
     data:
       name: ‘Test-Enclosure'
@@ -3019,7 +3019,7 @@ OneViewエンクロージャーリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: get_certificate_request
     data:
       name: ‘Test-Enclosure'
@@ -3030,7 +3030,7 @@ OneViewエンクロージャーリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: import_certificate_request
     data:
       name: ‘Test-Enclosure'
@@ -3042,7 +3042,7 @@ OneViewエンクロージャーリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: present
     data:
       name: ‘Test-Enclosure'
@@ -3053,7 +3053,7 @@ OneViewエンクロージャーリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: appliance_bays_powered_on
     data:
       name: ‘Test-Enclosure'
@@ -3064,7 +3064,7 @@ OneViewエンクロージャーリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: uid_on
     data:
       name: ‘Test-Enclosure'
@@ -3074,7 +3074,7 @@ OneViewエンクロージャーリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: uid_off
     data:
       name: ‘Test-Enclosure'
@@ -3084,7 +3084,7 @@ OneViewエンクロージャーリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: manager_bays_uid_on
     data:
       name: ‘Test-Enclosure'
@@ -3095,7 +3095,7 @@ OneViewエンクロージャーリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: manager_bays_uid_off
     data:
       name: ‘Test-Enclosure'
@@ -3106,7 +3106,7 @@ OneViewエンクロージャーリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: manager_bays_power_state_e_fuse
     data:
       name: ‘Test-Enclosure'
@@ -3117,7 +3117,7 @@ OneViewエンクロージャーリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: manager_bays_power_state_reset
     data:
       name: ‘Test-Enclosure'
@@ -3128,7 +3128,7 @@ OneViewエンクロージャーリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: appliance_bays_power_state_e_fuse
     data:
       name: ‘Test-Enclosure'
@@ -3139,7 +3139,7 @@ OneViewエンクロージャーリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: device_bays_power_state_e_fuse
     data:
       name: ‘Test-Enclosure'
@@ -3150,7 +3150,7 @@ OneViewエンクロージャーリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: device_bays_power_state_reset
     data:
       name: ‘Test-Enclosure'
@@ -3161,7 +3161,7 @@ OneViewエンクロージャーリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: interconnect_bays_power_state_e_fuse
     data:
       name: ‘Test-Enclosure'
@@ -3172,7 +3172,7 @@ OneViewエンクロージャーリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: manager_bays_role_active
     data:
       name: ‘Test-Enclosure'
@@ -3183,7 +3183,7 @@ OneViewエンクロージャーリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: device_bays_ipv4_removed
     data:
       name: ‘Test-Enclosure'
@@ -3194,7 +3194,7 @@ OneViewエンクロージャーリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: interconnect_bays_ipv4_removed
     data:
       name: ‘Test-Enclosure'
@@ -3205,7 +3205,7 @@ OneViewエンクロージャーリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: support_data_collection_set
     data:
       name: ‘Test-Enclosure'
@@ -3216,7 +3216,7 @@ OneViewエンクロージャーリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: present
     data:
       name: ‘Test-Enclosure'
@@ -3278,7 +3278,7 @@ OneViewエンクロージャーリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
   no_log: true
   delegate_to: localhost
 - debug: var=enclosures
@@ -3293,7 +3293,7 @@ OneViewエンクロージャーリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
   no_log: true
   delegate_to: localhost
 - debug: var=enclosures
@@ -3304,7 +3304,7 @@ OneViewエンクロージャーリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
   no_log: true
   delegate_to: localhost
 - debug: var=enclosures
@@ -3319,7 +3319,7 @@ OneViewエンクロージャーリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
   no_log: true
   delegate_to: localhost
 - debug: var=enclosures
@@ -3342,7 +3342,7 @@ OneViewエンクロージャーリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
   no_log: true
   delegate_to: localhost
 - debug: var=enclosures
@@ -3403,7 +3403,7 @@ OneViewエンクロージャーグループリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: present
     data:
         name: "Enclosure Group 1"
@@ -3424,7 +3424,7 @@ OneViewエンクロージャーグループリソースを管理します。
         hostname: 172.16.101.48
         username: administrator
         password: my_password
-        api_version: 800
+        api_version: 2200
         state: present
         data:
             name: "Enclosure Group 1"
@@ -3436,7 +3436,7 @@ OneViewエンクロージャーグループリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: absent
     data:
       name: "Enclosure Group 1 (renamed)"
@@ -3495,7 +3495,7 @@ OneViewエンクロージャーグループリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
   delegate_to: localhost
 
 - debug: var=enclosure_groups
@@ -3505,7 +3505,7 @@ OneViewエンクロージャーグループリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     params:
       start: 0
       count: 3
@@ -3520,7 +3520,7 @@ OneViewエンクロージャーグループリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     name: "Test Enclosure Group Facts"
     options:
       - configuration_script
@@ -3582,7 +3582,7 @@ OneViewイーサネットネットワークリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: present
     data:
       name: 'Test Ethernet Network'
@@ -3593,7 +3593,7 @@ OneViewイーサネットネットワークリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: present
     data:
       name: 'Test Ethernet Network'
@@ -3608,7 +3608,7 @@ OneViewイーサネットネットワークリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: present
     data:
       name: 'Test Ethernet Network'
@@ -3619,7 +3619,7 @@ OneViewイーサネットネットワークリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: absent
     data:
       name: 'New Ethernet Network'
@@ -3629,7 +3629,7 @@ OneViewイーサネットネットワークリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: present
     data:
       vlanIdRange: '1-10,15,17'
@@ -3646,7 +3646,7 @@ OneViewイーサネットネットワークリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: default_bandwidth_reset
     data:
       name: 'Test Ethernet Network'
@@ -3657,7 +3657,7 @@ OneViewイーサネットネットワークリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: present
     data:
       name: 'Test Ethernet Network'
@@ -3721,7 +3721,7 @@ OneViewイーサネットネットワークリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
 
 - debug: var=ethernet_networks
 
@@ -3730,7 +3730,7 @@ OneViewイーサネットネットワークリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     params:
       start: 1
       count: 3
@@ -3744,7 +3744,7 @@ OneViewイーサネットネットワークリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     name: Ethernet network name
 
 - debug: var=ethernet_networks
@@ -3754,7 +3754,7 @@ OneViewイーサネットネットワークリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     name: "{{ name }}"
     options:
       - associatedProfiles
@@ -4083,7 +4083,7 @@ OneViewファイバーチャネルネットワークリソースを管理しま�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: present
     data:
       name: 'New FC Network'
@@ -4093,7 +4093,7 @@ OneViewファイバーチャネルネットワークリソースを管理しま�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: present
     data:
       name: 'New FC Network'
@@ -4105,7 +4105,7 @@ OneViewファイバーチャネルネットワークリソースを管理しま�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 500
+    api_version: 2200
     state: present
     data:
       name: 'New FC Network'
@@ -4118,7 +4118,7 @@ OneViewファイバーチャネルネットワークリソースを管理しま�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: absent
     data:
       name: 'New FC Network'
@@ -4174,7 +4174,7 @@ OneViewファイバーチャネルネットワークリソースを管理しま�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
   delegate_to: localhost
 
 - debug: var=fc_networks
@@ -4184,7 +4184,7 @@ OneViewファイバーチャネルネットワークリソースを管理しま�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     params:
       start: 1
       count: 3
@@ -4198,7 +4198,7 @@ OneViewファイバーチャネルネットワークリソースを管理しま�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     name: network name
   delegate_to: localhost
 
@@ -4257,7 +4257,7 @@ OneView FCoEネットワークリソースを管理します
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: present
     data:
       name: Test FCoE Network
@@ -4269,7 +4269,7 @@ OneView FCoEネットワークリソースを管理します
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: present
     data:
       name: New FCoE Network
@@ -4283,7 +4283,7 @@ OneView FCoEネットワークリソースを管理します
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: absent
     data:
       name: New FCoE Network
@@ -4340,7 +4340,7 @@ OneView FCoEネットワークリソースを管理します
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
   delegate_to: localhost
 
 - debug: var=fcoe_networks
@@ -4350,7 +4350,7 @@ OneView FCoEネットワークリソースを管理します
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     params:
       start: 0
       count: 3
@@ -4365,7 +4365,7 @@ OneView FCoEネットワークリソースを管理します
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     name: Test FCoE Network Facts
   delegate_to: localhost
 
@@ -5259,7 +5259,7 @@ OneViewインターコネクトリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     state: 'powered_off'
     name: '0000A66102, interconnect 2'
 
@@ -5268,7 +5268,7 @@ OneViewインターコネクトリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     state: 'uid_on'
     name: '0000A66102, interconnect 2'
 
@@ -5277,7 +5277,7 @@ OneViewインターコネクトリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     state: 'uid_on'
     ip: '172.18.1.114'
 
@@ -5286,7 +5286,7 @@ OneViewインターコネクトリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     state: 'reconfigured'
     ip: '172.18.1.114'
 
@@ -5343,7 +5343,7 @@ OneViewインターコネクトリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
 
 - debug: var=interconnects
 
@@ -5352,7 +5352,7 @@ OneViewインターコネクトリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     params:
       start: 0
       count: 5
@@ -5366,7 +5366,7 @@ OneViewインターコネクトリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     name: '0000A66102, interconnect 2'
 
 - debug: var=interconnects
@@ -5377,7 +5377,7 @@ OneViewインターコネクトリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     name: '0000A66102, interconnect 2'
     options:
         - nameServers
@@ -5390,7 +5390,7 @@ OneViewインターコネクトリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     name: '0000A66102, interconnect 2'
     options:
         - statistics
@@ -5403,7 +5403,7 @@ OneViewインターコネクトリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     name: '0000A66102, interconnect 2'
     options:
         - portStatistics: 'd3'
@@ -5416,7 +5416,7 @@ OneViewインターコネクトリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     name: 'Enc2, interconnect 2'
     options:
         - subPortStatistics:
@@ -5431,7 +5431,7 @@ OneViewインターコネクトリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     name: '0000A66102, interconnect 2'
     options:
         - ports
@@ -5444,7 +5444,7 @@ OneViewインターコネクトリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     name: '0000A66102, interconnect 2'
     options:
         - port: d1
@@ -5457,7 +5457,7 @@ OneViewインターコネクトリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     name: '0000A66102, interconnect 2'
     options:
         - pluggableModuleInformation
@@ -5598,7 +5598,7 @@ OneView Interconnect Linkトポロジに関する情報を取得します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
 
 - debug: var=interconnect_types
 
@@ -5607,7 +5607,7 @@ OneView Interconnect Linkトポロジに関する情報を取得します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     params:
       start: 0
       count: 3
@@ -5621,7 +5621,7 @@ OneView Interconnect Linkトポロジに関する情報を取得します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     name: HP VC Flex-10 Enet Module
 
 - debug: var=interconnect_types
@@ -5678,7 +5678,7 @@ OneView内部リンクセットに関する情報を取得します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
 
 - debug: var=internal_link_sets
 
@@ -5687,7 +5687,7 @@ OneView内部リンクセットに関する情報を取得します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     params:
       start: 0
       count: 3
@@ -5700,7 +5700,7 @@ OneView内部リンクセットに関する情報を取得します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     name: "Internal Link Set Name"
 
 - debug: var=internal_link_sets
@@ -5842,7 +5842,7 @@ OneView論理エンクロージャリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: present
     data:
         enclosureUris:
@@ -5857,7 +5857,7 @@ OneView論理エンクロージャリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: firmware_updated
     data:
         name: "Encl1"
@@ -5875,7 +5875,7 @@ OneView論理エンクロージャリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: firmware_updated
     data:
         name: "Encl1"
@@ -5895,7 +5895,7 @@ OneView論理エンクロージャリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: script_updated
     data:
         name: "Encl1"
@@ -5907,7 +5907,7 @@ OneView論理エンクロージャリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: dumped
     data:
         name: "Encl1"
@@ -5923,7 +5923,7 @@ OneView論理エンクロージャリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: reconfigured
     data:
         name: "Encl1"
@@ -5934,7 +5934,7 @@ OneView論理エンクロージャリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: updated_from_group
     data:
         name: "Encl1"
@@ -5945,7 +5945,7 @@ OneView論理エンクロージャリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: present
     data:
         name: "Encl1"
@@ -5957,7 +5957,7 @@ OneView論理エンクロージャリソースを管理します。
       hostname: 172.16.101.48
       username: administrator
       password: my_password
-      api_version: 800
+      api_version: 2200
       state: absent
       data:
           name: 'Encl1'
@@ -6020,7 +6020,7 @@ OneView論理エンクロージャリソースを管理します。
       hostname: 172.16.101.48
       username: administrator
       password: my_password
-      api_version: 800
+      api_version: 2200
   delegate_to: localhost
 
 - debug: var=logical_enclosures
@@ -6030,7 +6030,7 @@ OneView論理エンクロージャリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     params:
       start: 0
       count: 3
@@ -6045,7 +6045,7 @@ OneView論理エンクロージャリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     name: "Encl1"
   delegate_to: localhost
 
@@ -6056,7 +6056,7 @@ OneView論理エンクロージャリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     name: "Encl1"
     options:
       - script
@@ -6119,7 +6119,7 @@ OneView論理インターコネクトリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: compliant
     data:
       name: "Name of the Logical Interconnect"
@@ -6129,7 +6129,7 @@ OneView論理インターコネクトリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: ethernet_settings_updated
     data:
       name: "Name of the Logical Interconnect"
@@ -6141,7 +6141,7 @@ OneView論理インターコネクトリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: internal_networks_updated
     data:
       name: "Name of the Logical Interconnect"
@@ -6155,7 +6155,7 @@ OneView論理インターコネクトリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: settings_updated
     data:
       name: "Name of the Logical Interconnect"
@@ -6167,7 +6167,7 @@ OneView論理インターコネクトリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: forwarding_information_base_generated
     data:
       name: "Name of the Logical Interconnect"  # could also be 'uri'
@@ -6177,7 +6177,7 @@ OneView論理インターコネクトリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: qos_aggregated_configuration_updated
     data:
       name: "Name of the Logical Interconnect"
@@ -6195,7 +6195,7 @@ OneView論理インターコネクトリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: snmp_configuration_updated
     data:
       name: "Name of the Logical Interconnect"
@@ -6207,7 +6207,7 @@ OneView論理インターコネクトリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: port_monitor_updated
     data:
       name: "Name of the Logical Interconnect"
@@ -6219,7 +6219,7 @@ OneView論理インターコネクトリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: configuration_updated
     data:
       name: "Name of the Logical Interconnect"
@@ -6229,7 +6229,7 @@ OneView論理インターコネクトリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: firmware_installed
     data:
       name: "Name of the Logical Interconnect"
@@ -6242,7 +6242,7 @@ OneView論理インターコネクトリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: telemetry_configuration_updated
     data:
       name: "Name of the Logical Interconnect"
@@ -6327,7 +6327,7 @@ OneView論理インターコネクトリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
 
 - debug: var=logical_interconnects
 
@@ -6336,7 +6336,7 @@ OneView論理インターコネクトリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     params:
       start: 0
       count: 3
@@ -6349,7 +6349,7 @@ OneView論理インターコネクトリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     name: "Name of the Logical Interconnect"
     options:
       - qos_aggregated_configuration
@@ -6362,7 +6362,7 @@ OneView論理インターコネクトリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     name: "Name of the Logical Interconnect"
     options:
       - qos_aggregated_configuration
@@ -6451,7 +6451,7 @@ OneView論理インターコネクトグループリソースを管理します�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: present
     data:
       name: 'Test Logical Interconnect Group'
@@ -6474,7 +6474,7 @@ OneView論理インターコネクトグループリソースを管理します�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: present
     data:
       name: 'Test Logical Interconnect Group'
@@ -6487,7 +6487,7 @@ OneView論理インターコネクトグループリソースを管理します�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: present
     data:
       name: 'Test Logical Interconnect Group'
@@ -6513,7 +6513,7 @@ OneView論理インターコネクトグループリソースを管理します�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: present
     data:
       name: 'New Logical Interconnect Group'
@@ -6524,7 +6524,7 @@ OneView論理インターコネクトグループリソースを管理します�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: absent
     data:
       name: 'New Logical Interconnect Group'
@@ -6581,7 +6581,7 @@ OneView論理インターコネクトグループリソースを管理します�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
   no_log: true
   delegate_to: localhost
 
@@ -6597,7 +6597,7 @@ OneView論理インターコネクトグループリソースを管理します�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
   no_log: true
   delegate_to: localhost
 
@@ -6610,7 +6610,7 @@ OneView論理インターコネクトグループリソースを管理します�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
   no_log: true
   delegate_to: localhost
 
@@ -6622,7 +6622,7 @@ OneView論理インターコネクトグループリソースを管理します�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
   no_log: true
   delegate_to: localhost
 
@@ -6681,7 +6681,7 @@ OneView論理スイッチリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     state: present
     data:
       logicalSwitch:
@@ -6725,7 +6725,7 @@ OneView論理スイッチリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     state: updated
     data:
       logicalSwitch:
@@ -6759,7 +6759,7 @@ OneView論理スイッチリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     state: refreshed
     data:
       logicalSwitch:
@@ -6770,7 +6770,7 @@ OneView論理スイッチリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     state: absent
     data:
       logicalSwitch:
@@ -6830,7 +6830,7 @@ OneView論理スイッチリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
 - debug: var=logical_switches
 
 - name: Gather paginated, filtered and sorted facts about Logical Switches
@@ -6838,7 +6838,7 @@ OneView論理スイッチリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     params:
       start: 0
       count: 3
@@ -6852,7 +6852,7 @@ OneView論理スイッチリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     name: 'Name of the Logical Switch'
 
 - debug: var=logical_switches
@@ -6912,7 +6912,7 @@ OneView論理スイッチリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: present
     data:
         name: "OneView Test Logical Switch Group"
@@ -6932,7 +6932,7 @@ OneView論理スイッチリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: present
     data:
         name: "OneView Test Logical Switch Group"
@@ -6954,7 +6954,7 @@ OneView論理スイッチリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: absent
     data:
         name: 'Test Logical Switch Group'
@@ -7014,7 +7014,7 @@ OneView論理スイッチグループに関する情報を取得します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
   delegate_to: localhost
 
 - debug: var=logical_switch_groups
@@ -7024,7 +7024,7 @@ OneView論理スイッチグループに関する情報を取得します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     params:
       start: 0
       count: 3
@@ -7038,7 +7038,7 @@ OneView論理スイッチグループに関する情報を取得します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     name: "LogicalSwitchGroupDemo"
   delegate_to: localhost
 
@@ -7149,7 +7149,7 @@ OneView Managed SANリソースを管理します。
       hostname: 172.16.101.48
       username: administrator
       password: my_password
-      api_version: 800
+      api_version: 2200
       state: refresh_state_set
       data:
           name: 'SAN1_0'
@@ -7162,7 +7162,7 @@ OneView Managed SANリソースを管理します。
       hostname: 172.16.101.48
       username: administrator
       password: my_password
-      api_version: 800
+      api_version: 2200
       state: present
       data:
           name: 'SAN1_0'
@@ -7185,7 +7185,7 @@ OneView Managed SANリソースを管理します。
       hostname: 172.16.101.48
       username: administrator
       password: my_password
-      api_version: 800
+      api_version: 2200
       state: endpoints_csv_file_created
       data:
           name: '{{ name }}'
@@ -7196,7 +7196,7 @@ OneView Managed SANリソースを管理します。
       hostname: 172.16.101.48
       username: administrator
       password: my_password
-      api_version: 800
+      api_version: 2200
       state: issues_report_created
       data:
           name: '{{ name }}'
@@ -7257,7 +7257,7 @@ OneView Managed に関する情報を取得します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
   delegate_to: localhost
 
 - debug: var=managed_sans
@@ -7267,7 +7267,7 @@ OneView Managed に関する情報を取得します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     params:
       start: 0
       count: 3
@@ -7282,7 +7282,7 @@ OneView Managed に関する情報を取得します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     name: "SAN1_0"
   delegate_to: localhost
 
@@ -7293,7 +7293,7 @@ OneView Managed に関する情報を取得します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     name: "SAN1_0"
     options:
       - endpoints
@@ -7307,7 +7307,7 @@ OneView Managed に関する情報を取得します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     options:
       - wwn:
          locate: "20:00:4A:2B:21:E0:00:01"
@@ -7370,7 +7370,7 @@ OneView ネットワークセットリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     state: present
     data:
       name: 'OneViewSDK Test Network Set'
@@ -7383,7 +7383,7 @@ OneView ネットワークセットリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     state: present
     data:
       name: 'OneViewSDK Test Network Set'
@@ -7396,7 +7396,7 @@ OneView ネットワークセットリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     state: absent
     data:
         name: 'OneViewSDK Test Network Set - Renamed'
@@ -7407,7 +7407,7 @@ OneView ネットワークセットリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 500
+    api_version: 2200
     state: present
     data:
       name: OneViewSDK Test Network Set
@@ -7468,7 +7468,7 @@ OneViewネットワークセットに関する情報を取得します
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 500
+    api_version: 2200
   no_log: true
   delegate_to: localhost
 
@@ -7479,7 +7479,7 @@ OneViewネットワークセットに関する情報を取得します
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 500
+    api_version: 2200
     params:
       start: 0
       count: 3
@@ -7495,7 +7495,7 @@ OneViewネットワークセットに関する情報を取得します
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 500
+    api_version: 2200
     options:
         - withoutEthernet
   no_log: true
@@ -7509,7 +7509,7 @@ OneViewネットワークセットに関する情報を取得します
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 500
+    api_version: 2200
     name: Name of the Network Set
   no_log: true
   delegate_to: localhost
@@ -7522,7 +7522,7 @@ OneViewネットワークセットに関する情報を取得します
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 500
+    api_version: 2200
     name: Name of the Network Set
     options:
         - withoutEthernet
@@ -7584,7 +7584,7 @@ OneViewネットワークセットに関する情報を取得します
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
   delegate_to: localhost
 - debug: var=os_deployment_plans
 
@@ -7593,7 +7593,7 @@ OneViewネットワークセットに関する情報を取得します
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     params:
       start: 0
       count: 3
@@ -7607,7 +7607,7 @@ OneViewネットワークセットに関する情報を取得します
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     name: "Deployment Plan"
   delegate_to: localhost
 - debug: var=os_deployment_plans
@@ -7617,7 +7617,7 @@ OneViewネットワークセットに関する情報を取得します
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     name: "Deployment Plan"
     options:
       # This option will generate an os_deployment_plan_custom_attributes facts in the Server Profile format.
@@ -8387,7 +8387,7 @@ OneView SASインターコネクトリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: powered_on
     name: "0000A66101, interconnect 1"
 
@@ -8396,7 +8396,7 @@ OneView SASインターコネクトリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: refreshed
     name: "0000A66101, interconnect 1"
 
@@ -8405,7 +8405,7 @@ OneView SASインターコネクトリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: hard_reset
     name: "0000A66101, interconnect 1"
 
@@ -8456,14 +8456,14 @@ OneView SASインターコネクトに関する情報を取得します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
 
 - name: Gather paginated, filtered and sorted facts about SAS Interconnects
   oneview_sas_interconnect_facts:
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     params:
       start: 0
       count: 3
@@ -8475,7 +8475,7 @@ OneView SASインターコネクトに関する情報を取得します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     name: "0000A66103, interconnect 1"
 
 ```
@@ -8532,7 +8532,7 @@ OneView SASインターコネクトタイプに関する情報を取得します
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
 
 - debug: var=sas_interconnect_types
 
@@ -8552,7 +8552,7 @@ OneView SASインターコネクトタイプに関する情報を取得します
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     name: "SAS Interconnect Type Name"
 
 - debug: var=sas_interconnect_types
@@ -8611,7 +8611,7 @@ SAS論理インターコネクトのプロパティとその関連状態を表�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: configuration_updated
     data:
       name: "SAS Logical Interconnect name"
@@ -8622,7 +8622,7 @@ SAS論理インターコネクトのプロパティとその関連状態を表�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: firmware_updated
     data:
       name: "SAS Logical Interconnect name"
@@ -8638,7 +8638,7 @@ SAS論理インターコネクトのプロパティとその関連状態を表�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: drive_enclosure_replaced
     data:
       name: "SAS Logical Interconnect name"
@@ -8652,7 +8652,7 @@ SAS論理インターコネクトのプロパティとその関連状態を表�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: compliant
     data:
       logicalInterconnectNames: ["SAS Logical Interconnect name 1", "SAS Logical Interconnect name 2"]
@@ -8663,7 +8663,7 @@ SAS論理インターコネクトのプロパティとその関連状態を表�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: compliant
     data:
       logicalInterconnectUris: [
@@ -8727,7 +8727,7 @@ SAS論理インターコネクトのプロパティとその関連状態を表�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
   delegate_to: localhost
 - debug: var=sas_logical_interconnects
 
@@ -8736,7 +8736,7 @@ SAS論理インターコネクトのプロパティとその関連状態を表�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     params:
       start: 0
       count: 2
@@ -8749,7 +8749,7 @@ SAS論理インターコネクトのプロパティとその関連状態を表�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     name: "LOG_EN-LIG_SAS-1"
   delegate_to: localhost
 - debug: var=sas_logical_interconnects
@@ -8759,7 +8759,7 @@ SAS論理インターコネクトのプロパティとその関連状態を表�
     chostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     name: "LOG_EN-LIG_SAS-1"
     options:
       - firmware
@@ -8822,7 +8822,7 @@ OneView SAS論理インターコネクトグループリソースを管理しま
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: present
     data:
       name: "Test SAS Logical Interconnect Group"
@@ -8854,7 +8854,7 @@ OneView SAS論理インターコネクトグループリソースを管理しま
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: present
     data:
       name: 'New SAS Logical Interconnect Group'
@@ -8865,7 +8865,7 @@ OneView SAS論理インターコネクトグループリソースを管理しま
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: absent
     data:
       name: 'New SAS Logical Interconnect Group'
@@ -8924,7 +8924,7 @@ OneView SAS論理インターコネクトグループリソースを管理しま
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
 - debug: var=sas_logical_interconnect_groups
 
 - name: Gather paginated, filtered and sorted facts about SAS Logical Interconnect Groups
@@ -8932,7 +8932,7 @@ OneView SAS論理インターコネクトグループリソースを管理しま
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     params:
       start: 0
       count: 5
@@ -8945,7 +8945,7 @@ OneView SAS論理インターコネクトグループリソースを管理しま
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     params:
       scope_uris: "/rest/scopes/be263683-b147-4818-8bbe-c5a5629b9bfe"
 - debug: var=sas_logical_interconnect_groups
@@ -8955,7 +8955,7 @@ OneView SAS論理インターコネクトグループリソースを管理しま
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     name: "LIG-SLJA-1"
 - debug: var=sas_logical_interconnect_groups
 
@@ -9347,7 +9347,7 @@ OneViewサーバーハードウェアリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: present
     data:
          hostname : "172.18.6.15"
@@ -9363,7 +9363,7 @@ OneViewサーバーハードウェアリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: present
     data:
          name : "172.18.6.15"
@@ -9377,7 +9377,7 @@ OneViewサーバーハードウェアリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: multiple_servers_added
     data:
         mpHostsAndRanges :
@@ -9395,7 +9395,7 @@ OneViewサーバーハードウェアリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: power_state_set
     data:
         name : "172.18.6.15"
@@ -9409,7 +9409,7 @@ OneViewサーバーハードウェアリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: refresh_state_set
     data:
         name : "172.18.6.15"
@@ -9422,7 +9422,7 @@ OneViewサーバーハードウェアリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: ilo_firmware_version_updated
     data:
         name : "172.18.6.15"
@@ -9433,7 +9433,7 @@ OneViewサーバーハードウェアリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: environmental_configuration_set
     data:
         name : "172.18.6.15"
@@ -9446,7 +9446,7 @@ OneViewサーバーハードウェアリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: absent
     data:
         name : "172.18.6.15"
@@ -9457,7 +9457,7 @@ OneViewサーバーハードウェアリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: uid_state_off
     data:
         name : '0000A66102, bay 12'
@@ -9687,7 +9687,7 @@ OneViewサーバーのハードウェアタイプリソースを管理します�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: present
     data:
       name: 'DL380p Gen8 1'
@@ -9699,7 +9699,7 @@ OneViewサーバーのハードウェアタイプリソースを管理します�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: present
     data:
       name: 'DL380p Gen8 1'
@@ -9711,7 +9711,7 @@ OneViewサーバーのハードウェアタイプリソースを管理します�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: absent
     data:
       name: 'DL380p Gen8 1 (new name)'
@@ -9769,7 +9769,7 @@ OneViewのサーバーハードウェアタイプに関する情報を取得し�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
   delegate_to: localhost
 - debug: var=server_hardware_types
 
@@ -9778,7 +9778,7 @@ OneViewのサーバーハードウェアタイプに関する情報を取得し�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     params:
       start: 0
       count: 5
@@ -9792,7 +9792,7 @@ OneViewのサーバーハードウェアタイプに関する情報を取得し�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     name: "BL460c Gen8 1"
   delegate_to: localhost
 - debug: var=server_hardware_types
@@ -10021,7 +10021,7 @@ OneViewサーバープロファイルに関する情報を取得します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
   delegate_to: localhost
 
 - debug: var=server_profiles
@@ -10031,7 +10031,7 @@ OneViewサーバープロファイルに関する情報を取得します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     params:
       start: 0
       count: 3
@@ -10047,7 +10047,7 @@ OneViewサーバープロファイルに関する情報を取得します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     name: WebServer-1
   delegate_to: localhost
 
@@ -10059,7 +10059,7 @@ OneViewサーバープロファイルに関する情報を取得します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     uri: /rest/server-profiles/e23d9fa4-f926-4447-b971-90116ca3e61e
   delegate_to: localhost
 
@@ -10070,7 +10070,7 @@ OneViewサーバープロファイルに関する情報を取得します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     options:
       - availableTargets:
           enclosureGroupUri: '/rest/enclosure-groups/3af25c76-dec7-4753-83f6-e1ad06c29a43'
@@ -10085,7 +10085,7 @@ OneViewサーバープロファイルに関する情報を取得します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     name : "Encl1, bay 1"
     options:
         - schema
@@ -10191,7 +10191,7 @@ OneViewサーバープロファイルテンプレートリソースを管理し�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: present
     data:
       name: "ProfileTemplate101"
@@ -10206,7 +10206,7 @@ OneViewサーバープロファイルテンプレートリソースを管理し�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: present
     data:
       name: "ProfileTemplate102"
@@ -10221,7 +10221,7 @@ OneViewサーバープロファイルテンプレートリソースを管理し�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     state: absent
     data:
       name: "ProfileTemplate101"
@@ -10293,7 +10293,7 @@ OneViewからサーバープロファイルテンプレートに関する情報�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     params:
       start: 0
       count: 3
@@ -10309,7 +10309,7 @@ OneViewからサーバープロファイルテンプレートに関する情報�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     name: "ProfileTemplate101"
 
 - name: Gather facts about a Server Profile by uri
@@ -10317,7 +10317,7 @@ OneViewからサーバープロファイルテンプレートに関する情報�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     uri: /rest/server-profile-templates/c0868397-eff6-49ed-8151-4338702792d3
   delegate_to: localhost
 
@@ -10326,7 +10326,7 @@ OneViewからサーバープロファイルテンプレートに関する情報�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     name: "ProfileTemplate101"
     options:
       - new_profile
@@ -10336,7 +10336,7 @@ OneViewからサーバープロファイルテンプレートに関する情報�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     options:
       - available_networks:
           serverHardwareTypeUri: "/rest/server-hardware-types/253F1D49-0FEE-4DCD-B14C-B26234E9D414"
@@ -10402,7 +10402,7 @@ OneViewストレージプールリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 300
+    api_version: 2200
     state: present
     data:
        storageSystemUri: "/rest/storage-systems/TXQ1010307"
@@ -10413,7 +10413,7 @@ OneViewストレージプールリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 300
+    api_version: 2200
     state: absent
     data:
        poolName: "FST_CPG2"
@@ -10594,7 +10594,7 @@ OneViewストレージシステムリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     state: present
     data:
         credentials:
@@ -10615,7 +10615,7 @@ OneViewストレージシステムリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     state: present
     data:
       credentials:
@@ -10638,7 +10638,7 @@ OneViewストレージシステムリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     state: absent
     data:
         credentials:
@@ -10650,7 +10650,7 @@ OneViewストレージシステムリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     state: absent
     data:
         credentials:
@@ -10711,7 +10711,7 @@ OneViewストレージシステムに関する情報を取得します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
   delegate_to: localhost
 
 - debug: var=storage_systems
@@ -10721,7 +10721,7 @@ OneViewストレージシステムに関する情報を取得します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     params:
       start: 0
       count: 3
@@ -10735,7 +10735,7 @@ OneViewストレージシステムに関する情報を取得します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     ip_hostname: "172.18.11.12"
   delegate_to: localhost
 
@@ -10746,7 +10746,7 @@ OneViewストレージシステムに関する情報を取得します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     hostname: "172.18.11.12"
   delegate_to: localhost
 
@@ -10758,7 +10758,7 @@ OneViewストレージシステムに関する情報を取得します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     name: "ThreePAR7200-4555"
   delegate_to: localhost
 
@@ -10769,7 +10769,7 @@ OneViewストレージシステムに関する情報を取得します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     name: "ThreePAR7200-4555"
     options:
         - hostTypes
@@ -10785,7 +10785,7 @@ OneViewストレージシステムに関する情報を取得します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     hostname: "172.18.11.12"
     options:
         - reachablePorts
@@ -10802,7 +10802,7 @@ OneViewストレージシステムに関する情報を取得します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     hostname: "172.18.11.12"
     options:
       - templates
@@ -11081,7 +11081,7 @@ OneViewストレージボリュームテンプレートリソースを管理し�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     state: present
     data:
         name: "Volume Template Name"
@@ -11096,7 +11096,7 @@ OneViewストレージボリュームテンプレートリソースを管理し�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     state: absent
     data:
         name: 'Volume Template Name'
@@ -11155,7 +11155,7 @@ Retrieve facts about Storage Volume Templates of the OneView.
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
   delegate_to: localhost
 
 - debug: var=storage_volume_templates
@@ -11165,7 +11165,7 @@ Retrieve facts about Storage Volume Templates of the OneView.
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     params:
       start: 0
       count: 3
@@ -11179,7 +11179,7 @@ Retrieve facts about Storage Volume Templates of the OneView.
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     name: "FusionTemplateExample"
   delegate_to: localhost
 
@@ -11190,7 +11190,7 @@ Retrieve facts about Storage Volume Templates of the OneView.
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     name: "FusionTemplateExample"
     options:
       - connectableVolumeTemplates
@@ -11204,7 +11204,7 @@ Retrieve facts about Storage Volume Templates of the OneView.
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     options:
       - reachableVolumeTemplates
   delegate_to: localhost
@@ -11214,7 +11214,7 @@ Retrieve facts about Storage Volume Templates of the OneView.
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     name: "{{ volume_template_name }}"
     options:
       - compatibleSystems
@@ -11275,7 +11275,7 @@ ToRスイッチリソースを削除するためのインターフェイスを�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     state: absent
     name: "172.18.16.2"
 
@@ -11327,14 +11327,14 @@ Retrieve facts about the OneView Switches.
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
 
 - name: Gather paginated facts about switches
   oneview_switch_facts:
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     params:
       start: 0
       count: 3
@@ -11346,7 +11346,7 @@ Retrieve facts about the OneView Switches.
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     name: "172.18.20.1"
 
 - name: Gather facts about the environmental configuration for the switch that matches the specified switch name
@@ -11354,7 +11354,7 @@ Retrieve facts about the OneView Switches.
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     name: "172.18.20.1"
   options:
     - environmentalConfiguration
@@ -11414,7 +11414,7 @@ Retrieve facts about the OneView Switch Types.
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
 
 - debug: var=switch_types
 
@@ -11423,7 +11423,7 @@ Retrieve facts about the OneView Switch Types.
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     params:
       start: 0
       count: 2
@@ -11437,7 +11437,7 @@ Retrieve facts about the OneView Switch Types.
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 800
+    api_version: 2200
     name: "Name of the Switch Type"
 
 - debug: var=switch_types
@@ -11493,7 +11493,7 @@ OneViewタスクに関する情報を取得します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     params:
       count: 2
 
@@ -11504,7 +11504,7 @@ OneViewタスクに関する情報を取得します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     params:
       count: 2
       filter: "associatedResource.resourceCategory='server-profile-templates'"
@@ -11744,7 +11744,7 @@ OneViewアップリンクセットリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     state: present
     data:
       name: 'Test Uplink Set'
@@ -11768,7 +11768,7 @@ OneViewアップリンクセットリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     state: present
     data:
       name: 'Test Uplink Set'
@@ -11780,7 +11780,7 @@ OneViewアップリンクセットリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     state: absent
     data:
       name: 'Test Uplink Set'
@@ -11840,7 +11840,7 @@ OneViewアップリンクセットリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
 
 - debug: var=uplink_sets
 
@@ -11849,7 +11849,7 @@ OneViewアップリンクセットリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     params:
       start: 0
       count: 2
@@ -11863,7 +11863,7 @@ OneViewアップリンクセットリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     name: logical lnterconnect group name
 
 - debug: var=uplink_sets
@@ -12129,7 +12129,7 @@ OneView Volumeリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     state: present
     data:
       properties:
@@ -12147,7 +12147,7 @@ OneView Volumeリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     state: present
     data:
       properties:
@@ -12166,7 +12166,7 @@ OneView Volumeリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 300
+    api_version: 2200
     state: present
     data:
       type: AddStorageVolumeV2
@@ -12183,7 +12183,7 @@ OneView Volumeリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     state: present
     data:
       name: 'Volume with Storage Pool'
@@ -12196,7 +12196,7 @@ OneView Volumeリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     state: repaired
     data:
       name: 'Volume with Storage Pool - Renamed'
@@ -12206,7 +12206,7 @@ OneView Volumeリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     state: snapshot_created
     data:
       name: 'Volume with Snapshot Pool'
@@ -12219,7 +12219,7 @@ OneView Volumeリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     state: snapshot_deleted
     data:
       name: 'Volume with Snapshot Pool'
@@ -12231,7 +12231,7 @@ OneView Volumeリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     state: absent
     data:
       name: 'Volume with Storage Pool - Renamed'
@@ -12241,7 +12241,7 @@ OneView Volumeリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     state: absent
     data:
       name: 'Volume with Snapshot Pool - Renamed'
@@ -12251,7 +12251,7 @@ OneView Volumeリソースを管理します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     state: absent
     data:
       name: 'Volume added with a specific WWN'
@@ -12310,7 +12310,7 @@ OneViewボリュームに関する情報を取得します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
 - debug: var=storage_volumes
 
 - name: 
@@ -12318,7 +12318,7 @@ OneViewボリュームに関する情報を取得します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     params:
       start: 0
       count: 2
@@ -12332,7 +12332,7 @@ OneViewボリュームに関する情報を取得します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     options:
         - attachableVolumes        # optional
         - extraManagedVolumePaths  # optional
@@ -12346,7 +12346,7 @@ OneViewボリュームに関する情報を取得します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     name: "{{ volume_name }}"
     options:
         - snapshots  # optional
@@ -12359,7 +12359,7 @@ OneViewボリュームに関する情報を取得します。
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 600
+    api_version: 2200
     name: "{{ volume_name }}"
     options:
        - snapshots:  # optional
