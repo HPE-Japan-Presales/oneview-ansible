@@ -654,10 +654,10 @@ Image Stream OSビルド計画リソースを管理します。
 
 
 ## image_streamer_deployment_group_facts
-Retrieve facts about the Image Streamer Deployment Groups.
+イメージストリーマーデプロイメントグループに関する情報を収集します。
 
 #### 概要
- Retrieve facts about the Image Streamer Deployment Groups.
+ イメージストリーマーデプロイメントグループに関する情報を収集します。
 
 #### 要件 (モジュールを実行するホスト)
   * python >= 2.7.9
@@ -728,10 +728,10 @@ Retrieve facts about the Image Streamer Deployment Groups.
 
 
 ## image_streamer_deployment_plan
-イメージストリーマー展開計画リソースを管理します。
+イメージストリーマーデプロイメントプランを管理します。
 
 #### 概要
- イメージストリーマー展開計画を管理するためのインターフェイスを提供します。作成、更新、削除できます。
+ イメージストリーマーデプロイメントプランを管理するためのインターフェイスを提供します。作成、更新、削除できます。
 
 #### 要件 (モジュールを実行するホスト)
   * python >= 2.7.9
@@ -813,10 +813,10 @@ Retrieve facts about the Image Streamer Deployment Groups.
 
 
 ## image_streamer_deployment_plan_facts
-イメージストリーマー展開計画に関する情報を取得します。
+イメージストリーマーデプロイメントプランに関する情報を取得します。
 
 #### 概要
- Retrieve facts about one or more of the Image Streamer Deployment Plans.
+ イメージストリーマーデプロイメントプランに関する情報を1つまたは複数取得します。
 
 #### 要件 (モジュールを実行するホスト)
   * python >= 2.7.9
@@ -4773,10 +4773,10 @@ Retrieve the facts about one or more of the OneView Hypervisor Cluster Profiles.
 
 
 ## oneview_hypervisor_manager
-Manage OneView Hypervisor Manager resources.
+OneViewハイパーバイザマネージャーを管理します。
 
 #### Synopsis
- Provides an interface to manage Hypervisor Manager resources. Can create, update, or delete.
+ ハイパーバイザーマネージャーを管理するためのインターフェースを提供します。作成、更新、削除が可能です。
 
 #### Requirements (on the host that executes the module)
   * hpeOneView >= 5.4.0
@@ -4786,10 +4786,10 @@ Manage OneView Hypervisor Manager resources.
 
 | Parameter     | Required    | Default  | Choices    | Comments |
 | ------------- |-------------| ---------|----------- |--------- |
-| config  |   |  | |  Path to a .json configuration file containing the OneView client configuration. The configuration file is optional and when used should be present in the host running the ansible commands. If the file path is not provided, the configuration will be loaded from environment variables. For links to example configuration files or how to use the environment variables verify the notes section.  |
-| data  |   Yes  |  | |  List with the Hypervisor Manager properties.  |
-| state  |   |  | <ul> <li>present</li>  <li>absent</li> </ul> |  Indicates the desired state for the Hypervisor Manager resource. `present` ensures data properties are compliant with OneView. `absent` removes the resource from OneView, if it exists.  |
-| validate_etag  |   |  True  | <ul> <li>true</li>  <li>false</li> </ul> |  When the ETag Validation is enabled, the request will be conditionally processed only if the current ETag for the resource matches the ETag provided in the data.  |
+| config  |   |  | |  OneViewクライアント構成を含む.json構成ファイルへのパス。構成ファイルはオプションです。ファイルパスが指定されていない場合、構成は環境変数からロードされます。設定ファイルをリンクさせる、または環境変数の使い方については注記を確認してください。  |
+| data  |   Yes  |  | |  ハイパーバイザーマネージャー情報をセットします。  |
+| state  |   |  | <ul> <li>present</li>  <li>absent</li> </ul> |  ハイパーバイザーマネージャーの希望の状態を指定します。presentはデータプロパティがOneViewに準拠していることを保証します。 absentは指定したリソースが存在する場合、そのリソースをOneViewから削除します。  |
+| validate_etag  |   |  True  | <ul> <li>true</li>  <li>false</li> </ul> |  指定したetagが現在のリソースに付与しているetagに一致する場合のみ処理します。  |
 
 
  
@@ -4917,22 +4917,22 @@ Retrieve the facts about one or more of the OneView Hypervisor Managers.
 
 
 
-#### Return Values
+#### 戻り値
 
 | Name          | Description  | Returned | Type       |
 | ------------- |-------------| ---------|----------- |
-| hypervisor_managers   | Has all the OneView facts about the Hypervisor Managers. |  Always, but can be null. |  dict |
+| hypervisor_managers   | ハイパーバイザーマネージャーの全ての情報 |  常に返しますがnullのときもあります。 |  dict |
 
 
-#### Notes
+#### 注記
 
-- A sample configuration file for the config parameter can be found at: https://github.com/HewlettPackard/oneview-ansible/blob/master/examples/oneview_config-rename.json
+- configパラメーターのサンプル構成ファイルは、次の場所にあります。: https://github.com/HewlettPackard/oneview-ansible/blob/master/examples/oneview_config-rename.json
 
-- Check how to use environment variables for configuration at: https://github.com/HewlettPackard/oneview-ansible#environment-variables
+- 構成用の環境変数の使用方法は、次の場所で確認してください。: https://github.com/HewlettPackard/oneview-ansible#environment-variables
 
-- Additional Playbooks for the HPE OneView Ansible modules can be found at: https://github.com/HewlettPackard/oneview-ansible/tree/master/examples
+- その他のHPE OneView AnsibleモジュールのPlaybookは、次の場所にあります。: https://github.com/HewlettPackard/oneview-ansible/tree/master/examples
 
-- The OneView API version used will directly affect returned and expected fields in resources. Information on setting the desired API version and can be found at: https://github.com/HewlettPackard/oneview-ansible#setting-your-oneview-version
+- 使用されるOneViewAPIバージョンによって、リソース対しての設定値と戻り値が変わる場合があります。APIバージョン別の設定に関する情報は、次のURLにあります。: https://github.com/HewlettPackard/oneview-ansible#setting-your-oneview-version
 
 
 ---
