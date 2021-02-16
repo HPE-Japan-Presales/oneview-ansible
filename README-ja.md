@@ -1,23 +1,31 @@
 # HPE OneView SDK for Ansible
-
 [English](README.md)
 ## Build Status 
 
-| 5.50 Branch   | 5.40 Branch   | 5.30 Branch   | 5.20 Branch   | 5.00 Branch   |
+OV Version | 5.60 | 5.50 | 5.40 | 5.30 |
 | ------------- |:-------------:| -------------:| -------------:| -------------:|
-| ![Build status](https://ci.appveyor.com/api/projects/status/u84505l6syp70013?svg=true)| ![Build status](https://ci.appveyor.com/api/projects/status/u84505l6syp70013?svg=true)| ![Build status](https://ci.appveyor.com/api/projects/status/u84505l6syp70013?svg=true)| ![Build status](https://ci.appveyor.com/api/projects/status/u84505l6syp70013?svg=true)| ![Build status](https://ci.appveyor.com/api/projects/status/u84505l6syp70013?svg=true)  
+SDK Version/Tag | [v5.10.0](https://github.com/HewlettPackard/oneview-ansible/releases/tag/v5.10.0) | [v5.9.0](https://github.com/HewlettPackard/oneview-ansible/releases/tag/v5.9.0) | [v5.8.0](https://github.com/HewlettPackard/oneview-ansible/releases/tag/v5.8.0) | [v5.7.0](https://github.com/HewlettPackard/oneview-ansible/releases/tag/v5.7.0) |
+Build Status | ![Build status](https://ci.appveyor.com/api/projects/status/u84505l6syp70013?svg=true)| ![Build status](https://ci.appveyor.com/api/projects/status/u84505l6syp70013?svg=true)| ![Build status](https://ci.appveyor.com/api/projects/status/u84505l6syp70013?svg=true)| ![Build status](https://ci.appveyor.com/api/projects/status/u84505l6syp70013?svg=true)|
+
 
 ## はじめに
 HPE OneViewは今日の複雑なハイブリッドクラウド環境の管理やデプロイをシンプルにするソフトウェアです。HPE OneViewを活用することでデータセンタをソフトウェア定義のデータセンタに移行することが可能になります。また、HPEストレージ、サーバー、ネットワーク等の幅広い製品をカバーしており、ハイブリッドインフラストラクチャ管理の簡素化、自動を可能にします。  
 ソフトウェア定義の技術はデプロイやプロビジョニング、アップデートやコンピュートリソースやストレージリソース、さらにはネットワークリソースの統合を可能にします。  
+
 このHPE OneView Ansible SDKはHPE OneView REST APIを通じて、Ansible Playbookの作成を可能にすることでHPE OneView自体をAnsibleから管理することができます。最新のHPE OneView Ansible SDKを確認したい場合は[こちら](https://github.com/HewlettPackard/oneview-ansible/releases/latest)を参照してください。  
+
 それぞれのHPE OneViewリソースへのアクセス等は本Ansibleモジュール\(HPE OneView Ansible SDK\)を通じて行うことができます。また情報収集系モジュール\(facts\)も用意されています。各モジュールについて詳細な使用方法を確認したい場合は[こちら](oneview-ansible-ja.md)を参照してください。
 
+
 ## 最新情報
-本HPE OneView AnsibleはHPE OneView REST APIバージョン2200\(HPE OneView v5.50\)をサポートしました。  
+
+本HPE OneView AnsibleはHPE OneView REST APIバージョン2400\(HPE OneView v5.60\)をサポートしました。  
+
 その他の機能拡張、修正情報は[こちら](https://github.com/HewlettPackard/oneview-ansible/blob/master/CHANGELOG.md)を参照してください。
 
+
 ## 使用方法
+
 ### インストールと設定
 HPE OneView SDK for AnsibleはソースコードまたはDockerコンテナからインストール可能です。
 	
@@ -31,6 +39,7 @@ HPE OneView SDK for Ansibleを利用するためには以下のバージョン�
 ## インストール
 
 ### ソースコードからのインストール
+
 #### レポジトリのクローン
 ```bash
 $ git clone https://github.com/HewlettPackard/oneview-ansible.git
@@ -44,7 +53,6 @@ $ pip install -r requirements.txt
 
 #### 環境変数の設定
 本ライブラリのパスを通すために、`ANSIBLE_LIBRARY`と`ANSIBLE_MODULE_UTILS`の環境変数を以下のように設定してください。
-
 ```bash
 $ export ANSIBLE_LIBRARY=/path/to/oneview-ansible/library
 $ export ANSIBLE_MODULE_UTILS=/path/to/oneview-ansible/library/module_utils/
@@ -55,21 +63,21 @@ $ export ANSIBLE_MODULE_UTILS=/path/to/oneview-ansible/library/module_utils/
 
 #### Dockerコンテナイメージのダウンロード
 ```bash
-$ docker pull hewlettpackardenterprise/hpe-oneview-sdk-for-ansible:v5.9.0-OV5.5
+$ docker pull hewlettpackardenterprise/hpe-oneview-sdk-for-ansible:v5.10.0-OV5.6
 ```
 
 #### Dockerコンテナを起動させPlaybook実行用shセッションを作成
 ```bash
-$ docker run -it hewlettpackardenterprise/hpe-oneview-sdk-for-ansible:v5.9.0-OV5.5 /bin/sh
+$ docker run -it hewlettpackardenterprise/hpe-oneview-sdk-for-ansible:v5.10.0-OV5.6 /bin/sh
 ```
 
 [こちら](https://github.com/HewlettPackard/oneview-ansible-samples/blob/master/oneview-ansible-in-container/oneview-ansible-in-container-ja.md)に詳しい使用方法がありますので参照してください。  
 
+
 ## OneViewクライアント設定
 
 ### JSON設定ファイル
-本Ansible OneViewモジュールを利用するためには、HPE OneViewへの接続のための JSON形式での設定ファイルが必要となります。この設定ファイルはHPE OneViewに認証するためのユーザー名やパスワード、ホスト名、APIバージョン等を記載する必要があります。以下は例となります。  
-
+本Ansible OneViewモジュールを利用するためには、HPE OneViewへの接続のための JSON形式での設定ファイルが必要となります。この設定ファイルはHPE OneViewに認証するためのユーザー名やパスワード、ホスト名、APIバージョン等を記載する必要があります。以下は例となります。
 ```json
 {
   "ip": "172.25.105.12",
@@ -78,7 +86,7 @@ $ docker run -it hewlettpackardenterprise/hpe-oneview-sdk-for-ansible:v5.9.0-OV5
     "authLoginDomain": "",
     "password": "secret123"
   },
-  "api_version": 2200
+  "api_version": 2400
 }
 ```
 
@@ -89,10 +97,9 @@ api_versionは呼び出すHPE OneView REST APIバージョンを指定します�
   "proxy": "<proxy_host>:<proxy_port>"
 ```
 
-🔒  平文で認証情報を設定ファイルに記載しているため、ファイルのパーミッションに注意してください。
+🔒 注意:平文で認証情報を設定ファイルに記載しているため、ファイルのパーミッションに注意してください。
 
-Playbook全てに `config` キーの値としてJSON設定ファイルのパスを指定してください。  
-以下は例となります。
+Playbook全てに `config` キーの値としてJSON設定ファイルのパスを指定してください。以下は例となります。
 
 ```yml
 - name: Gather facts about the FCoE Network with name 'FCoE Network Test'
@@ -112,15 +119,14 @@ export ONEVIEWSDK_USERNAME='Administrator'
 export ONEVIEWSDK_PASSWORD='secret123'
 
 # Optional
-export ONEVIEWSDK_API_VERSION='2200'
+export ONEVIEWSDK_API_VERSION='2400'
 export ONEVIEWSDK_AUTH_LOGIN_DOMAIN='authdomain'
 export ONEVIEWSDK_PROXY='<proxy_host>:<proxy_port>'
 ```
 
-🔒  平文で認証情報が環境変数に設定されるため、権限のないユーザーが環境変数にアクセスできないように注意してください。
+🔒  注意:平文で認証情報が環境変数に設定されるため、権限のないユーザーが環境変数にアクセスできないように注意してください。
 
-環境変数に設定情報を持たせる場合、前途の `config` は使いません。  
-以下の例を参照してください。
+環境変数に設定情報を持たせる場合、前途の `config` は使いません。以下の例を参照してください。
 
 ```yml
 - name: Gather facts about the FCoE Network with name 'FCoE Network Test'
@@ -141,7 +147,7 @@ HPE OneView情報を設定するための３つ目の方法として、Playbook�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 2200
+    api_version: 2400
     state: present
     data:
       name: "{{ network_name }}"
@@ -168,7 +174,7 @@ Ansible Vault利用して、認証情報を暗号化して保存できます。
 	    ```yaml
 	    # Required
 	    ip: 172.168.1.1
-	    api_version:2200
+	    api_version:2400
 	    username: Administrator
 	    password: !vault |
           $ANSIBLE_VAULT;1.1;AES256
@@ -202,7 +208,7 @@ Ansible Vault利用して、認証情報を暗号化して保存できます。
 
 oneview_config.ymlのファイル自体を暗号化することもできますが、その場合、ファイル内のパスワードは平文で設定してください。
 
-🔒 暗号化されたパスワードは暗号化する際に作成したパスワードで復号することが可能なので、許可されてないユーザーが暗号化されたファイルまたは値にアクセスできないようにしてください。
+🔒 注意:暗号化されたパスワードは暗号化する際に作成したパスワードで復号することが可能なので、許可されてないユーザーが暗号化されたファイルまたは値にアクセスできないようにしてください。
 
 5.--ask-vault-passオプションでPlaybookを実行して、パスワードプロンプトに暗号化した際に設定したパスワードを入力します。
 ```bash   
@@ -212,16 +218,17 @@ ansible-playbook example.yml --ask-vault-pass
 
 ### OneView APIの設定
 
-本Ansible modules for HPE OneViewはHPE OneViewバージョン 4.00, 4.10, 4.20, 5.00, 5.20, 5.30, 5.40, 5.50をサポートしています。  デフォルトはターゲットとなるHPE OneViewのAPIバージョンを使います。
+本Ansible modules for HPE OneViewはHPE OneViewバージョン 4.00, 4.10, 4.20, 5.00, 5.20, 5.30, 5.40, 5.50, 5.60をサポートしています。
+デフォルトはターゲットとなるHPE OneViewのAPIバージョンを使います。
 
 APIバージョンを指定したい場合、HPE OneViewの認証情報と共にAPIバージョンをJOSNファイルに設定してください。 
 ```bash
-"api_version": 2200
+"api_version": 2400
 ```
 
 または、環境変数に設定することも可能です。
 ```bash
-export ONEVIEWSDK_API_VERSION='2200'
+export ONEVIEWSDK_API_VERSION='2400'
 ```
 
 設定したAPIバージョンが無効な場合は、ターゲットとなるHPE OneViewのAPIバージョンを使います。
@@ -240,7 +247,9 @@ export ONEVIEWSDK_IMAGE_STREAMER_IP='100.100.100.100'
 ```
 
 ## 例
+
 サンプルのPlaybookと使い方は[こちら](/examples)を参照してください。
+```image_streamer_```のような文言をつけて探してください。
 
 ### Ansible OneViewモジュールの使用例
 
@@ -285,12 +294,12 @@ export ONEVIEWSDK_IMAGE_STREAMER_IP='100.100.100.100'
 
 ## ヘルプ
 
-何か問題を抱えていますか?ご自由にissueに登録してください。  
-[issue tracker](https://github.com/HewlettPackard/oneview-ansible/issues)
+何か問題を抱えていますか?ご自由にissueに登録してください。[issue tracker](https://github.com/HewlettPackard/oneview-ansible/issues)
 
 どのようにして新しいissueを登録するのか分からない方は[こちら](https://github.com/HewlettPackard/oneview-ansible/wiki#getting-help---how-can-i-get-help—support)を参照してください。
 
 ## ライセンス
+
 This project is licensed under the Apache license. Please see [LICENSE](https://github.com/HewlettPackard/oneview-ansible/blob/master/LICENSE) for more information.
 
 ## コントリビュートと機能拡張リクエスト
