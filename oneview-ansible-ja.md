@@ -6097,7 +6097,7 @@ OneView論理インターコネクトリソースを管理します。
 
 #### 要件 (モジュールを実行するホスト)
   * python >= 2.7.9
-  * hpOneView >= 5.0.0
+  * hpOneView >= 5.6.0
 
 #### オプション
 
@@ -6202,6 +6202,18 @@ OneView論理インターコネクトリソースを管理します。
       snmpConfiguration:
         enabled: True
 
+- name: Update the IGMP settings for the logical interconnect
+  oneview_logical_interconnect:
+    hostname: 172.16.101.48
+    username: administrator
+    password: my_password
+    api_version: 2400
+    state: igmp_settings_updated
+    data:
+      name: "Name of the Logical Interconnect"
+      igmpSettings:
+        igmpIdleTimeoutInterval: 200
+
 - name: Update the port monitor configuration of the logical interconnect
   oneview_logical_interconnect:
     hostname: 172.16.101.48
@@ -6213,6 +6225,18 @@ OneView論理インターコネクトリソースを管理します。
       name: "Name of the Logical Interconnect"
       portMonitor:
         enablePortMonitor: False
+
+- name: Update the port flap settings of the logical interconnect
+  oneview_logical_interconnect:
+    hostname: 172.16.101.48
+    username: administrator
+    password: my_password
+    api_version: 2400
+    state: port_flap_settings_updated
+    data:
+      name: "Name of the Logical Interconnect"
+      portFlapProtection:
+        portFlapThresholdPerInterval: 5
 
 - name: Update the configuration on the logical interconnect
   oneview_logical_interconnect:
@@ -6236,6 +6260,19 @@ OneView論理インターコネクトリソースを管理します。
       firmware:
         command: Stage
         spp: "filename"  # could also be sppUri: '/rest/firmware-drivers/<filename>'
+
+- name: Validates the bulk update from group operation of the given LI URLs
+  oneview_logical_interconnect:
+    hostname: 172.16.101.48
+    username: administrator
+    password: my_password
+    api_version: 2400
+    state: bulk_inconsistency_validated
+    data:
+      name: "Name of the Logical Interconnect"
+      bulk_update:
+        logicalInterconnectUris:
+          - /rest/logical-interconnects/d0432852-28a7-4060-ba49-57ca973ef6c2
 
 - name: Updates the telemetry configuration of a logical interconnect.
   oneview_logical_interconnect:
@@ -6281,6 +6318,9 @@ OneView論理インターコネクトリソースを管理します。
 | qos_configuration   | QoS構成に関するOneViewの情報を持っています。|  状態が「qos_aggregated_configuration_updated」状態ですが、nullの場合があります。|  dict |
 | scope_uris   | 指定された論理インターコネクトが挿入されるスコープURIを持っています。|  状態が'scopes_updated’、ただし、nullの場合があります。|  dict |
 | snmp_configuration   | SNMP構成に関するOneViewの情報を持っています。|  状態が'snmp_configuration_updated'、ただし、nullの場合があります。|  dict |
+| igmp_settings   | IGMP設定情報 |  igmp_settings_updatedというステータスまたはnull |  dict |
+| port_flap_settings   | ポートフラップ設定情報 |  port_flap_settings_updatedというステータスまたはnull |  dict |
+| li_inconsistency_report   | 不整合情報 |  bulk_inconsistency_validatedというステータスまたはnull |  dict |
 | storage_volume_template   | 論理インターコネクトに関するOneViewの情報を持っています。|  状態が 'compliant'、'ethernet_settings_updated'、'internal_networks_updated'、'settings_updated'、'configuration_updated'、ただし、nullの場合があります。|  dict |
 | telemetry_configuration   | テレメトリ構成に関するOneViewの情報を持っています。|  状態が'telemetry_configuration_updated'、ただし、nullの場合があります。|  dict |
 
@@ -6305,7 +6345,7 @@ OneView論理インターコネクトリソースを管理します。
 
 #### 要件 (モジュールを実行するホスト)
   * python >= 2.7.9
-  * hpOneView >= 5.0.0
+  * hpeOneView >= 5.6.0
 
 #### オプション
 
@@ -6367,6 +6407,7 @@ OneView論理インターコネクトリソースを管理します。
     options:
       - qos_aggregated_configuration
       - snmp_configuration
+      - igmp_settings
       - port_monitor
       - internal_vlans
       - forwarding_information_base
@@ -6379,6 +6420,7 @@ OneView論理インターコネクトリソースを管理します。
 - debug: var=logical_interconnects
 - debug: var=qos_aggregated_configuration
 - debug: var=snmp_configuration
+- debug: var=igmp_settings
 - debug: var=port_monitor
 - debug: var=internal_vlans
 - debug: var=forwarding_information_base
@@ -6404,6 +6446,7 @@ OneView論理インターコネクトリソースを管理します。
 | port_monitor   | 論理インターコネクトのポートモニター構成。|  要求された場合、ただしnullの場合があります。|  dict |
 | qos_aggregated_configuration   | 論理インターコネクトのQoS集約構成。|  要求された場合、ただしnullの場合があります。|  dict |
 | snmp_configuration   | 論理インターコネクトのSNMP構成。|  要求された場合、ただしnullの場合があります。|  dict |
+| igmp_settings   | 論理インターコネクトのIGMP情報 |  要求された場合、ただしnullの場合があります。 |  dict |
 | telemetry_configuration   | 論理インターコネクトのテレメトリー構成。|  要求された場合、ただしnullの場合があります。|  dict |
 | unassigned_ports   | 論理インターコネクトのアナライザーポートへの割り当てに適格なメンバーインターコネクトからのポートのコレクション。|  要求された場合、ただしnullの場合があります。|  dict |
 | unassigned_uplink_ports   | 論理インターコネクト上のアナライザーポートへの割り当てに適格なメンバーインターコネクトからのアップリンクポートのコレクション。|  要求された場合、ただしnullの場合があります。|  dict |
