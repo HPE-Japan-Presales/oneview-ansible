@@ -1,5 +1,5 @@
 ###
-# Copyright (2016-2020) Hewlett Packard Enterprise Development LP
+# Copyright (2016-2021) Hewlett Packard Enterprise Development LP
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # You may not use this file except in compliance with the License.
@@ -18,6 +18,7 @@
   vars:
     config: "{{ playbook_dir }}/oneview_config.json"
     variant: "Synergy"
+    ip_range: False
     lig_name: LIG
   tasks:
     - name: Gather facts about logical interconnect group
@@ -50,6 +51,30 @@
       with_items:
         - { name: 'EG' }
         - { name: 'Enclosure Group 1' }
+
+    # Run this exampleto create enclosure group with interconnects having ip rangeUris
+    - name: Create an Enclosure Group with ip rangeUris
+      oneview_enclosure_group:
+        config: "{{ config }}"
+        state: present
+        data:
+            name: "EG_with_ip_range"
+            ipAddressingMode: "IpPool"
+            ipRangeUris:
+              - /rest/id-pools/ipv4/ranges/d4321a21-42b5-4a1e-9c44-9e8bf9339dfa
+            ipv6AddressingMode: "External"
+            enclosureCount: 3
+            osDeploymentSettings:
+              manageOSDeployment: true
+              deploymentModeSettings:
+                deploymentMode: "Internal"
+            interconnectBayMappings:
+              - interconnectBay: 3
+                logicalInterconnectGroupUri: "{{ lig_uri }}"
+              - interconnectBay: 6
+                logicalInterconnectGroupUri: "{{ lig_uri }}"
+      delegate_to: localhost
+      when: ip_range == 'True'
 
     - name: Do nothing with the Enclosure Group when no changes are provided
       oneview_enclosure_group:
