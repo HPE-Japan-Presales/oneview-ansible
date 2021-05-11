@@ -10,3 +10,4 @@ examples/vars/os_attributes.yaml
 **/.coverage
 htmlcov
 .*DS_Store*
+coverage.xml

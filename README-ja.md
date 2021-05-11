@@ -2,15 +2,15 @@
 [English](README.md)
 ## Build Status 
 
-OV Version | 5.60 | 5.50 | 5.40 | 5.30 |
-| ------------- |:-------------:| -------------:| -------------:| -------------:|
-SDK Version/Tag | [v5.10.0](https://github.com/HewlettPackard/oneview-ansible/releases/tag/v5.10.0) | [v5.9.0](https://github.com/HewlettPackard/oneview-ansible/releases/tag/v5.9.0) | [v5.8.0](https://github.com/HewlettPackard/oneview-ansible/releases/tag/v5.8.0) | [v5.7.0](https://github.com/HewlettPackard/oneview-ansible/releases/tag/v5.7.0) |
-Build Status | ![Build status](https://ci.appveyor.com/api/projects/status/u84505l6syp70013?svg=true)| ![Build status](https://ci.appveyor.com/api/projects/status/u84505l6syp70013?svg=true)| ![Build status](https://ci.appveyor.com/api/projects/status/u84505l6syp70013?svg=true)| ![Build status](https://ci.appveyor.com/api/projects/status/u84505l6syp70013?svg=true)|
+OV Version | 6.10 | 6.00 | 5.60 | 5.50 | 5.40 |
+| ------------- |:-------------:| :-------------:| -------------:| -------------:| -------------:|
+SDK Version/Tag | [v6.1.0](https://github.com/HewlettPackard/oneview-ansible/releases/tag/v6.1.0) | [v6.0.0](https://github.com/HewlettPackard/oneview-ansible/releases/tag/v6.0.0) | [v5.10.0](https://github.com/HewlettPackard/oneview-ansible/releases/tag/v5.10.0) | [v5.9.0](https://github.com/HewlettPackard/oneview-ansible/releases/tag/v5.9.0) | [v5.8.0](https://github.com/HewlettPackard/oneview-ansible/releases/tag/v5.8.0) |
+Build Status | [![Build status](https://action-badges.now.sh/JasonEtco/action-badges)](https://github.com/HewlettPackard/oneview-ansible/actions/runs/728647209)| [![Build status](https://action-badges.now.sh/JasonEtco/action-badges)](https://github.com/HewlettPackard/oneview-ansible/actions/runs/632120002)| [![Build status](https://api.travis-ci.com/HewlettPackard/oneview-ansible.svg?branch=master&status=passed)](https://travis-ci.com/github/HewlettPackard/oneview-ansible/builds/216616724)| [![Build status](https://api.travis-ci.com/HewlettPackard/oneview-ansible.svg?branch=master&status=passed)](https://travis-ci.org/github/HewlettPackard/oneview-ansible/builds)| [![Build status](https://api.travis-ci.com/HewlettPackard/oneview-ansible.svg?branch=master&status=passed)](https://travis-ci.org/github/HewlettPackard/oneview-ansible/builds)|
 
 
 ## はじめに
-HPE OneViewは今日の複雑なハイブリッドクラウド環境の管理やデプロイをシンプルにするソフトウェアです。HPE OneViewを活用することでデータセンタをソフトウェア定義のデータセンタに移行することが可能になります。また、HPEストレージ、サーバー、ネットワーク等の幅広い製品をカバーしており、ハイブリッドインフラストラクチャ管理の簡素化、自動を可能にします。  
-ソフトウェア定義の技術はデプロイやプロビジョニング、アップデートやコンピュートリソースやストレージリソース、さらにはネットワークリソースの統合を可能にします。  
+
+HPE OneViewは今日の複雑なハイブリッドクラウド環境の管理やデプロイをシンプルにするソフトウェアです。HPE OneViewを活用することでデータセンタをソフトウェア定義のデータセンタに移行することが可能になります。また、HPEストレージ、サーバー、ネットワーク等の幅広い製品をカバーしており、ハイブリッドインフラストラクチャ管理の簡素化、自動を可能にします。ソフトウェア定義の技術はデプロイやプロビジョニング、アップデートやコンピュートリソースやストレージリソース、さらにはネットワークリソースの統合を可能にします。  
 
 このHPE OneView Ansible SDKはHPE OneView REST APIを通じて、Ansible Playbookの作成を可能にすることでHPE OneView自体をAnsibleから管理することができます。最新のHPE OneView Ansible SDKを確認したい場合は[こちら](https://github.com/HewlettPackard/oneview-ansible/releases/latest)を参照してください。  
 
@@ -19,7 +19,7 @@ HPE OneViewは今日の複雑なハイブリッドクラウド環境の管理や
 
 ## 最新情報
 
-本HPE OneView AnsibleはHPE OneView REST APIバージョン2400\(HPE OneView v5.60\)をサポートしました。  
+本HPE OneView AnsibleはHPE OneView REST APIバージョン2800\(HPE OneView v6.10\)をサポートしました。また、イメージストリーマーREST APIバージョン2020(I3S v6.10)をサポートしました。  
 
 その他の機能拡張、修正情報は[こちら](https://github.com/HewlettPackard/oneview-ansible/blob/master/CHANGELOG.md)を参照してください。
 
@@ -32,7 +32,7 @@ HPE OneView SDK for AnsibleはソースコードまたはDockerコンテナか�
 ### 前提条件
 HPE OneView SDK for Ansibleを利用するためには以下のバージョン満たす必要があります。
  
-	Ansible < 2.9
+	Ansible <= 2.9
 	Python >= 3.4.2
 	HPE OneView Python SDK
 
@@ -63,12 +63,12 @@ $ export ANSIBLE_MODULE_UTILS=/path/to/oneview-ansible/library/module_utils/
 
 #### Dockerコンテナイメージのダウンロード
 ```bash
-$ docker pull hewlettpackardenterprise/hpe-oneview-sdk-for-ansible:v5.10.0-OV5.6
+$ docker pull hewlettpackardenterprise/hpe-oneview-sdk-for-ansible:v6.1.0-OV6.1
 ```
 
 #### Dockerコンテナを起動させPlaybook実行用shセッションを作成
 ```bash
-$ docker run -it hewlettpackardenterprise/hpe-oneview-sdk-for-ansible:v5.10.0-OV5.6 /bin/sh
+$ docker run -it hewlettpackardenterprise/hpe-oneview-sdk-for-ansible:v6.1.0-OV6.1 /bin/sh
 ```
 
 [こちら](https://github.com/HewlettPackard/oneview-ansible-samples/blob/master/oneview-ansible-in-container/oneview-ansible-in-container-ja.md)に詳しい使用方法がありますので参照してください。  
@@ -77,7 +77,7 @@ $ docker run -it hewlettpackardenterprise/hpe-oneview-sdk-for-ansible:v5.10.0-OV
 ## OneViewクライアント設定
 
 ### JSON設定ファイル
-本Ansible OneViewモジュールを利用するためには、HPE OneViewへの接続のための JSON形式での設定ファイルが必要となります。この設定ファイルはHPE OneViewに認証するためのユーザー名やパスワード、ホスト名、APIバージョン等を記載する必要があります。以下は例となります。
+本Ansible OneViewモジュールを利用するためには、HPE OneViewへの接続のための JSON形式での設定ファイルが必要となります。この設定ファイルはHPE OneViewに認証するためのユーザー名やパスワード、認証ドメイン、ホスト名、APIバージョン等を記載する必要があります。以下は例となります。
 ```json
 {
   "ip": "172.25.105.12",
@@ -86,11 +86,13 @@ $ docker run -it hewlettpackardenterprise/hpe-oneview-sdk-for-ansible:v5.10.0-OV
     "authLoginDomain": "",
     "password": "secret123"
   },
-  "api_version": 2400
+  "api_version": 2800
 }
 ```
 
-api_versionは呼び出すHPE OneView REST APIバージョンを指定します。api_versionが指定されていない場合は、HPE OneViewからAPIバージョンを受けっとって自動設定します。
+`api_version`は呼び出すHPE OneView REST APIバージョンを指定します。`api_version`が指定されていない場合は、HPE OneViewからAPIバージョンを受けっとって自動設定します。
+
+`authLoginDomain`はアプライアンスのログインドメインディレクトリを指定します。 `authLoginDomain`を指定されていない場合は、アプライアンスのデフォルトのドメインディレクトリが指定されます。  
 
 プロキシサーバーを利用している場合は以下の例のようにJSON設定ファイルに記載します。
 ```json
@@ -119,7 +121,7 @@ export ONEVIEWSDK_USERNAME='Administrator'
 export ONEVIEWSDK_PASSWORD='secret123'
 
 # Optional
-export ONEVIEWSDK_API_VERSION='2400'
+export ONEVIEWSDK_API_VERSION='2800'
 export ONEVIEWSDK_AUTH_LOGIN_DOMAIN='authdomain'
 export ONEVIEWSDK_PROXY='<proxy_host>:<proxy_port>'
 ```
@@ -139,7 +141,7 @@ export ONEVIEWSDK_PROXY='<proxy_host>:<proxy_port>'
 ### Playbook内パラメータ
 
 HPE OneView情報を設定するための３つ目の方法として、Playbook内に明示的に設定する方法です。
-この方法は `hostname`, `username`, `password`, `api_version` と `image_streamer_hostname` を直接Playbook内で指定できます。
+この方法は `hostname`, `auth_login_domain`,`username`, `password`, `api_version`, `image_streamer_hostname`を直接Playbook内で指定できます。
 
 ```yaml
 - name: Create a Fibre Channel Network
@@ -147,7 +149,8 @@ HPE OneView情報を設定するための３つ目の方法として、Playbook�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 2400
+    auth_login_domain: ""
+    api_version: 2800
     state: present
     data:
       name: "{{ network_name }}"
@@ -174,7 +177,7 @@ Ansible Vault利用して、認証情報を暗号化して保存できます。
 	    ```yaml
 	    # Required
 	    ip: 172.168.1.1
-	    api_version:2400
+	    api_version:2800
 	    username: Administrator
 	    password: !vault |
           $ANSIBLE_VAULT;1.1;AES256
@@ -195,6 +198,7 @@ Ansible Vault利用して、認証情報を暗号化して保存できます。
     hostname: "{{ ip }}"
     username: "{{ username }}"
     password: "{{ password }}"
+    auth_login_domain: "{{ domain_directory }}"
     api_version: "{{ api_version }}"
     state: present
     data:
@@ -218,17 +222,17 @@ ansible-playbook example.yml --ask-vault-pass
 
 ### OneView APIの設定
 
-本Ansible modules for HPE OneViewはHPE OneViewバージョン 4.00, 4.10, 4.20, 5.00, 5.20, 5.30, 5.40, 5.50, 5.60をサポートしています。
+本Ansible modules for HPE OneViewはHPE OneViewバージョン 4.00, 4.10, 4.20, 5.00, 5.20, 5.30, 5.40, 5.50, 5.60, 6.00, 6.10をサポートしています。
 デフォルトはターゲットとなるHPE OneViewのAPIバージョンを使います。
 
 APIバージョンを指定したい場合、HPE OneViewの認証情報と共にAPIバージョンをJOSNファイルに設定してください。 
 ```bash
-"api_version": 2400
+"api_version": 2800
 ```
 
 または、環境変数に設定することも可能です。
 ```bash
-export ONEVIEWSDK_API_VERSION='2400'
+export ONEVIEWSDK_API_VERSION='2800'
 ```
 
 設定したAPIバージョンが無効な場合は、ターゲットとなるHPE OneViewのAPIバージョンを使います。

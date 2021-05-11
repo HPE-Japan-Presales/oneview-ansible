@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 ###
-# Copyright (2017) Hewlett Packard Enterprise Development LP
+# Copyright (2021) Hewlett Packard Enterprise Development LP
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # You may not use this file except in compliance with the License.
@@ -60,12 +60,15 @@ from image_streamer_plan_script_facts import PlanScriptFactsModule
 from oneview_alert_facts import AlertFactsModule
 from oneview_appliance_device_read_community import ApplianceDeviceReadCommunityModule
 from oneview_appliance_device_read_community_facts import ApplianceDeviceReadCommunityFactsModule
+from oneview_appliance_configuration_timeconfig_facts import ApplianceConfigurationTimeconfigFactsModule
 from oneview_appliance_device_snmp_v1_trap_destinations import ApplianceDeviceSnmpV1TrapDestinationsModule
 from oneview_appliance_device_snmp_v1_trap_destinations_facts import ApplianceDeviceSnmpV1TrapDestinationsFactsModule
 from oneview_appliance_device_snmp_v3_trap_destinations import ApplianceDeviceSnmpV3TrapDestinationsModule
 from oneview_appliance_device_snmp_v3_trap_destinations_facts import ApplianceDeviceSnmpV3TrapDestinationsFactsModule
 from oneview_appliance_device_snmp_v3_users import ApplianceDeviceSnmpV3UsersModule
 from oneview_appliance_device_snmp_v3_users_facts import ApplianceDeviceSnmpV3UsersFactsModule
+from oneview_appliance_ssh_access_facts import ApplianceSshAccessFactsModule
+from oneview_appliance_ssh_access import ApplianceSshAccessModule
 from oneview_appliance_time_and_locale_configuration_facts import ApplianceTimeAndLocaleConfigurationFactsModule
 from oneview_appliance_time_and_locale_configuration import ApplianceTimeAndLocaleConfigurationModule
 from oneview_certificates_server import CertificatesServerModule
@@ -97,6 +100,8 @@ from oneview_hypervisor_cluster_profile import HypervisorClusterProfileModule
 from oneview_hypervisor_cluster_profile_facts import HypervisorClusterProfileFactsModule
 from oneview_hypervisor_manager import HypervisorManagerModule
 from oneview_hypervisor_manager_facts import HypervisorManagerFactsModule
+from oneview_id_pools import IdPoolsModule
+from oneview_id_pools_facts import IdPoolsFactsModule
 from oneview_id_pools_ipv4_subnet import IdPoolsIpv4SubnetModule
 from oneview_id_pools_ipv4_subnet_facts import IdPoolsIpv4SubnetFactsModule
 from oneview_id_pools_ipv4_range import IdPoolsIpv4RangeModule
@@ -106,6 +111,8 @@ from oneview_interconnect_facts import InterconnectFactsModule
 from oneview_interconnect_link_topology_facts import InterconnectLinkTopologyFactsModule
 from oneview_interconnect_type_facts import InterconnectTypeFactsModule
 from oneview_internal_link_set_facts import InternalLinkSetFactsModule
+from oneview_label import LabelModule
+from oneview_label_facts import LabelFactsModule
 from oneview_logical_downlinks_facts import LogicalDownlinksFactsModule
 from oneview_logical_enclosure import LogicalEnclosureModule
 from oneview_logical_enclosure_facts import LogicalEnclosureFactsModule
@@ -161,6 +168,7 @@ from oneview_storage_volume_template_facts import StorageVolumeTemplateFactsModu
 from oneview_switch import SwitchModule
 from oneview_switch_facts import SwitchFactsModule
 from oneview_switch_type_facts import SwitchTypeFactsModule
+from oneview_task import TaskModule
 from oneview_task_facts import TaskFactsModule
 from oneview_unmanaged_device import UnmanagedDeviceModule
 from oneview_unmanaged_device_facts import UnmanagedDeviceFactsModule

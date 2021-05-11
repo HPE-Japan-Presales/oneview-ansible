@@ -1,6 +1,5 @@
 [English](oneview-ansible.md)
 # Ansible HPE OneViewモジュール
-
 ### モジュール
 
   * [hpe_icsp_os_deployment - HPE ICspを使用してサーバーにオペレーティングシステムを展開します。](#hpe_icsp_os_deployment)
@@ -18,6 +17,7 @@
   * [image_streamer_plan_script - イメージストリーマー計画スクリプトリソースを管理します。](#image_streamer_plan_script)
   * [image_streamer_plan_script_facts - イメージストリーマー計画スクリプトに関する情報を取得します。](#image_streamer_plan_script_facts)
   * [oneview_alert_facts - OneViewアラートに関する情報を取得します。](#oneview_alert_facts)
+  * [oneview_appliance_configuration_timeconfig_facts - OneViewでサポートされるローケル情報を取得します。](#oneview_appliance_configuration_timeconfig_facts)
   * [oneview_appliance_device_read_community - アプライアンスデバイス読み取りコミュニティストリングを管理します。](#oneview_appliance_device_read_community)
   * [oneview_appliance_device_read_community_facts - アプライアンスデバイス読み取りコミュニティストリングを管理します。](#oneview_appliance_device_read_community_facts)
   * [oneview_appliance_device_snmp_v1_trap_destinations - アプライアンスデバイスのSNMPv1トラップ送信先を管理します。](#oneview_appliance_device_snmp_v1_trap_destinations)
@@ -26,6 +26,8 @@
   * [oneview_appliance_device_snmp_v3_trap_destinations_facts - OneViewアプライアンスのSNMPv3トラップ転送先に関する情報を取得します。](#oneview_appliance_device_snmp_v3_trap_destinations_facts)
   * [oneview_appliance_device_snmp_v3_users - アプライアンスデバイスSNMPv3ユーザーを管理します。](#oneview_appliance_device_snmp_v3_users)
   * [oneview_appliance_device_snmp_v3_users_facts - OneViewアプライアンスのSNMPv3ユーザーに関する情報を取得します。](#oneview_appliance_device_snmp_v3_users_facts)
+  * [oneview_appliance_ssh_access - OneViewアプライアンスのSSHアクセス設定を管理します。](#oneview_appliance_ssh_access)
+  * [oneview_appliance_ssh_access_facts - OneViewアプライアンスのSSHアクセス設定情報を取得します。](#oneview_appliance_ssh_access_facts)
   * [oneview_appliance_time_and_locale_configuration - OneViewアプライアンスの場所と時間構成を管理します。](#oneview_appliance_time_and_locale_configuration)
   * [oneview_appliance_time_and_locale_configuration_facts - OneViewアプライアンスの時間とロケール構成に関する情報を取得します。](#oneview_appliance_time_and_locale_configuration_facts)
   * [oneview_certificates_server - OneView証明書サーバーを管理します。](#oneview_certificates_server)
@@ -57,6 +59,8 @@
   * [oneview_hypervisor_cluster_profile_facts - OneViewハイパーバイザークラスタープロファイル情報を取得します.](#oneview_hypervisor_cluster_profile_facts)
   * [oneview_hypervisor_manager - OneViewハイパーバイザーマネージャーを管理します。](#oneview_hypervisor_manager)
   * [oneview_hypervisor_manager_facts - OneViewハイパーバイザーマネージャー情報を取得します。](#oneview_hypervisor_manager_facts)
+  * [oneview_id_pools - OneView IDプールを管理します。](#oneview_id_pools)
+  * [oneview_id_pools_facts - OneView IDプール情報を取得します。](#oneview_id_pools_ipv4_facts)
   * [oneview_id_pools_ipv4_range - OneView IDプールのIPV4範囲リソースを管理します。](#oneview_id_pools_ipv4_range)
   * [oneview_id_pools_ipv4_range_facts - 1つ以上のOneView IDプールIPV4範囲に関する情報を取得します。](#oneview_id_pools_ipv4_range_facts)
   * [oneview_id_pools_ipv4_subnet - OneView IDプールのIPV4サブネットリソースを管理します。](#oneview_id_pools_ipv4_subnet)
@@ -66,6 +70,8 @@
   * [oneview_interconnect_link_topology_facts - OneView Interconnect Linkトポロジに関する情報を取得します。](#oneview_interconnect_link_topology_facts)
   * [oneview_interconnect_type_facts - 1つ以上のOneViewインターコネクトタイプに関する情報を取得します。](#oneview_interconnect_type_facts)
   * [oneview_internal_link_set_facts - OneView内部リンクセットに関する情報を取得します。](#oneview_internal_link_set_facts)
+  * [oneview_label - Oneviewラベルを管理します。](#oneview_label)
+  * [oneview_label_facts - Oneviewラベルに関する情報を取得します。](#oneview_label_facts)
   * [oneview_logical_downlinks_facts - 1つ以上のOneView論理ダウンリンクに関する情報を取得します。](#oneview_logical_downlinks_facts)
   * [oneview_logical_enclosure - OneView論理エンクロージャリソースを管理します。](#oneview_logical_enclosure)
   * [oneview_logical_enclosure_facts - 1つ以上のOneView論理エンクロージャーに関する情報を取得します。](#oneview_logical_enclosure_facts)
@@ -1500,6 +1506,58 @@ OneViewアラートに関する情報を取得します。
 ---
 
 
+## oneview_appliance_configuration_timeconfig_facts
+OneViewの時間設定情報を収集します。
+
+#### 概要
+OneViewの時間設定情報を収集します。
+
+#### 要件 (モジュールを実行するホスト)
+  * python >= 3.4.2
+  * hpeOneView >= 6.0.0
+
+#### オプション
+
+| パラメーター     | 必要    | デフォルト  | 選択肢    | コメント |
+| ------------- |-------------| ---------|----------- |--------- |
+| config  |   No  |  | |  OneViewクライアント構成を含む.json構成ファイルへのパス。構成ファイルはオプションです。ファイルパスが指定されていない場合、構成は環境変数からロードされます。  |
+
+
+
+## Example Playbook
+
+```yaml
+
+- name: Gather Facts about Oneview Appliance time configuration
+  oneview_appliance_configuration_timeconfig_facts:
+    config: "{{ config }}"
+  delegate_to: localhost
+
+- debug: var=appliance_configuration_timeconfig
+
+```
+
+
+
+#### 戻り値
+
+| 名前          | 説明  | 戻り | タイプ       |
+| ------------- |-------------| ---------|----------- |
+| appliance_configuration_timeconfig   | OneViewアプライアンスがサポートするローケル情報 |  常時、ただしnullの場合があります。 |  dict |
+
+
+#### 注記
+
+- configパラメーターのサンプル構成ファイルは、次の場所にあります。: https://github.com/HewlettPackard/oneview-ansible/blob/master/examples/oneview_config-rename.json
+
+- 構成用の環境変数の使用方法は、次の場所で確認してください。: https://github.com/HewlettPackard/oneview-ansible#environment-variables
+
+- HPE OneView Ansibleモジュールの追加のPlaybookは、次の場所にあります。: https://github.com/HewlettPackard/oneview-ansible/tree/master/examples
+
+
+---
+
+
 ## oneview_appliance_device_read_community
 アプライアンスデバイス読み取りコミュニティストリングを管理します。
 
@@ -1623,19 +1681,20 @@ OneViewアプライアンスデバイス読み取りコミュニティに関す�
  アプライアンスデバイスのSNMPv1トラップ宛先を管理するためのインターフェイスを提供します。
 
 #### 要件 (モジュールを実行するホスト)
-  * python >= 2.7.9
-  * hpeOneView >= 5.4.0
+  * python >= 3.4.2
+  * hpeOneView >= 6.0.0
 
 #### オプション
 
 | パラメーター     | 必要    | デフォルト  | 選択肢    | コメント |
 | ------------- |-------------| ---------|----------- |--------- |
 | config  |   No  |  | |  OneViewクライアント構成を含む.json構成ファイルへのパス。構成ファイルはオプションです。ファイルパスが指定されていない場合、構成は環境変数からロードされます。  |
-| data  |   Yes  |  | |  SNMPv1トラップ送信先プロパティのリスト  |
+| data  |   No  |  | |  SNMPv1トラップ送信先プロパティのリスト  |
+| name  |   Yes  |  | |  SNMPv1トラップ送信先アドレス  |
 | state  |   |  | <ul> <li>present</li>  <li>absent</li> </ul> |  アプライアンスデバイスSNMPv1トラップ宛先の望ましい状態を示します。`present`は、データプロパティがOneViewに準拠していることを保証します。`absent`は、存在する場合、OneViewからリソースを削除します。  |
 
 
- 
+
 #### 例
 
 ```yaml
@@ -1645,8 +1704,9 @@ OneViewアプライアンスデバイス読み取りコミュニティに関す�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 2200
+    api_version: 2600
     state: present
+    name: 10.0.0.1
     data:
       communityString: "public"
       destination: "10.0.0.1"
@@ -1661,8 +1721,9 @@ OneViewアプライアンスデバイス読み取りコミュニティに関す�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 2200
+    api_version: 2600
     state: present
+    name: 10.0.0.1
     data:
       communityString: "private"
       uri: "/rest/appliance/trap-destinations/1"
@@ -1677,29 +1738,13 @@ OneViewアプライアンスデバイス読み取りコミュニティに関す�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 2200
+    api_version: 2600
     state: absent
-    data:
-      destination: "10.0.0.1"
+    name: 10.0.0.1
   delegate_to: localhost
 
 - debug:
     var: appliance_device_snmp_v1_trap_destinations
-
-- name: Delete an Appliance Device SNMPv1 Trap Destination by URI
-  oneview_appliance_device_snmp_v1_trap_destinations:
-    hostname: 172.16.101.48
-    username: administrator
-    password: my_password
-    api_version: 2200
-    state: absent
-    data:
-        uri: "/rest/appliance/trap-destinations/1"
-  delegate_to: localhost
-
-- debug:
-    var: appliance_device_snmp_v1_trap_destinations
-
 ```
 
 
@@ -1730,15 +1775,15 @@ OneViewアプライアンスのSNMPv1トラップ転送先に関する情報を�
  アプライアンスには、監視対象または管理対象のサーバーハードウェアから受信したイベントを、SNMPv1トラップとして指定された宛先に転送する機能があります。このモジュールは、アプライアンスのSNMPv1トラップ転送先に関するファクトを取得します。
 
 #### 要件 (モジュールを実行するホスト)
-  * python >= 2.7.9
-  * hpeOneView >= 5.4.0
+  * python >= 3.4.2
+  * hpeOneView >= 6.0.0
 
 #### オプション
 
 | パラメーター     | 必要    | デフォルト  | 選択肢    | コメント |
 | ------------- |-------------| ---------|----------- |--------- |
 | config  |   No  |  | |  OneViewクライアント構成を含む.json構成ファイルへのパス。構成ファイルはオプションです。ファイルパスが指定されていない場合、構成は環境変数からロードされます。  |
-| id  |   No  |  | |  トラップ宛先のIDまたはURI。  |
+| name  |   No  |  | |  SNMPトラップの送信先  |
 | params  |   No  |  | |  リソースのリストを区切り、フィルター、ソートするパラメーターのリスト。  可能なパラメーター: `start`: 0から始まるインデックスを使用して返される最初のアイテム。`count`: 返されるリソースの数。`filter`: 返されるアイテムのリストを絞り込むための一般的なフィルター/クエリ文字列。`sort`: 返されたデータセットのソート順。  |
 
 
@@ -1752,7 +1797,7 @@ OneViewアプライアンスのSNMPv1トラップ転送先に関する情報を�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 2200
+    api_version: 2600
   delegate_to: localhost
 
 - debug:
@@ -1763,7 +1808,7 @@ OneViewアプライアンスのSNMPv1トラップ転送先に関する情報を�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 2200
+    api_version: 2600
     params:
       start: 0
       count: 3
@@ -1774,18 +1819,18 @@ OneViewアプライアンスのSNMPv1トラップ転送先に関する情報を�
 - debug:
     var: appliance_device_snmp_v1_trap_destinations
 
-- name: Gather facts about a Trap Destination by Destination
+- name: Gather facts about a Trap Destination by Name
   oneview_appliance_device_snmp_v1_trap_destinations_facts:
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 2200
-    destination: '1.1.1.1'
+    api_version: 2600
+    name: '1.1.1.1'
   delegate_to: localhost
 
 - debug:
     var: appliance_device_snmp_v1_trap_destinations
-
+    
 ```
 
 
@@ -1816,14 +1861,15 @@ OneViewアプライアンスのSNMPv1トラップ転送先に関する情報を�
  アプライアンスデバイスのSNMPv3トラップ宛先を管理するためのインターフェイスを提供します。
 
 #### 要件 (モジュールを実行するホスト)
-  * python >= 2.7.9
-  * hpeOneView >= 5.4.0
+  * python >= 3.4.2
+  * hpeOneView >= 6.0.0
 
 #### オプション
 
 | パラメーター     | 必要    | デフォルト  | 選択肢    | コメント |
 | ------------- |-------------| ---------|----------- |--------- |
 | config  |   No  |  | |  OneViewクライアント構成を含む.json構成ファイルへのパス。構成ファイルはオプションです。ファイルパスが指定されていない場合、構成は環境変数からロードされます。  |
+| name  |   Yes  |  | |  SNMPv3トラップ宛先アドレス  |
 | data  |   Yes  |  | |  SNMPv3トラップ宛先プロパティのリスト  |
 | state  |   |  | <ul> <li>present</li>  <li>absent</li> </ul> |  アプライアンスデバイスSNMPv3トラップ宛先の望ましい状態を示します。`present`は、データプロパティがOneViewに準拠していることを保証します。`absent`は、存在する場合、OneViewからリソースを削除します。  |
 
@@ -1838,24 +1884,25 @@ OneViewアプライアンスのSNMPv1トラップ転送先に関する情報を�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 2200
+    api_version: 2600
     state: present
+    name: 10.0.0.1
     data:
-        type: "Destination"
         destinationAddress: "10.0.0.1"
         port: 162
-        userId: "8e57d829-2f17-4167-ae23-8fb46607c76c"
+        userName: "test1"
   delegate_to: localhost
 
 - debug:
-    var: oneview_appliance_device_snmp_v3_trap_destinations
+    var: appliance_device_snmp_v3_trap_destinations
 
 - name: Update the userId of specified SNMPv3 Trap Destination
   oneview_appliance_device_snmp_v3_trap_destinations:
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 2200
+    api_version: 2600
+    name: 10.0.0.1
     state: present
     data:
       destinationAddress: "10.0.0.1"
@@ -1863,17 +1910,16 @@ OneViewアプライアンスのSNMPv1トラップ転送先に関する情報を�
   delegate_to: localhost
 
 - debug:
-    var: oneview_appliance_device_snmp_v3_trap_destinations
+    var: appliance_device_snmp_v3_trap_destinations
 
 - name: Ensure that the SNMPv3 Trap Destination is absent
   oneview_appliance_device_snmp_v3_trap_destinations:
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 2200
+    api_version: 2600
+    name: 10.0.0.1
     state: absent
-    data:
-        destinationAddress: "10.0.0.1"
   delegate_to: localhost
 
 ```
@@ -1884,7 +1930,7 @@ OneViewアプライアンスのSNMPv1トラップ転送先に関する情報を�
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| oneview_appliance_device_snmp_v3_trap_destinations   | OneViewアプライアンスSNMPv3トラップ宛先に関するすべてのOneViewの情報を持っています。|  状態が 'present'。nullの場合があります。|  dict |
+| appliance_device_snmp_v3_trap_destinations   | OneViewアプライアンスSNMPv3トラップ宛先に関するすべての情報。|  状態が 'present'。nullの場合があります。|  dict |
 
 
 #### 注記
@@ -1906,17 +1952,19 @@ OneViewアプライアンスのSNMPv3トラップ転送先に関する情報を�
  アプライアンスには、監視対象または管理対象のサーバーハードウェアから受信したイベントを、SNMPv3トラップとして指定された宛先に転送する機能があります。このモジュールは、アプライアンスのSNMPv3トラップ転送先に関するファクトを取得します。
 
 #### 要件 (モジュールを実行するホスト)
-  * python >= 2.7.9
-  * hpeOneView >= 5.4.0
+  * python >= 3.4.2
+  * hpeOneView >= 6.0.0
 
 #### オプション
 
 | パラメーター     | 必要    | デフォルト  | 選択肢    | コメント |
 | ------------- |-------------| ---------|----------- |--------- |
 | config  |   No  |  | |  OneViewクライアント構成を含む.json構成ファイルへのパス。構成ファイルはオプションです。ファイルパスが指定されていない場合、構成は環境変数からロードされます。  |
+| name  |   No  |  | |  トラップの送信先名  |
+| params  |   No  |  | |  リソースのリストを区切り、フィルタリングし、ソートするためのパラメータのリスト。許可されるパラメータは次の通りです。`start`：0ベースのインデックスを使用して最初に返されるアイテム `count`：返すリソースの数 `filter`：返されるアイテムのリストを絞り込むための一般的なフィルター/クエリ文字列 `sort`：返されたデータセットのソート順  |
 
 
- 
+
 #### 例
 
 ```yaml
@@ -1926,7 +1974,7 @@ OneViewアプライアンスのSNMPv3トラップ転送先に関する情報を�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 2200
+    api_version: 2600
   delegate_to: localhost
 
 - debug:
@@ -1937,7 +1985,7 @@ OneViewアプライアンスのSNMPv3トラップ転送先に関する情報を�
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 2200
+    api_version: 2600
     params:
       start: 0
       count: 3
@@ -1948,13 +1996,13 @@ OneViewアプライアンスのSNMPv3トラップ転送先に関する情報を�
 - debug:
     var: appliance_device_snmp_v3_trap_destinations
 
-- name: Gather facts about a Trap Destination by ID
+- name: Gather facts about a Trap Destination by Name
   oneview_appliance_device_snmp_v3_trap_destinations_facts:
     hostname: 172.16.101.48
     username: administrator
     password: my_password
-    api_version: 2200
-    id: "19dc6a96-bd04-4724-819b-32bc660fcefc"
+    api_version: 2600
+    name: "test_user"
   delegate_to: localhost
 
 - debug:
@@ -2007,7 +2055,7 @@ OneViewアプライアンスのSNMPv3トラップ転送先に関する情報を�
 
 ```yaml
 
-- name: デフォルト構成を使用して、SNMPv3ユーザーが存在するようにします
+- name: Ensure that the SNMPv3 user is present using the default configuration
   oneview_appliance_device_snmp_v3_users:
     hostname: 172.16.101.48
     username: administrator
@@ -2030,7 +2078,7 @@ OneViewアプライアンスのSNMPv3トラップ転送先に関する情報を�
     username: administrator
     password: my_password
     api_version: 2200
-    state: set_password
+    state: present
     data:
       userName: "testUser"
       authenticationPassphrase: "NewPass1234"
@@ -2121,13 +2169,13 @@ OneViewアプライアンスSNMPv3ユーザーに関する情報を取得しま�
 - debug:
     var: appliance_device_snmp_v3_users
 
-- name: Gather facts about a SNMPv3 user by ID
+- name: Gather facts about a SNMPv3 user by username
   oneview_appliance_device_snmp_v3_users_facts:
     hostname: 172.16.101.48
     username: administrator
     password: my_password
     api_version: 2200
-    id: "2af33d0c-dc1f-4b5f-ba3e-e4a0b1acb899"
+    name: "testUser"
   delegate_to: localhost
 
 - debug:
@@ -2155,6 +2203,122 @@ OneViewアプライアンスSNMPv3ユーザーに関する情報を取得しま�
 
 ---
 
+## oneview_appliance_ssh_access
+OneViewアプライアンスのSSHアクセスを管理します。
+
+#### 概要
+ OneViewアプライアンスのSSHアクセスをオン・オフをします。
+
+#### 要件 (モジュールを実行するホスト)
+  * python >= 3.4.2
+  * hpeOneView >= 6.0.0
+
+#### オプション
+
+| パラメーター     | 必要    | デフォルト  | 選択肢    | コメント |
+| ------------- |-------------| ---------|----------- |--------- |
+| config  |   No  |  | |  OneViewクライアント構成を含む.json構成ファイルへのパス。構成ファイルはオプションです。ファイルパスが指定されていない場合、構成は環境変数からロードされます。  |
+| data  |  Yes  |  | |  SSHアクセスのプロパティとその状態をリストします。
+
+
+
+## Example Playbook
+
+```yaml
+
+- name: Ensures the Appliance SSH Access is false
+  oneview_appliance_ssh_access:
+    config: "{{ config }}"
+    state: present
+    data:
+      allowSshAccess: false
+  delegate_to: localhost
+- debug: var=appliance_ssh_access
+
+- name: Ensures the Appliance SSH Access is true
+  oneview_appliance_ssh_access:
+    config: "{{ config }}"
+    state: present
+    data:
+      allowSshAccess: true
+  delegate_to: localhost
+- debug: var=appliance_ssh_access
+
+```
+
+
+
+#### 戻り値
+
+| 名前          | 説明  | 戻り | タイプ       |
+| ------------- |-------------| ---------|----------- |
+| appliance_ssh_access   | OneViewアプライアンスSSHアクセス設定の全ての情報。 |  'present'ステータスまたはnull |  dict |
+| data  |   Yes  |  | |  OneViewアプライアンスSSHアクセス設定プロパティのリスト。  |
+| state  |   |  | <ul> <li>present</li> </ul> |  OneViewアプライアンスSSHアクセス設定に関する状態を示します。`present` は設定項目がOneViewに準拠していることを示します。  |
+
+
+#### 注記
+
+- configパラメーターのサンプル構成ファイルは、次の場所にあります。: https://github.com/HewlettPackard/oneview-ansible/blob/master/examples/oneview_config-rename.json
+
+- 構成用の環境変数の使用方法は、次の場所で確認してください。: https://github.com/HewlettPackard/oneview-ansible#environment-variables
+
+- HPE OneView Ansibleモジュールの追加のPlaybookは、次の場所にあります。: https://github.com/HewlettPackard/oneview-ansible/tree/master/examples
+
+
+---
+
+## oneview_appliance_ssh_access_facts
+OneViewアプライアンスSSHアクセスに関する情報の取得
+
+#### 概要
+OneViewアプライアンスSSHアクセスに関する情報の取得
+
+#### 要件 (モジュールを実行するホスト)
+  * python >= 3.4.2
+  * hpeOneView >= 6.0.0
+
+#### オプション
+
+| パラメーター     | 必要    | デフォルト  | 選択肢    | コメント |
+| ------------- |-------------| ---------|----------- |--------- |
+| config  |   No  |  | |  OneViewクライアント構成を含む.json構成ファイルへのパス。構成ファイルはオプションです。ファイルパスが指定されていない場合、構成は環境変数からロードされます。  |
+
+
+
+## Example Playbook
+
+```yaml
+
+- name: Gather facts about the Appliance SSH Access
+  oneview_appliance_ssh_access_facts:
+    config: "{{ config }}"
+  delegate_to: localhost
+
+- debug: var=appliance_ssh_access
+
+```
+
+
+
+#### 戻り値
+
+| 名前          | 説明  | 戻り | タイプ       |
+| ------------- |-------------| ---------|----------- |
+| appliance_ssh_access   | OneViewアプライアンスSSHアクセス設定の全ての情報。 |  常に  |  dict |
+
+
+#### 注記
+
+- configパラメーターのサンプル構成ファイルは、次の場所にあります。: https://github.com/HewlettPackard/oneview-ansible/blob/master/examples/oneview_config-rename.json
+
+- 構成用の環境変数の使用方法は、次の場所で確認してください。: https://github.com/HewlettPackard/oneview-ansible#environment-variables
+
+- HPE OneView Ansibleモジュールの追加のPlaybookは、次の場所にあります。: https://github.com/HewlettPackard/oneview-ansible/tree/master/examples
+
+
+---
+
 
 ## oneview_appliance_time_and_locale_configuration
 OneViewアプライアンスのロケールと時間構成を管理します。
@@ -2163,8 +2327,8 @@ OneViewアプライアンスのロケールと時間構成を管理します。
  アプライアンスのロケールと時間設定を管理するためのインターフェイスを提供します。更新のみ可能です。
 
 #### 要件 (モジュールを実行するホスト)
-  * python >= 2.7.9
-  * hpOneView >= 3.2.0
+  * python >= 3.4.2
+  * hpeOneView >= 6.0.0
 
 #### オプション
 
@@ -2180,12 +2344,41 @@ OneViewアプライアンスのロケールと時間構成を管理します。
 
 ```yaml
 
-- name: Ensure that the Appliance Locale and Time Configuration is present with locale 'en_US.UTF-8'
+- name: Add the Appliance time and locale configuration locale is ja_JP.UTF-8
   oneview_appliance_time_and_locale_configuration:
-    config: "{{ config_file_path }}"
+    config: "{{ config }}"
     state: present
     data:
-      locale: ‘en_US.UTF-8'
+      locale: ja_JP.UTF-8
+      ntpServers: [16.110.135.123]
+      timezone: UTC
+      type: TimeAndLocale
+  delegate_to: localhost
+- debug: var=appliance_time_and_locale_configuration
+
+- name: Ensures the Appliance time and locale configuration locale is ja_JP.UTF-8 is already present
+  oneview_appliance_time_and_locale_configuration:
+    config: "{{ config }}"
+    state: present
+    data:
+      locale: ja_JP.UTF-8
+      ntpServers: [16.110.135.123]
+      timezone: UTC
+      type: TimeAndLocale
+  delegate_to: localhost
+- debug: var=appliance_time_and_locale_configuration
+
+- name: Change the Appliance time and locale configuration locale to en_US.UTF-8
+  oneview_appliance_time_and_locale_configuration:
+    config: "{{ config }}"
+    state: present
+    data:
+      locale: en_US.UTF-8
+      ntpServers: [16.110.135.123]
+      timezone: UTC
+      type: TimeAndLocale
+  delegate_to: localhost
+- debug: var=appliance_time_and_locale_configuration
 
 ```
 
@@ -2217,8 +2410,8 @@ OneViewアプライアンスの時間とロケール構成に関する情報を�
  OneViewアプライアンスの時間とロケール構成に関する情報を取得します。
 
 #### 要件 (モジュールを実行するホスト)
-  * python >= 2.7.9
-  * hpOneView >= 3.2.0
+  * python >= 3.4.2
+  * hpeOneView >= 6.0.0
 
 #### オプション
 
@@ -2234,7 +2427,8 @@ OneViewアプライアンスの時間とロケール構成に関する情報を�
 
 - name: Gather facts about the Appliance time and locale configuration
   oneview_appliance_time_and_locale_configuration_facts:
-    config: "{{ config_file_path }}"
+    config: "{{ config }}"
+  delegate_to: localhost
 
 - debug: var=appliance_time_and_locale_configuration
 
@@ -2322,11 +2516,13 @@ OneView証明書サーバーを管理します。
     data:
       alias_name: 'vcenter'
 
+```
+
 ---
 
 
 
-#### Notes
+#### 注記
 
 - A sample configuration file for the config parameter can be found at: https://github.com/HewlettPackard/oneview-ansible/blob/master/examples/oneview_config-rename.json
 
@@ -2343,16 +2539,16 @@ OneView証明書サーバーを管理します。
 ## oneview_certificates_server_facts
 Retrieve the facts about one or more of the OneView Certificates Server.
 
-#### Synopsis
+#### 概要
  Retrieve the facts about one or more of the Certificates Server from OneView.
 
-#### Requirements (on the host that executes the module)
+#### 要件 (モジュールを実行するホスト)
   * hpeOneView >= 5.4.0
   * python >= 3.4.2
 
-#### Options
+#### オプション
 
-| Parameter     | Required    | Default  | Choices    | Comments |
+| パラメーター     | 必要    | デフォルト  | 選択肢    | コメント |
 | ------------- |-------------| ---------|----------- |--------- |
 | config  |   |  | |  Path to a .json configuration file containing the OneView client configuration. The configuration file is optional and when used should be present in the host running the ansible commands. If the file path is not provided, the configuration will be loaded from environment variables. For links to example configuration files or how to use the environment variables verify the notes section.  |
 | aliasName  |   No  |  | |  Certificates Server aliasName.  |
@@ -2360,7 +2556,7 @@ Retrieve the facts about one or more of the OneView Certificates Server.
 
 
  
-#### Examples
+#### 例
 
 ```yaml
 
@@ -2392,7 +2588,7 @@ Retrieve the facts about one or more of the OneView Certificates Server.
 
 #### 戻り値
 
-| Name          | Description  | Returned | Type       |
+| 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
 | certificates_servers   | 証明書サーバーの全ての情報を保持します。 |  常に値が戻されますが、nullの場合があります。 |  dict |
 | remote_certificate     | リモートサーバー証明書情報を保持します。 |  要求した場合、値が戻されます。 |  dict |
@@ -4458,7 +4654,7 @@ OneViewファームウェアバンドルリソースをアップロードしま�
 
 #### 要件 (モジュールを実行するホスト)
   * python >= 2.7.9
-  * hpOneView >= 2.0.1
+  * hpeOneView >= 5.4.0
 
 #### オプション
 
@@ -4523,7 +4719,7 @@ OneViewファームウェアバンドルリソースをアップロードしま�
 
 #### 要件 (モジュールを実行するホスト)
   * python >= 2.7.9
-  * hpOneView >= 2.0.1
+  * hpeOneView >= 5.4.0
 
 #### オプション
 
@@ -4597,7 +4793,7 @@ OneViewハイパーバイザークラスタープロファイルを管理しま�
 
 #### オプション
 
-| Parameter     | Required    | Default  | Choices    | Comments |
+| パラメーター     | 必要    | デフォルト  | 選択肢    | コメント |
 | ------------- |-------------| ---------|----------- |--------- |
 | config  |   |  | |  OneViewクライアント構成を含む.json構成ファイルへのパス。構成ファイルはオプションです。ファイルパスが指定されていない場合、構成は環境変数からロードされます。設定ファイルをリンクさせる、または環境変数の使い方については注記を確認してください。  |
 | data  |   Yes  |  | |  ハイパーバイザークラスタープロファイル情報をセットします.  |
@@ -4656,7 +4852,7 @@ OneViewハイパーバイザークラスタープロファイルを管理しま�
 
 
 
-#### Notes
+#### 注記
 
 - A sample configuration file for the config parameter can be found at: https://github.com/HewlettPackard/oneview-ansible/blob/master/examples/oneview_config-rename.json
 
@@ -4673,16 +4869,16 @@ OneViewハイパーバイザークラスタープロファイルを管理しま�
 ## oneview_hypervisor_cluster_profile_facts
 Retrieve the facts about one or more of the OneView Hypervisor Cluster Profiles.
 
-#### Synopsis
+#### 概要
  Retrieve the facts about one or more of the Hypervisor Cluster Profiles from OneView.
 
-#### Requirements (on the host that executes the module)
+#### 要件 (モジュールを実行するホスト)
   * hpeOneView >= 5.4.0
   * python >= 3.4.2
 
-#### Options
+#### オプション
 
-| Parameter     | Required    | Default  | Choices    | Comments |
+| パラメーター     | 必要    | デフォルト  | 選択肢    | コメント |
 | ------------- |-------------| ---------|----------- |--------- |
 | config  |   |  | |  Path to a .json configuration file containing the OneView client configuration. The configuration file is optional and when used should be present in the host running the ansible commands. If the file path is not provided, the configuration will be loaded from environment variables. For links to example configuration files or how to use the environment variables verify the notes section.  |
 | name  |   No  |  | |  Hypervisor Cluster Profile name.  |
@@ -4691,7 +4887,7 @@ Retrieve the facts about one or more of the OneView Hypervisor Cluster Profiles.
 
 
  
-#### Examples
+#### 例
 
 ```yaml
 
@@ -4751,7 +4947,7 @@ Retrieve the facts about one or more of the OneView Hypervisor Cluster Profiles.
 
 #### 戻り値
 
-| Name          | Description  | Returned | Type       |
+| 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
 | hypervisor_cluster_profiles   | ハイパーバイザークラスタープロファイルの全ての情報を保持します。 |  常に値が戻されますが、nullの場合があります。 |  dict |
 | hypervisor_cluster_profile_compliance_preview   | ハイパーバイザークラスタープロファイルコンプライアンスプレビューの全ての情報を保持します. |  要求した場合、値が戻されます。 |  dict |
@@ -4775,16 +4971,16 @@ Retrieve the facts about one or more of the OneView Hypervisor Cluster Profiles.
 ## oneview_hypervisor_manager
 OneViewハイパーバイザマネージャーを管理します。
 
-#### Synopsis
+#### 概要
  ハイパーバイザーマネージャーを管理するためのインターフェースを提供します。作成、更新、削除が可能です。
 
-#### Requirements (on the host that executes the module)
+#### 要件 (モジュールを実行するホスト)
   * hpeOneView >= 5.4.0
   * python >= 3.4.2
 
-#### Options
+#### オプション
 
-| Parameter     | Required    | Default  | Choices    | Comments |
+| パラメーター     | 必要    | デフォルト  | 選択肢    | コメント |
 | ------------- |-------------| ---------|----------- |--------- |
 | config  |   |  | |  OneViewクライアント構成を含む.json構成ファイルへのパス。構成ファイルはオプションです。ファイルパスが指定されていない場合、構成は環境変数からロードされます。設定ファイルをリンクさせる、または環境変数の使い方については注記を確認してください。  |
 | data  |   Yes  |  | |  ハイパーバイザーマネージャー情報をセットします。  |
@@ -4793,7 +4989,7 @@ OneViewハイパーバイザマネージャーを管理します。
 
 
  
-#### Examples
+#### 例
 
 ```yaml
 
@@ -4839,7 +5035,7 @@ OneViewハイパーバイザマネージャーを管理します。
 
 
 
-#### Notes
+#### 注記
 
 - A sample configuration file for the config parameter can be found at: https://github.com/HewlettPackard/oneview-ansible/blob/master/examples/oneview_config-rename.json
 
@@ -4856,16 +5052,16 @@ OneViewハイパーバイザマネージャーを管理します。
 ## oneview_hypervisor_manager_facts
 Retrieve the facts about one or more of the OneView Hypervisor Managers.
 
-#### Synopsis
+#### 概要
  Retrieve the facts about one or more of the Hypervisor Managers from OneView.
 
-#### Requirements (on the host that executes the module)
+#### 要件 (モジュールを実行するホスト)
   * hpeOneView >= 5.4.0
   * python >= 3.4.2
 
-#### Options
+#### オプション
 
-| Parameter     | Required    | Default  | Choices    | Comments |
+| パラメーター     | 必要    | デフォルト  | 選択肢    | コメント |
 | ------------- |-------------| ---------|----------- |--------- |
 | config  |   |  | |  Path to a .json configuration file containing the OneView client configuration. The configuration file is optional and when used should be present in the host running the ansible commands. If the file path is not provided, the configuration will be loaded from environment variables. For links to example configuration files or how to use the environment variables verify the notes section.  |
 | name  |   No  |  | |  Hypervisor Manager name.  |
@@ -4873,7 +5069,7 @@ Retrieve the facts about one or more of the OneView Hypervisor Managers.
 
 
  
-#### Examples
+#### 例
 
 ```yaml
 
@@ -4919,7 +5115,7 @@ Retrieve the facts about one or more of the OneView Hypervisor Managers.
 
 #### 戻り値
 
-| Name          | Description  | Returned | Type       |
+| 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
 | hypervisor_managers   | ハイパーバイザーマネージャーの全ての情報 |  常に返しますがnullのときもあります。 |  dict |
 
@@ -4933,6 +5129,183 @@ Retrieve the facts about one or more of the OneView Hypervisor Managers.
 - その他のHPE OneView AnsibleモジュールのPlaybookは、次の場所にあります。: https://github.com/HewlettPackard/oneview-ansible/tree/master/examples
 
 - 使用されるOneViewAPIバージョンによって、リソース対しての設定値と戻り値が変わる場合があります。APIバージョン別の設定に関する情報は、次のURLにあります。: https://github.com/HewlettPackard/oneview-ansible#setting-your-oneview-version
+
+
+---
+
+
+## oneview_id_pools
+OneView IDプールを管理します。
+
+#### 概要
+ID プールを管理するためのインターフェースを提供します。 作成、更新、削除ができます。
+
+#### 要件 (モジュールを実行するホスト)
+  * python >= 3.4.2
+  * hpeOneView >= 6.0.0
+
+#### オプション
+
+| パラメーター     | 必要    | デフォルト  | 選択肢    | コメント |
+| ------------- |-------------| ---------|----------- |--------- |
+| config  |   No  |  | |  OneViewクライアント構成を含む.json構成ファイルへのパス。構成ファイルはオプションです。ファイルパスが指定されていない場合、構成は環境変数からロードされます。  |
+| data  |   Yes  |  | |  IDプール情報のリスト  |
+| state  |   |  | <ul> <li>allocate</li>  <li>collect</li> </ul> |  希望の状態を指定します。 `allocate` はIDセットを予約します。 `collect`は占有されたIDセットを収集します。  |
+| validate_etag  |   |  True  | <ul> <li>true</li>  <li>false</li> </ul> |  ETag検証が有効になっている場合、リソースの現在のETagがデータで提供されているETagと一致する場合にのみ、リクエストが条件付きで処理されます。  |
+
+#### 例
+
+```yaml
+
+- name: Enables or disables the pool type
+  oneview_id_pools:
+    config: "{{ config }}"
+    state: update_pool_type
+    data:
+      poolType: '{{ poolType }}'
+      enabled: True
+  delegate_to: localhost
+
+- name: Allocates one or more IDs from a pool
+  oneview_id_pools:
+    config: "{{ config }}"
+    state: allocate
+    data:
+      poolType: '{{ poolType }}'
+      count: 2
+  delegate_to: localhost
+- debug: var=id_pool
+
+- name: Collects one or more IDs to be returned to a pool
+  oneview_id_pools:
+    config: "{{ config }}"
+    state: collect
+    data:
+      poolType: '{{ poolType }}'
+      idList: '{{ id_pool["idList"] }}'
+  delegate_to: localhost
+
+- name: Generates a random range
+  oneview_id_pools_facts:
+    config: "{{ config }}"
+    state: generate
+    data:
+      poolType: '{{ poolType }}'
+  delegate_to: localhost
+- debug: var=id_pool
+
+- name: Validates a set of IDs to reserve in the pool
+  oneview_id_pools:
+    config: "{{ config }}"
+    state: validate
+    data:
+      poolType: '{{ poolType }}'
+      idList: ['{{ id_pool["startAddress"] }}', 
+               '{{ id_pool["endAddress"] }}']
+  delegate_to: localhost
+
+```
+
+#### 戻り値
+
+| 名前          | 説明  | 戻り | タイプ       |
+| ------------- |-------------| ---------|----------- |
+| id_pools | OneView IDプール情報 |  'collect'またはnullの状態 |  dict |
+
+
+#### 注記
+
+- configパラメーターのサンプル構成ファイルは、次の場所にあります。: https://github.com/HewlettPackard/oneview-ansible/blob/master/examples/oneview_config-rename.json
+
+- 構成用の環境変数の使用方法は、次の場所で確認してください。: https://github.com/HewlettPackard/oneview-ansible#environment-variables
+
+- その他のHPE OneView AnsibleモジュールのPlaybookは、次の場所にあります。: https://github.com/HewlettPackard/oneview-ansible/tree/master/examples
+
+
+---
+
+
+## oneview_id_pools_facts
+OneView IDプール情報を取得します。
+
+#### 概要
+IDプールを管理するインターフェースを提供します。 スキーマ取得や検証、IDレンジ作成が可能です。
+
+#### 要件 (モジュールを実行するホスト)
+  * python >= 3.4.2
+  * hpeOneView >= 6.0.0
+
+#### オプション
+
+| パラメーター     | 必要    | デフォルト  | 選択肢    | コメント |
+| ------------- |-------------| ---------|----------- |--------- |
+| config  |   No  |  | |  OneViewクライアント構成を含む.json構成ファイルへのパス。構成ファイルはオプションです。ファイルパスが指定されていない場合、構成は環境変数からロードされます。  |
+| data  |   Yes  |  | |  IDプール情報のリスト  |
+| state  |   |  | <ul> <li>schema</li>  <li>validate</li> </ul> |  希望の状態を指定します。 `schema` はIDプールのスキーマを取得します。 `validate`はIDが検証済み稼働かを確認します。  |
+| validate_etag  |   |  True  | <ul> <li>true</li>  <li>false</li> </ul> |  ETag検証が有効になっている場合、リソースの現在のETagがデータで提供されているETagと一致する場合にのみ、リクエストが条件付きで処理されます。  |
+
+#### 例
+
+```yaml
+
+- name: Get schema of the id pools
+  oneview_id_pools_facts:
+    config: "{{ config }}"
+    state: schema
+    data:
+      description: 'ID pool schema'
+  delegate_to: localhost
+
+- name: Generates a random range
+  oneview_id_pools_facts:
+    config: "{{ config }}"
+    state: generate
+    data:
+      poolType: '{{ poolType }}'
+  delegate_to: localhost
+
+- name: Get the ID Pools type
+  oneview_id_pools_facts:
+    config: "{{ config }}"
+    state: get_pool_type
+    data:
+      poolType: '{{ poolType }}'
+  delegate_to: localhost
+- debug: var=id_pool
+
+- name: Checks the range availability in the ID pool
+  oneview_id_pools_facts:
+    config: "{{ config }}"
+    state: check_range_availability
+    data:
+      poolType: '{{ poolType }}'
+      idList: ["42:CE:78:00:00:00", "42:CE:78:8F:FF:FF"]
+  delegate_to: localhost
+
+- name: Validates the list of ID's from IPv4 Subnet
+  oneview_id_pools_facts:
+    config: "{{ config }}"
+    state: validate_id_pool
+    data:
+      poolType: 'ipv4'
+      idList: ['172.18.9.11']
+  delegate_to: localhost
+
+```
+
+#### 戻り値
+
+| 名前          | 説明  | 戻り | タイプ       |
+| ------------- |-------------| ---------|----------- |
+| id_pools_facts | OneView IDプールの情報 |  'generate'またはnull |  dict |
+
+#### 注記
+
+- configパラメーターのサンプル構成ファイルは、次の場所にあります。: https://github.com/HewlettPackard/oneview-ansible/blob/master/examples/oneview_config-rename.json
+
+- 構成用の環境変数の使用方法は、次の場所で確認してください。: https://github.com/HewlettPackard/oneview-ansible#environment-variables
+
+- その他のHPE OneView AnsibleモジュールのPlaybookは、次の場所にあります。: https://github.com/HewlettPackard/oneview-ansible/tree/master/examples
 
 
 ---
@@ -5728,6 +6101,150 @@ OneView内部リンクセットに関する情報を取得します。
 
 
 ---
+
+
+## oneview_label
+OneViewラベルを管理します。
+
+#### 概要
+リソースに付与されたラベルを管理します。
+
+#### 要件 (モジュールを実行するホスト)
+  * python >= 3.4.2
+  * hpeOneView >= 6.1.0
+
+#### オプション
+
+| パラメーター     | 必要    | デフォルト  | 選択肢    | コメント |
+| ------------- |-------------| ---------|----------- |--------- |
+| config  |   No  |  | |  OneViewクライアント構成を含む.json構成ファイルへのパス。構成ファイルはオプションです。ファイルパスが指定されていない場合、構成は環境変数からロードされます。  |
+| name  |   No  |  | |  ラベル名  |
+| uri | No |  | | ラベルURI  |
+| resourceUri | No | | リソースURI   |
+
+
+#### 例
+
+``` yaml
+
+- name: Create Labels for enclosure resource
+  oneview_label:
+    config: "{{ config }}"
+    state: present
+    data:
+      resourceUri: "/rest/enclosures/0000000000A66102"
+      labels:
+        - name: "Test label 1"
+        - name: "Test Label 2"
+  delegate_to: localhost
+  register: label
+
+- name: Update label of given resource for enclosure resource
+  oneview_label:
+    config: "{{ config }}"
+    state: present
+    data:
+      resourceUri: "/rest/enclosures/0000000000A66102"
+      labels:
+        - name: "Test label 1 Renamed"
+          uri: "/rest/labels/130"
+        - name: "Test label 2 Renamed"
+          uri: null 
+        - name: "Test label 3"
+          uri: null 
+  delegate_to: localhost
+
+- name: Delete Labels for enclosure resource
+  oneview_label:
+    config: "{{ config }}"
+    state: absent
+    data:
+      resourceUri: "/rest/enclosures/0000000000A66102"
+  delegate_to: localhost
+
+```
+
+#### 戻り値
+
+| 名前          | 説明  | 戻り | タイプ       |
+| ------------- |-------------| ---------|----------- |
+| label   | ラベルを持っているリソース |  常に |  dict |
+
+#### 注記
+
+- configパラメーターのサンプル構成ファイルは、次の場所にあります。: https://github.com/HewlettPackard/oneview-ansible/blob/master/examples/oneview_config-rename.json
+
+- 構成用の環境変数の使用方法は、次の場所で確認してください。: https://github.com/HewlettPackard/oneview-ansible#environment-variables
+
+- HPE OneView Ansibleモジュールの追加のPlaybookは、次の場所にあります。: https://github.com/HewlettPackard/oneview-ansible/tree/master/examples
+
+
+---
+
+## oneview_label_facts
+OneViewラベル情報を取得します。
+
+#### 概要
+ラベルリストを取得します。
+
+#### 要件 (モジュールを実行するホスト)
+  * python >= 3.4.2
+  * hpeOneView >= 6.1.0
+
+#### オプション
+
+| パラメーター     | 必要    | デフォルト  | 選択肢    | コメント |
+| ------------- |-------------| ---------|----------- |--------- |
+| config  |   No  |  | |  OneViewクライアント構成を含む.json構成ファイルへのパス。構成ファイルはオプションです。ファイルパスが指定されていない場合、構成は環境変数からロードされます。  |
+| params  |   No  |  | |  リソースのリストを区切り、フィルタリング、およびソートするためのパラメーターリスト。  次のパラメータが使用できます。 `start`: 0ベースインデックスとしたときの最初のアイテム。 `count`: 取得するリソース数。 `filter`: 取得するアイテムをフィルタリングするためのフィルター/クエリ文字列。 `sort`: 返り値の順番のソート。|
+| name  |   No  |  | |  ラベル名  |
+| resourceUri | No | | リソースURI   |
+
+
+#### 例
+
+```yaml
+
+- name: Gather facts about all Labels 
+  oneview_label_facts:
+    config: "{{ config }}"
+  delegate_to: localhost
+
+- debug: var=labels
+
+- name: Gather paginated, filtered and sorted facts about Labels
+  oneview_label_facts:
+    config: "{{ config }}"
+    params:
+      start: 0
+      count: 3
+      sort: 'name:descending'
+      filter: ''
+- debug: var=labels
+
+- name: Gather facts about a Label by name
+  oneview_label_facts:
+    config: "{{ config }}"
+    name: "{{ labels[0]['name'] }}"
+  delegate_to: localhost
+
+- debug: var=labels
+ 
+- name: Gather facts about a Label by Resource
+  oneview_label_facts:
+    config: "{{ config }}"
+    resourceUri: "/rest/enclosures/0000000000A66102"
+  delegate_to: localhost 
+
+- debug: var=labels
+
+```
+
+#### 戻り値
+
+| 名前          | 説明  | 戻り | タイプ       |
+| ------------- |-------------| ---------|----------- |
+| labels   | ラベルのリスト |  常に、nullの場合もあり |  dict |
 
 
 ## oneview_logical_downlinks_facts
@@ -7251,7 +7768,7 @@ OneView Managed SANリソースを管理します。
 
 #### 戻り値
 
-| Name          | Description  | Returned | Type       |
+| 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
 | managed_san   | 管理されているSANの情報を保持します。 |  状態は'present'または'refresh_state_set'が戻されますが、nullの場合もあります。 |  dict |
 | managed_san_endpoints   | 作成されたSANエンドポイントCSVをの情報を保持します。 |  状態は'endpoints_csv_file_created'が戻りますが、nullの場合もあります。 |  dict |
@@ -8164,7 +8681,7 @@ Rackリソースに関する情報を取得します。
 | ------------- |-------------| ---------|----------- |--------- |
 | config  |   No  |  | |  OneViewクライアント構成を含む.json構成ファイルへのパス。構成ファイルはオプションです。ファイルパスが指定されていない場合、構成は環境変数からロードされます。  |
 | name  |   No  |  | |  ラック名。  |
-| options  |   No  |  | |  追加の情報を取得します。 Options available: 'deviceTopology'.  |
+| options  |   No  |  | |  追加の情報を取得します。 オプションとして'deviceTopology'が使えます。  |
 | params  |   No  |  | |  リソースのリストを区切り、フィルター、ソートするパラメーターのリスト。  可能なパラメーター: `start`: 0から始まるインデックスを使用して返される最初のアイテム。`count`: 返されるリソースの数。`filter`: 返されるアイテムのリストを絞り込むための一般的なフィルター/クエリ文字列。`sort`: 返されたデータセットのソート順。  |
 
 
@@ -11184,7 +11701,7 @@ Retrieve facts about Storage Volume Templates of the OneView.
 | ------------- |-------------| ---------|----------- |--------- |
 | config  |   No  |  | |  OneViewクライアント構成を含む.json構成ファイルへのパス。構成ファイルはオプションです。ファイルパスが指定されていない場合、構成は環境変数からロードされます。  |
 | name  |   No  |  | |  ストレージボリュームテンプレート名。  |
-| options  |   No  |  | |  追加の情報を取得します。 Options available: `connectableVolumeTemplates`, `reachableVolumeTemplates`, `compatibleSystems`  |
+| options  |   No  |  | |  追加の情報を取得します。 オプションとして `connectableVolumeTemplates`, `reachableVolumeTemplates`, `compatibleSystems`が使えます。  |
 | params  |   No  |  | |  リソースのリストを区切り、フィルター、ソートするパラメーターのリスト。  可能なパラメーター: `start`: 0から始まるインデックスを使用して返される最初のアイテム。`count`: 返されるリソースの数。`filter`: 返されるアイテムのリストを絞り込むための一般的なフィルター/クエリ文字列。`sort`: 返されたデータセットのソート順。  |
 
 
@@ -11523,7 +12040,7 @@ OneViewタスクに関する情報を取得します。
 | パラメーター     | 必要    | デフォルト  | 選択肢    | コメント |
 | ------------- |-------------| ---------|----------- |--------- |
 | config  |   No  |  | |  OneViewクライアント構成を含む.json構成ファイルへのパス。構成ファイルはオプションです。ファイルパスが指定されていない場合、構成は環境変数からロードされます。  |
-| params  |   No  |  | |  タスクのフィルタリングに役立つパラメータを表示します。可能なパラメーター: `count`、`fields`、`filter`、`query`、`sort`、`start`、`view`。  |
+| params  |   No  |  | |  タスクのフィルタリングに役立つパラメータを表示します。使用可能なパラメーター: `count`、`fields`、`filter`、`query`、`sort`、`start`、`view`。  |
 
 
  
@@ -11950,7 +12467,7 @@ OneViewユーザーを管理します。
 | ------------- |-------------| ---------|----------- |--------- |
 | config  |   No  |  | |  OneViewクライアント構成を含む.json構成ファイルへのパス。構成ファイルはオプションです。ファイルパスが指定されていない場合、構成は環境変数からロードされます。  |
 | data  |   Yes  |  | |  ユーザープロパティを表示します。  |
-| state  |   |  | <ul> <li>present</li>  <li>absent</li>  <li>set_password</li> </ul> |  ユーザーにとって望ましい状態を示します。`present` は、データプロパティがOneViewに準拠していることを保証します。`absent`は、存在する場合、OneViewからリソースを削除します。`set_password`はユーザーのパスワードを指定された値に設定します。この操作は冪等ではありません。  |
+| state  |   |  | <ul> <li>present</li>  <li>absent</li> <li>set_password</li> <li>add_role_to_username</li> <li>update_role_to_username</li> <li>remove_role_from_username</li> <li>add_multiple_users</li> <li>delete_multiple_users</li> <li>validate_user_name</li> <li>validate_full_name</li> </ul> |  ユーザーの状態を指定します。 `present` は、データプロパティがOneViewに存在していることを保証します。`absent`は、存在する場合、OneViewからリソースを削除します。 `set_password` 初期セットアップ時にデフォルトのadministratorパスワードを変更します。`add_role_to_username`はユーザーにロールのセットを与えます。 `update_role_to_username`はユーザーに付与したロールのセットを更新します。 `remove_role_from_username`はスコープによって制限されていないロールのセットをユーザーから削除します。 `add_multiple_users`は複数の新しいローカルユーザーを追加します。（ユーザー作成権限を持ったユーザーが必要です。） `delete_multiple_users`はクエリ条件に基づいて複数のユーザーを削除します。 `validate_username`は指定されたユーザー名を持つユーザーの存在を確認します。 `validate_fullname`は指定されたフルネームをもつユーザーの存在を確認します。 |
 
 
  
@@ -11958,43 +12475,159 @@ OneViewユーザーを管理します。
 
 ```yaml
 
-- name: Ensure that the User is present using the default configuration
+- name: Gather facts about all Scopes
+  oneview_scope_facts:
+    config: "{{ config }}"
+  delegate_to: localhost
+
+- name: Create a User
   oneview_user:
-    config: "{{ config_file_path }}"
+    config: "{{ config }}"
     state: present
     data:
-      userName: testUser
-      password: pass1234
-      emailAddress: testUser@example.com
+      userName: "{{ user_name }}"
+      password: "myPass1234"
+      emailAddress: "{{ email }}"
       enabled: true
-      fullName: testUser101
-    delegate_to: localhost
+      fullName: "testUser101"
+      mobilePhone: '555-2121'
+      officePhone: '555-1212'
+      permissions:
+        - roleName: "Read only"
+          scopeUri: "/rest/scopes/6cf6d4da-1b5e-4322-9dff-6ef545ad700f"
+        - roleName: "Infrastructure administrator"
+          scopeUri: "/rest/scopes/c7cab507-b49a-422d-9765-aff784112092"
+  delegate_to: localhost
+  register: user_1
 
-- name: Ensure that the User is present with enabled 'false'
+- name: Do nothing with the User when no changes are provided
   oneview_user:
-    config: "{{ config_file_path }}"
+    config: "{{ config }}"
     state: present
     data:
-      userName: testUser
-      enabled: false
-    delegate_to: localhost
+      userName: "{{ user_name }}"
+      emailAddress: "{{ email }}"
+      enabled: true
+      fullName: "testUser101"
+      mobilePhone: '555-2121'
+      officePhone: '555-1212'
+      permissions:
+        - roleName: "Read only"
+          scopeUri: "/rest/scopes/6cf6d4da-1b5e-4322-9dff-6ef545ad700f"
+        - roleName: "Infrastructure administrator"
+          scopeUri: "/rest/scopes/c7cab507-b49a-422d-9765-aff784112092"
+  delegate_to: localhost
+  register: user_1
 
-- name: Ensure that the User is absent
+- name: Update the User changing the attribute enabled to False
   oneview_user:
-    config: "{{ config_file_path }}"
+    config: "{{ config }}"
+    state: present
+    data:
+      userName: "{{ user_name }}"
+      enabled: false
+  delegate_to: localhost
+
+- name: Adds multiple new local users to the appliance
+  oneview_user:
+    config: "{{ config }}"
+    state: add_multiple_users
+    data:
+      users_list:
+        - userName: "{{ user_name }}1"
+          password: "myPass1234"
+          emailAddress: "{{ email }}"
+          enabled: true
+          fullName: "testUser101"
+          mobilePhone: '555-2121'
+          officePhone: '555-1212'
+          permissions:
+            - roleName: "Read only"
+            - roleName: "Infrastructure administrator"
+        - userName: "{{ user_name }}2"
+          password: "myPass1234"
+          emailAddress: "{{ email }}"
+          enabled: true
+          fullName: "testUser101"
+          mobilePhone: '555-2121'
+          officePhone: '555-1212'
+          permissions:
+            - roleName: "Read only"
+            - roleName: "Infrastructure administrator"
+  delegate_to: localhost
+- debug: var=user
+
+- name: Validates the existence of a user with the given user name
+  oneview_user:
+    config: "{{ config }}"
+    state: validate_user_name
+    data:
+      userName: "testUser"
+  delegate_to: localhost
+- debug: var=user
+
+- name: Checks for the existence of a user with the specified full name
+  oneview_user:
+    config: "{{ config }}"
+    state: validate_full_name
+    data:
+      fullName: "testUser101"
+  delegate_to: localhost
+- debug: var=user
+
+- name: Add role to existing username
+  oneview_user:
+    config: "{{ config }}"
+    state: add_role_to_username
+    data:
+      userName: "testUser"
+      role_list:
+        - roleName: "Backup administrator"
+        - roleName: "Scope administrator"
+  delegate_to: localhost
+- debug: var=user
+
+- name: Update role to existing username
+  oneview_user:
+    config: "{{ config }}"
+    state: update_role_to_username
+    data:
+      userName: "testUser"
+      role_list:
+        - roleName: "Infrastructure administrator"
+        - roleName: "Read only"
+  delegate_to: localhost
+- debug: var=user
+
+- name: remove role from existing username
+  oneview_user:
+    config: "{{ config }}"
+    state: remove_role_from_username
+    data:
+      userName: "testUser"
+      roleName: "Read only"
+  delegate_to: localhost
+- debug: var=user
+
+- name: Delete single user
+  oneview_user:
+    config: "{{ config }}"
     state: absent
     data:
-      userName: testUser
-    delegate_to: localhost
+      userName: "testUser"
+  delegate_to: localhost
+- debug: var=user
 
-- name: Set the password of specified user
+- name: Delete multiple users
   oneview_user:
-    config: "{{ config_file_path }}"
-    state: set_password
+    config: "{{ config }}"
+    state: delete_multiple_users
     data:
-      userName: testUser
-      password: newPass1234
-    delegate_to: localhost
+      users_list:
+        - "testUser1"
+        - "testUser2"
+  delegate_to: localhost
+- debug: var=user
 
 ```
 
@@ -12004,7 +12637,7 @@ OneViewユーザーを管理します。
 
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
-| user   | OneViewユーザーに関する情報を持っています。|  状態 'present'nullの場合があります。|  dict |
+| user   | OneViewユーザーに関する情報を持っています。|  常に|  dict |
 
 
 #### 注記
@@ -12026,15 +12659,17 @@ OneViewユーザーを管理します。
  OneViewから1人以上のユーザーに関する情報を取得します。
 
 #### 要件 (モジュールを実行するホスト)
-  * python >= 2.7.9
-  * hpOneView >= 3.2.0
+  * python >= 3.4.2
+  * hpeOneView >= 6.1.0
 
 #### オプション
 
 | パラメーター     | 必要    | デフォルト  | 選択肢    | コメント |
 | ------------- |-------------| ---------|----------- |--------- |
 | config  |   No  |  | |  OneViewクライアント構成を含む.json構成ファイルへのパス。構成ファイルはオプションです。ファイルパスが指定されていない場合、構成は環境変数からロードされます。  |
-| name  |   No  |  | |  ユーザー名。  |
+| nameName  |   No  |  | |  ユーザー名。  |
+| role  |   No  |  | |  ロール名  |
+| options | No  |  |  getUserRoles | ユーザー名に関連付けられたロールを取得するオプション
 | params  |   No  |  | |  リソースのリストを区切り、フィルター、ソートするパラメーターのリスト。  可能なパラメーター: `start`: 0から始まるインデックスを使用して返される最初のアイテム。`count`: 返されるリソースの数。`filter`: 返されるアイテムのリストを絞り込むための一般的なフィルター/クエリ文字列。`sort`: 返されたデータセットのソート順。  |
 
 
@@ -12045,7 +12680,7 @@ OneViewユーザーを管理します。
 
 - name: Gather facts about all Users
   oneview_user_facts:
-    config: "{{ config_file_path }}"
+    config: "{{ config }}"
 
 - debug: var=users
 
@@ -12062,10 +12697,29 @@ OneViewユーザーを管理します。
 
 - name: Gather facts about a User by name
   oneview_user_facts:
-    config: "{{ config_file_path }}"
-    name: user name
+    config: "{{ config }}"
+    name: "testUser"
 
 - debug: var=users
+
+- name: Gather facts about the users who have permissions that use a specified role
+  oneview_user_facts:
+    config: "{{ config }}"
+    role: "{{ role }}"
+  delegate_to: localhost
+
+- debug: var=role
+
+- name: Gather facts about lists of user's roles
+  oneview_user_facts:
+    config: "{{ config }}"
+    userName: "testUser"
+    options:
+        - getUserRoles
+  delegate_to: localhost
+
+- debug: var=users
+- debug: var=user_roles
 
 ```
 
@@ -12076,6 +12730,8 @@ OneViewユーザーを管理します。
 | 名前          | 説明  | 戻り | タイプ       |
 | ------------- |-------------| ---------|----------- |
 | users   | ユーザーに関するすべてのOneViewの情報を持っています。|  常時、ただしnullの場合があります。|  dict |
+| user_roles | ユーザーに紐づけられた全てのロール | 常時 | list |
+| role   | It has all the Users with specified role. |  常時、ただしnullの場合があります。 | list | 
 
 
 #### 注記
@@ -12434,3 +13090,5 @@ OneViewボリュームに関する情報を取得します。
 
 ---
 
+
+<!-- 20210511 https://github.com/HewlettPackard/oneview-ansible/compare/cd5d7e471bd6c5c1d6f9d75156c1514892e1f3b4%E2%80%A6815f410663f9601ad6ef0a787a898478abcc7e13# -->
